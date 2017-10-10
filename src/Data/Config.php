@@ -8,7 +8,6 @@ class Config
 {
   
   /** @var int | for future addition */
-  public $int_holder = 1;
   public $max_players = 60;
   /** @var string */  
   private $spawn = "hub";
@@ -16,9 +15,6 @@ class Config
   private $dev = true;
   private $testing = true;
   private $forceShutdown = true;
-  private $events = true;
-  private $tasks = true;
-  private $games = true;
   private $staff_only = false;
   
   /** @return int, max server players */
@@ -44,21 +40,6 @@ class Config
   /** @return bool, force shutdown */
   public function forceShutdown(){
     return $this->forceShutdown;
-  }
-  
-  /** @return bool, events */
-  public function events(){
-    return $this->events;
-  }
-  
-  /** @return bool, tasks */
-  public function tasks(){
-    return $this->tasks;
-  }
-  
-  /** @return bool, games */
-  public function games(){
-    return $this->games;
   }
   
   /** @return bool, staff only */

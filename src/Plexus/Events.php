@@ -23,8 +23,10 @@ class Events implements Listener
     $cooldown = $this->getPlugin()->cool_down;
   if($cooldown > 0){
     $player->close("", $this->getPlugin()->lang()->loading_server);
-   } else {
-    return;
+  } elseif($this->getPlugin()->config()->staffOnly() === true){
+  if($player->isOp() === true){
+    $player->close("", $this->getPlugin()->lang()->is_not_op);
+    }
    } 
   }
 
@@ -33,9 +35,9 @@ class Events implements Listener
     $player = $e->getPlayer();
     $rand = rand(1, 5);
     $spawns = $this->getPlugin()->config()->spawns;
-    $sp = "spawn" . $rand; 
+    $sr = "spawn" . $rand; 
     $player->teleport(\pocketmine\Server::getInstance()->getLevelByName($this->getPlugin()->config()->spawn())->getSafeSpawn());
-    $player->teleport(new \pocketmine\math\Vector3($spawns[$sp]['x'], 11, $spawns[$sp]['z']));
+    $player->teleport(new \pocketmine\math\Vector3($spawns[$sr]['x'], 11, $spawns[$sr]['z']));
   }
 
   public function quit(\pocketmine\event\player\PlayerQuitEvent $e){

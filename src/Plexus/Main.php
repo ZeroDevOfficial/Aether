@@ -5,15 +5,8 @@ namespace Plexus;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 
-use pocketmine\item\Item;
-use pocketmine\utils\UUID;
-use pocketmine\network\mcpe\protocol\AddPlayerPacket;
-use pocketmine\entity\Entity;
-
 class Main extends PluginBase
 {
-
-  public $npc = [];
 
   public $has_loaded = false;
   public $cool_down = 10;

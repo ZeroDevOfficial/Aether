@@ -1,6 +1,6 @@
 name: Plexus
 main: Plexus\Main
-version: 0.1
+version: 0.1.1
 api: 3.0.0-ALPHA9
 load: STARTUP
 author: ZeroDev

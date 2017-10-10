@@ -24,10 +24,12 @@ class Events implements Listener
   if($cooldown > 0){
     $player->close("", $this->getPlugin()->lang()->loading_server);
   } elseif($this->getPlugin()->config()->staffOnly() === true){
-  if($player->isOp() === true){
+  if($player->isOp() === false){
     $player->close("", $this->getPlugin()->lang()->is_not_op);
     }
-   } 
+   } elseif($player->getXuid() !== ""){
+    $this->getPlugin()->createPlayer($player);
+   }
   }
 
   public function join(\pocketmine\event\player\PlayerJoinEvent $e){

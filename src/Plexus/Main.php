@@ -57,5 +57,9 @@ class Main extends PluginBase
     return new \Data\Lang(); 
   }
 
+  public function createPlayer($player){
+    //TODO
+  }
+
 }
 ?>

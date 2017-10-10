@@ -28,9 +28,12 @@ use pocketmine\utils\TextFormat as C;
    public $server_offline_name = C::RED ."Plexus". C::GRAY ." Offline";
    public $server_public_name = C::RED ."Plexus". C::AQUA ." Studio";
    public $server_dev_name = C::RED ."Plexus". C::AQUA ." Dev";
-   public $shutdown_message = "Plexus Has closed, We will be back shortly.";
 
   //>> Other <<
   public $break = C::RESET . C::WHITE . "\n";
   public $loading_server = C::AQUA ."Server is still loading...";
+
+  //>> Player Close Messages <<
+  public $shutdown_message = C::AQUA ."Plexus Has closed, We will be back shortly.";
+  public $is_not_op = C::AQUA ."Plexus is in Staff Only Mode.";
 }

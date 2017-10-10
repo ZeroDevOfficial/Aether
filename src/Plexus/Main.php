@@ -10,6 +10,7 @@ class Main extends PluginBase
 
   public $has_loaded = false;
   public $cool_down = 10;
+  public $npc = [];
 
   public function onEnable(){
     $this->load();

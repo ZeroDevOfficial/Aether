@@ -1,7 +1,7 @@
 name: Plexus
-main: Plexus.Main
-version: "0.1.2"
-api: [1.0.0]
-load: POSTWORLD
-author: ZeroDev and more importantly Nora
-description: A core for Plexus Studio
+main: Plexus\Main
+version: 0.1.2
+api: 3.0.0-ALPHA9
+load: STARTUP
+author: ZeroDev
+description: a core for plexus studio

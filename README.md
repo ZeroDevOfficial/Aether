@@ -1,8 +1,8 @@
 # Plexus Core
 
-> Core: v0.1.1
+> Core: v0.1.2
 
-> PocketMine-MP: api-[3.0.0-ALPHA9](https://github.com/pmmp/PocketMine-MP/commit/c4c83e23ca5e9e839910f9ad0d660a1fbc972804)
+> PocketMine-MP: api-3.0.0-ALPHA9
 
 > Minecraft: v1.2.2
 

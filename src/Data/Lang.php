@@ -10,7 +10,7 @@ use pocketmine\utils\TextFormat as C;
 
  class Lang 
 {
-  //>> Startup and Shutdown <<
+  /* { lang } | startup and shutdown */  
   public $load = C::AQUA . "is Loading all necessary core components.";
   
    public $no_dev_mode = C::AQUA ."is Running in". C::GREEN ." Public". C::AQUA ." Mode.";
@@ -24,16 +24,16 @@ use pocketmine\utils\TextFormat as C;
    public $shutdown = C::AQUA ."is Now". C::RED ." Offline.";
    public $force_shutdown = C::RED ."Server is still running, Shutting Down Server.";
    
-   //>> Server <<
+   /* { lang } | server */
    public $server_offline_name = C::RED ."Plexus". C::GRAY ." Offline";
    public $server_public_name = C::RED ."Plexus". C::AQUA ." Studio";
    public $server_dev_name = C::RED ."Plexus". C::AQUA ." Dev";
 
-  //>> Other <<
+  /* { lang } | other */
   public $break = C::RESET . C::WHITE . "\n";
   public $loading_server = C::AQUA ."Server is still loading...";
 
-  //>> Player Close Messages <<
+  /* { lang } | player kick messages */
   public $shutdown_message = C::AQUA ."Plexus Has closed, We will be back shortly.";
   public $is_not_op = C::AQUA ."Plexus is in Staff Only Mode.";
 }

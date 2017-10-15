@@ -16,8 +16,8 @@ public class Main extends PluginBase{
   }
   
   /* { function } | plugin disable */
-  public void isable(){
-    $this->getLogger()->info($this->lang()->shutdown);
+  public void Disable(){
+    this.getLogger().info("This gay plugin closed");
     $players = $this->getServer()->getOnlinePlayers();
   foreach($players as $player){
     $player->close("", $this->lang()->shutdown_message);

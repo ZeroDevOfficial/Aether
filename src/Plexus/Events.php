@@ -22,14 +22,13 @@ class Events implements Listener
   /* { function } | player pre login event */
   public function preLogin(\pocketmine\event\player\PlayerPreLoginEvent $e){
     $player = $e->getPlayer();
-    $cooldown = $this->getPlugin()->cool_down;
-  if($cooldown > 0){
-    $player->close("", $this->getPlugin()->lang()->loading_server);
-  } elseif($this->getPlugin()->config()->staffOnly() === true){
+  if($this->getPlugin()->config()->staffOnly() === true){
   if($player->isOp() === false){
     $player->close("", $this->getPlugin()->lang()->is_not_op);
-    }
-   } 
+    } 
+   } else {
+    $this->getPlugin()->player[$player->getName()] = new \Plexus\utils\PlayerData($this->getPlugin(), $player);
+   }
   }
 
   /* { function } | player join event */
@@ -47,5 +46,9 @@ class Events implements Listener
   public function quit(\pocketmine\event\player\PlayerQuitEvent $e){
     $player = $e->getPlayer();
     $e->setQuitMessage("");
+  if(isset($this->getPlugin()->player[$player->getName()])){
+    $this->getPlugin()->player[$player->getName()]->save();
+    unset($this->getPlugin()->player[$player->getName()]);
+   }
   }
 }

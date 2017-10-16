@@ -8,8 +8,8 @@ use pocketmine\Server;
 class Main extends PluginBase
 {
 
-  /* { var array } | npc data */ 
-  public $players = [];
+  /* { var array } | local player data */ 
+  public $player = [];
 
   /* { function } | plugin enable */ 
   public function onEnable(){
@@ -19,12 +19,12 @@ class Main extends PluginBase
   if($this->config()->testingMode() == true){
     $this->getServer()->getNetwork()->setName($this->lang()->server_dev_name);
     $this->getLogger()->info($this->lang()->testing_mode);
-    $this->loadTEG();
+    $this->load();
   }
    } else {
     $this->getServer()->getNetwork()->setName($this->lang()->server_public_name);
     $this->getLogger()->info($this->lang()->no_dev_mode);
-    $this->loadTEG();
+    $this->load();
    }
   }
 
@@ -42,7 +42,7 @@ class Main extends PluginBase
   }
 
   /* { function } | loads tasks, games, events, and other things*/
-  public function loadTEG(){
+  public function load(){
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
   }
 

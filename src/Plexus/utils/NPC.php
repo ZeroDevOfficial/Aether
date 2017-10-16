@@ -1,6 +1,6 @@
 <?php
 
-namespace Plexus;
+namespace Plexus\utils;
 
 use pocketmine\entity\Entity;
 use pocketmine\item\Item;
@@ -12,7 +12,6 @@ class NPC {
   private $y;
   private $z;
   private $yaw = -1;
-  private $headYaw = -1;
   private $pitch = -1;
 
   /* { var } | name */ 
@@ -40,11 +39,10 @@ class NPC {
 		$pk->uuid = $this->uuid;
 		$pk->username = $this->name;
 		$pk->entityRuntimeId = $this->eid;
-    $pk->position = new \pocketmine\math\Vector3($this->x + 0.05, $this->y, $this->z + 0.05);
+    $pk->position = new \pocketmine\math\Vector3($this->x, $this->y, $this->z);
 		$pk->item = Item::get(Item::AIR, 0, 0);
     $pk->pitch = $this->pitch;
     $pk->yaw = $this->yaw;
-    $pk->headYaw = $this->headYaw;
 	  $pk->metadata = [
       Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, 
       (1 << Entity::DATA_FLAG_CAN_SHOW_NAMETAG) | 

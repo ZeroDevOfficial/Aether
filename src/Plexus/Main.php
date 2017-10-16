@@ -41,6 +41,15 @@ class Main extends PluginBase
    }
   }
 
+  /* { function } | picks a random spawn for the player */
+  public function spawn($player){
+    $rand = rand(1, 5);
+    $spawns = $this->config()->spawns;
+    $sr = "spawn" . $rand; 
+    $player->teleport(\pocketmine\Server::getInstance()->getLevelByName($this->config()->spawn())->getSafeSpawn());
+    $player->teleport(new \pocketmine\math\Vector3($spawns[$sr]['x'], 11, $spawns[$sr]['z']));
+  }
+
   /* { function } | loads tasks, games, events, and other things*/
   public function load(){
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
@@ -56,4 +65,3 @@ class Main extends PluginBase
     return new \Data\Lang(); 
   }
 }
-?>

@@ -11,6 +11,7 @@ use pocketmine\utils\TextFormat as C;
 {
   
   public $max_players = 60;
+  public $border = 100;
   private $spawn = "hub";
   private $dev = true;
   private $testing = true;

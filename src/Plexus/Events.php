@@ -35,11 +35,19 @@ class Events implements Listener
   public function join(\pocketmine\event\player\PlayerJoinEvent $e){
     $e->setJoinMessage("");
     $player = $e->getPlayer();
-    $rand = rand(1, 5);
-    $spawns = $this->getPlugin()->config()->spawns;
-    $sr = "spawn" . $rand; 
-    $player->teleport(\pocketmine\Server::getInstance()->getLevelByName($this->getPlugin()->config()->spawn())->getSafeSpawn());
-    $player->teleport(new \pocketmine\math\Vector3($spawns[$sr]['x'], 11, $spawns[$sr]['z']));
+    $this->getPlugin()->spawn($player);
+  }
+
+  /* { function } | player move event */
+  public function move(\pocketmine\event\player\PlayerMoveEvent $e){
+    $player = $e->getPlayer();
+    $spawn = $player->getLevel()->getSpawnLocation();
+  if($e->getTo()->distance($e->getFrom()) > 0.1) {
+  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($spawn->getX(), $spawn->getY(), $spawn->getZ()))) >= $this->getPlugin()->config()->border or $player->getY() <= 0){
+    $this->getPlugin()->spawn($player);
+    $player->addTitle($this->getPlugin()->lang()->border_reached, $this->getPlugin()->lang()->border_end_of_world, 50, 90, 40);
+    }
+   }
   }
 
   /* { function } | player quit event */

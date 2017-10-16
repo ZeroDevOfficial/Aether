@@ -31,6 +31,8 @@ use pocketmine\utils\TextFormat as C;
   /* { lang } | other */
   public $break = C::RESET . C::WHITE . "\n";
   public $loading_server = C::AQUA ."Server is still loading...";
+  public $border_reached = C::YELLOW ."Border Reached!";
+  public $border_end_of_world = C::RED ."You have reached the end of the world.";
 
   /* { lang } | player kick messages */
   public $shutdown_message = C::AQUA ."Plexus Has closed, We will be back shortly.";

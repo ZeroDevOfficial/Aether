@@ -24,8 +24,8 @@ class PlayerData {
     $this->create();
   } else {
     $config = yaml_parse_file($this->getConfig());
-    $this->rank = $config["rank"];
-    $this->last_login = $config["last_login"];
+    //$this->rank = $config["rank"];
+    //$this->last_login = $config["last_login"];
     $this->kills = $config["kills"];
     $this->deaths = $config["deaths"];
    }

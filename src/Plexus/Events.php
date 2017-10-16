@@ -41,30 +41,11 @@ class Events implements Listener
     $sr = "spawn" . $rand; 
     $player->teleport(\pocketmine\Server::getInstance()->getLevelByName($this->getPlugin()->config()->spawn())->getSafeSpawn());
     $player->teleport(new \pocketmine\math\Vector3($spawns[$sr]['x'], 11, $spawns[$sr]['z']));
-  /* { npc } | spawns all npc's on join */
-  foreach($this->getPlugin()->getNpc() as $eid => $npc){
-    $npc->spawn($player);
-   }
   }
 
   /* { function } | player quit event */
   public function quit(\pocketmine\event\player\PlayerQuitEvent $e){
     $player = $e->getPlayer();
     $e->setQuitMessage("");
-
-  /* { npc } | removes all npc's on player leave */
-  foreach($this->getPlugin()->getNpc() as $eid => $npc){
-    $npc->remove($player);
-   }
-  }
-
-  /* { function } | player move event */
-  public function move(\pocketmine\event\player\PlayerMoveEvent $e){
-    $player = $e->getPlayer(); 
-
-  /* { npc } | when a player moves the npc it will look at the player */
-  foreach($this->getPlugin()->getNpc() as $eid => $npc){
-    $npc->look($player, $this->getPlugin());
-   }
   }
 }

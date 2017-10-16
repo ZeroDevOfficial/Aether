@@ -16,8 +16,6 @@ use pocketmine\utils\TextFormat as C;
   private $testing = true;
   private $forceShutdown = true;
   private $staff_only = false;
-
-  private $npc_data = [];
   
   /** @return int, max server players */
   public function maxPlayers(){
@@ -57,11 +55,4 @@ use pocketmine\utils\TextFormat as C;
     'spawn4' => array('x' => "3", 'z' => "6"),
     'spawn5' => array('x' => "-5", 'z' => "9"), 
   );
-  
-  public function npcData($plugin){
-    return array(
-      'npc1' => array(3, 11, 13, "Test"),
-      'npc2' => array(1, 11, 13, "Test2"),
-      );
-  }
 }

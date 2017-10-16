@@ -12,6 +12,7 @@ class NPC {
   private $y;
   private $z;
   private $yaw = -1;
+  private $headYaw = -1;
   private $pitch = -1;
 
   /* { var } | name */ 
@@ -39,16 +40,16 @@ class NPC {
 		$pk->uuid = $this->uuid;
 		$pk->username = $this->name;
 		$pk->entityRuntimeId = $this->eid;
-    $pk->position = new \pocketmine\math\Vector3($this->x, $this->y, $this->z);
+    $pk->position = new \pocketmine\math\Vector3($this->x + 0.05, $this->y, $this->z + 0.05);
 		$pk->item = Item::get(Item::AIR, 0, 0);
-		$pk->yaw = $this->yaw;
-		$pk->pitch = $this->pitch;
+    $pk->pitch = $this->pitch;
+    $pk->yaw = $this->yaw;
+    $pk->headYaw = $this->headYaw;
 	  $pk->metadata = [
       Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, 
       (1 << Entity::DATA_FLAG_CAN_SHOW_NAMETAG) | 
       (1 << Entity::DATA_FLAG_ALWAYS_SHOW_NAMETAG)],
       Entity::DATA_LEAD_HOLDER_EID => [Entity::DATA_TYPE_LONG, -1],
-      Entity::DATA_SCALE => [Entity::DATA_TYPE_FLOAT, 1],
     ];
 
     $player->dataPacket($pk);
@@ -61,36 +62,4 @@ class NPC {
 
     $player->dataPacket($pk);
   }
-
-  /* this function look was borrowed from onebone's npc plugin, some things have been changed */
-  /* { function } | when a player moves the npc it will look at the player  */
-	public function look($player, $plugin){
-    $pk = new \pocketmine\network\mcpe\protocol\MovePlayerPacket();
-    $pk->entityRuntimeId = $this->eid;
-  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($this->x, $this->y, $this->z))) <= 5){
-  if($this->yaw === -1 and $player !== null){
-    $xdiff = $player->x - $this->x;
-    $zdiff = $player->z - $this->z;
-    $angle = atan2($zdiff, $xdiff);
-    $pk->yaw = (($angle * 180) / M_PI) - 90;
-  } else {
-    $pk->yaw = $this->yaw;
-  }
-  if($this->pitch === -1 and $player !== null){
-    $ydiff = $player->y - $this->y;
-    $vec = new \pocketmine\math\Vector2($this->x, $this->z);
-    $dist = $vec->distance($player->x, $player->z);
-    $angle = atan2($dist, $ydiff);
-    $pk->pitch = (($angle * 180) / M_PI) - 90;
-  } else {
-    $pk->pitch = $this->pitch;
-   }
-  } else {
-    $pk->pitch = -1;
-    $pk->bodyYaw = -1;    
-  }
-    $pk->position = new \pocketmine\math\Vector3($this->x, $this->y + 1.62, $this->z);
-    $pk->bodyYaw = $pk->yaw;
-		$player->dataPacket($pk);
-	}
 }

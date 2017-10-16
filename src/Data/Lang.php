@@ -25,7 +25,6 @@ use pocketmine\utils\TextFormat as C;
    public $force_shutdown = C::RED ."Server is still running, Shutting Down Server.";
    
    /* { lang } | server */
-   public $server_offline_name = C::RED ."Plexus". C::GRAY ." Offline";
    public $server_public_name = C::RED ."Plexus". C::AQUA ." Studio";
    public $server_dev_name = C::RED ."Plexus". C::AQUA ." Dev";
 

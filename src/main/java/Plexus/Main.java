@@ -1,7 +1,5 @@
 package Plexus;
-
 import cn.nukkit.plugin.PluginBase;
-
 import Plexus.Data.Lang;
 
 public class Main extends PluginBase

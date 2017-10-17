@@ -9,12 +9,12 @@ public class Main extends PluginBase
 
   /* { function } | plugin enable */ 
   public void onEnable(){
-    this.getLogger().info(this.lang().eng("online"));
+    this.getLogger().info(new Lang().eng("online"));
   }
   
   /* { function } | plugin disable */
   public void onDisable(){
-    this.getLogger().info(this.lang().eng("offline"));
+    this.getLogger().info(new Lang().eng("offline"));
   }
 
   

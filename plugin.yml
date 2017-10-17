@@ -1,7 +1,8 @@
 name: Plexus
-main: Plexus\Main
-version: 0.1.2
-api: 3.0.0-ALPHA9
-load: STARTUP
-author: ZeroDev
-description: a core for plexus studio
+main: Plexus.Main
+version: "0.1.1"
+api: [1.0.0]
+
+load: POSTWORLD
+author: oshiire & EpicSteve33
+description: Plexus Core & Everything else

@@ -8,17 +8,14 @@ public class Main extends PluginBase
 {
 
   /* { function } | plugin enable */ 
-  public static onEnable(){
+  public void onEnable(){
     this.getLogger().info(this.lang().eng("online"));
   }
   
   /* { function } | plugin disable */
-  public static onDisable(){
+  public void onDisable(){
     this.getLogger().info(this.lang().eng("offline"));
   }
 
-  public static lang(){
-    return new Lang();
-  }
   
 }

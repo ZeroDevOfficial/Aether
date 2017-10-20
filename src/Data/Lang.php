@@ -37,4 +37,12 @@ use pocketmine\utils\TextFormat as C;
   /* { lang } | player kick messages */
   public $shutdown_message = C::AQUA ."Plexus Has closed, We will be back shortly.";
   public $is_not_op = C::AQUA ."Plexus is in Staff Only Mode.";
+
+  /* { lang } | world */
+  public $no_such_world = C::RED ."No such World.";
+  public $loading_world = C::YELLOW ."Loading World";
+  public $deleted_world = C::GREEN ."has been deleted from Server!";
+  public $fail_delete_world = C::GREEN ."has failed to delete from Server!";
+  public $no_such_folder = C::RED ."No Such Folder.";
+  public $deleted_folder = C::GREEN ."deleted folder";
 }

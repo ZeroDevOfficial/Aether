@@ -10,6 +10,7 @@ class Main extends PluginBase
 
   /* { var array } | local player data */ 
   public $player = [];
+  public $npc = [];
 
   /* { function } | plugin enable */ 
   public function onEnable(){
@@ -53,6 +54,13 @@ class Main extends PluginBase
   /* { function } | loads tasks, games, events, and other things*/
   public function load(){
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
+
+  foreach($this->config()->npcData as $key => $data){
+    $s = new \Plexus\utils\Skin();
+    $skin = $s->getSkinFromFile($this->getDataFolder() . "skins/" . $data[0] . ".png");
+    $npc = new \Plexus\utils\NPC($data[0], $data[1], $data[2], $data[3], $skin);
+    $this->npc[$npc->getEid()] = $npc;  
+   }
   }
 
   /* { function } | returns config file for plugin */

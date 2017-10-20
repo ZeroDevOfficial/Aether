@@ -56,4 +56,10 @@ use pocketmine\utils\TextFormat as C;
     'spawn4' => array('x' => "3", 'z' => "6"),
     'spawn5' => array('x' => "-5", 'z' => "9"), 
   );
+
+  public $npcData = array(
+    'npc1' => array("NPC1", '6', '11', '13'),
+    'npc2' => array("NPC2", '1', '11', '13'),
+    'npc3' => array("NPC3", '-3', '11', '13'),
+  );
 }

@@ -59,7 +59,7 @@ use pocketmine\utils\TextFormat as C;
 
   public $npcData = array(
     'npc1' => array("NPC1", "Hello", '6', '11', '13'),
-    'npc2' => array("NPC2", "Hello2", '1', '11', '13'),
-    'npc3' => array("NPC3", "Hello3", '-3', '11', '13'),
+    'npc2' => array("NPC2", "Hello", '1', '11', '13'),
+    'npc3' => array("NPC3", "Hello", '-3', '11', '13'),
   );
 }

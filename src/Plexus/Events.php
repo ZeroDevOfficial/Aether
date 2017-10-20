@@ -37,7 +37,7 @@ class Events implements Listener
     $e->setJoinMessage("");
     $player = $e->getPlayer();
     $this->getPlugin()->spawn($player);
-  foreach($this->getPlugin()->npc as $id => $npc){
+  foreach($this->getPlugin()->npc as $eid => $npc){
     $npc->spawn($player);
    }
   }
@@ -47,7 +47,7 @@ class Events implements Listener
     $player = $e->getPlayer();
   if($e->getTo()->distance($e->getFrom()) > 0.1) {
     $spawn = $player->getLevel()->getSpawnLocation();
-  foreach($this->getPlugin()->npc as $id => $npc){
+  foreach($this->getPlugin()->npc as $eid => $npc){
     $npc->look($player);
   }
   if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($spawn->getX(), $spawn->getY(), $spawn->getZ()))) >= $this->getPlugin()->config()->border or $player->getY() <= 0){
@@ -61,7 +61,7 @@ class Events implements Listener
   public function quit(\pocketmine\event\player\PlayerQuitEvent $e){
     $player = $e->getPlayer();
     $e->setQuitMessage("");
-  foreach($this->getPlugin()->npc as $id => $npc){
+  foreach($this->getPlugin()->npc as $eid => $npc){
     $npc->remove($player);
   }
   if(isset($this->getPlugin()->player[$player->getName()])){

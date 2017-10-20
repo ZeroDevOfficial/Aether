@@ -10,10 +10,13 @@ class NPC {
   /* { var } | name */ 
   private $name;
 
+  /* { var } | message */ 
+  private $message;
+  
   /* { var } | npc Spawn */
-  private $x;
-  private $y;
-  private $z;
+  public $x;
+  public $y;
+  public $z;
 
   /* { var } | skin */ 
   private $skin;
@@ -23,8 +26,10 @@ class NPC {
   private $pitch = 1;
 
   /* { constructor } */
-	public function __construct($name, $x, $y, $z, $skin){
+	public function __construct($name, $message, $x, $y, $z, $skin){
     $this->name = $name;
+  
+    $this->message = $message;
 
     $this->x = $x + 0.5;
     $this->y = $y;
@@ -39,6 +44,11 @@ class NPC {
   /* { function } | returns Entity ID  */
   public function getEid(){
     return $this->eid;
+  }
+
+  /* { function } | sends a message to the player | will change this to inventory later */
+  public function onInteract($player){
+    $player->sendMessage($this->message);
   }
 
   /* { function } | spawn's npc to player */

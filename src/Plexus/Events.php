@@ -3,6 +3,7 @@
 namespace Plexus;
 
 use pocketmine\event\Listener;
+use pocketmine\network\mcpe\protocol\InteractPacket;
 
 class Events implements Listener 
 {
@@ -36,7 +37,7 @@ class Events implements Listener
     $e->setJoinMessage("");
     $player = $e->getPlayer();
     $this->getPlugin()->spawn($player);
-  foreach($this->getPlugin()->npc as $eid => $npc){
+  foreach($this->getPlugin()->npc as $id => $npc){
     $npc->spawn($player);
    }
   }
@@ -46,7 +47,7 @@ class Events implements Listener
     $player = $e->getPlayer();
   if($e->getTo()->distance($e->getFrom()) > 0.1) {
     $spawn = $player->getLevel()->getSpawnLocation();
-  foreach($this->getPlugin()->npc as $eid => $npc){
+  foreach($this->getPlugin()->npc as $id => $npc){
     $npc->look($player);
   }
   if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($spawn->getX(), $spawn->getY(), $spawn->getZ()))) >= $this->getPlugin()->config()->border or $player->getY() <= 0){
@@ -60,12 +61,24 @@ class Events implements Listener
   public function quit(\pocketmine\event\player\PlayerQuitEvent $e){
     $player = $e->getPlayer();
     $e->setQuitMessage("");
-  foreach($this->getPlugin()->npc as $eid => $npc){
+  foreach($this->getPlugin()->npc as $id => $npc){
     $npc->remove($player);
   }
   if(isset($this->getPlugin()->player[$player->getName()])){
     $this->getPlugin()->player[$player->getName()]->save();
     unset($this->getPlugin()->player[$player->getName()]);
+   }
+  }
+
+  /* { function } | packet received event */
+	public function onPacketReceived(\pocketmine\event\server\DataPacketReceiveEvent $e){
+    $player = $e->getPlayer();
+    $pk = $e->getPacket();
+  if($pk instanceof InteractPacket && $pk->action === InteractPacket::ACTION_MOUSEOVER){
+  if(isset($this->getPlugin()->npc[$pk->target])){
+    $npc = $this->getPlugin()->npc[$pk->target];
+    $npc->onInteract($player);
+    }
    }
   }
 }

@@ -26,9 +26,9 @@ class Events implements Listener
   if($this->getPlugin()->config()->staffOnly() === true){
   if($player->isOp() === false){
     $player->close("", $this->getPlugin()->lang()->is_not_op); 
-  } else {
+  } /*else {
       $this->getPlugin()->player[$player->getName()] = new \Plexus\utils\PlayerData($this->getPlugin(), $player);
-    }
+    }*/
    } 
   }
 
@@ -64,13 +64,14 @@ class Events implements Listener
   foreach($this->getPlugin()->npc as $eid => $npc){
     $npc->remove($player);
   }
-  if(isset($this->getPlugin()->player[$player->getName()])){
+  /*if(isset($this->getPlugin()->player[$player->getName()])){
     $this->getPlugin()->player[$player->getName()]->save();
     unset($this->getPlugin()->player[$player->getName()]);
-   }
+   }*/
   }
 
-  /* { function } | packet received event */
+  /*
+   * { function } | Will add back later.
 	public function onPacketReceived(\pocketmine\event\server\DataPacketReceiveEvent $e){
     $player = $e->getPlayer();
     $pk = $e->getPacket();
@@ -80,5 +81,5 @@ class Events implements Listener
     $npc->onInteract($player);
     }
    }
-  }
+  }*/
 }

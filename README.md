@@ -1,6 +1,6 @@
 # Plexus Core
 
-> Core: v0.1.3
+> Core: v0.1.3.1
 
 > PocketMine-MP: api-3.0.0-ALPHA9
 

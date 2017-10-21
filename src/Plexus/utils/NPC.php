@@ -46,9 +46,10 @@ class NPC {
     return $this->eid;
   }
 
-  /* { function } | sends a message to the player | will change this to inventory later */
+  /* { function } | sends a message to the player */
   public function onInteract($player){
-    $player->sendMessage($this->message);
+    //$player->sendMessage($this->message);
+    return;//will add an inventory later, the send message thing seems bad fn
   }
 
   /* { function } | spawn's npc to player */

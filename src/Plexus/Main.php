@@ -8,8 +8,9 @@ use pocketmine\Server;
 class Main extends PluginBase
 {
 
-  /* { var array } | local player data */ 
+  /* { var array } | player data */ 
   public $player = [];
+  /* { var array } | npc's */ 
   public $npc = [];
 
   /* { function } | plugin enable */ 
@@ -55,8 +56,8 @@ class Main extends PluginBase
   public function load(){
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
 
-  foreach($this->config()->npcData as $key => $data){
     $s = new \Plexus\utils\Skin();
+  foreach($this->config()->npcData as $key => $data){
     $skin = $s->getSkinFromFile($this->getDataFolder() . "skins/" . $data[0] . ".png");
     $npc = new \Plexus\utils\NPC($data[0], $data[1], $data[2], $data[3], $data[4], $skin);
     $this->npc[$npc->getEid()] = $npc;

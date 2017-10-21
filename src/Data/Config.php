@@ -18,42 +18,42 @@ use pocketmine\utils\TextFormat as C;
   private $forceShutdown = true;
   private $staff_only = false;
   
-  /* { var } | max players allowed on the server. */
+  /* { function } | max players allowed on the server. */
   public function maxPlayers(){
     return $this->max_players;
   }
 
-  /* { var } | border */
+  /* { function } | border */
   public function getBorderSize(){
     return $this->border;
   }
   
-  /* { var } | spawn/lobby name */
+  /* { function } | spawn/lobby name */
   public function spawn(){
     return $this->spawn;
   }
   
-  /* { var } | developer mode */
+  /* { function } | developer mode */
   public function developerMode(){
     return $this->dev;
   }
   
-  /* { var } | testing mode */
+  /* { function } | testing mode */
   public function testingMode(){
     return $this->testing;
   }
   
-  /* { var } | force shutdown */
+  /* { function } | force shutdown */
   public function forceShutdown(){
     return $this->forceShutdown;
   }
   
-  /* { var } | staff only */
+  /* { function } | staff only */
   public function staffOnly(){
     return $this->staff_only;
   }
 
-  /* { var } | spawns */
+  /* { function } | spawns */
   public $spawns = array(
     'spawn1' => array('x' => "-6", 'z' => "-7"),
     'spawn2' => array('x' => "10", 'z' => "-8"),
@@ -62,7 +62,7 @@ use pocketmine\utils\TextFormat as C;
     'spawn5' => array('x' => "-5", 'z' => "9"), 
   );
  
-  /* { var } | npc's data */
+  /* { function } | npc's data */
   public $npcData = array(
     'npc1' => array("NPC1", "Hello", '6', '12', '13'),
     'npc2' => array("NPC2", "Hello", '1', '12', '13'),

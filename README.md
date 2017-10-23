@@ -1,5 +1,7 @@
 # Plexus Core
 
+![npc](https://user-images.githubusercontent.com/12077835/31897396-1b7fab8e-b7cb-11e7-93a0-2edab458919a.png)
+
 > Core: v0.1.3.3
 
 > PocketMine-MP: api-3.0.0-ALPHA9

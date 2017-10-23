@@ -59,10 +59,10 @@ use pocketmine\utils\TextFormat as C;
   /* { var } | npc's data */
   public $npcData = array(
     'npc' => array(C::AQUA ."Welcome", '1045', '117', '-598'),
-    'npc1' => array("NPC1", '1041', '116', '-629'),
-    'npc2' => array("NPC2", '1044', '116', '-629'),
-    'npc3' => array("NPC3", '1047', '116', '-629'),
-    'npc4' => array("NPC4", '1050', '116', '-629'),
-    'npc5' => array("NPC5", '1053', '116', '-629'),
+    'npc1' => array("NPC1", '1041', '117', '-631'),
+    'npc2' => array("NPC2", '1044', '117', '-631'),
+    'npc3' => array("NPC3", '1047', '117', '-631'),
+    'npc4' => array("NPC4", '1050', '117', '-631'),
+    'npc5' => array("NPC5", '1053', '117', '-631'),
   );
 }

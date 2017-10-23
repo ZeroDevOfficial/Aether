@@ -10,18 +10,12 @@ use pocketmine\utils\TextFormat as C;
  class Config
 {
   
-  public $max_players = 60;
   public $border = 130;
   private $spawn = "hub";
   private $dev = true;
   private $testing = true;
   private $forceShutdown = true;
   private $staff_only = false;
-  
-  /* { function } | max players allowed on the server. */
-  public function maxPlayers(){
-    return $this->max_players;
-  }
 
   /* { function } | border */
   public function getBorderSize(){
@@ -53,7 +47,7 @@ use pocketmine\utils\TextFormat as C;
     return $this->staff_only;
   }
 
-  /* { function } | spawns */
+  /* { var } | spawns */
   public $spawns = array(
     'spawn1' => array('x' => "-6", 'z' => "-7"),
     'spawn2' => array('x' => "10", 'z' => "-8"),
@@ -62,9 +56,9 @@ use pocketmine\utils\TextFormat as C;
     'spawn5' => array('x' => "-5", 'z' => "9"), 
   );
  
-  /* { function } | npc's data */
+  /* { var } | npc's data */
   public $npcData = array(
-    'npc' => array("welcome", '1045', '117', '-594'),
+    'npc' => array(C::AQUA ."Welcome", '1045', '117', '-598'),
     'npc1' => array("NPC1", '1041', '116', '-629'),
     'npc2' => array("NPC2", '1044', '116', '-629'),
     'npc3' => array("NPC3", '1047', '116', '-629'),

@@ -12,6 +12,10 @@ class Main extends PluginBase
   public $player = [];
   /* { var array } | npc's */ 
   public $npc = [];
+  /* { var array } | skins */
+  public $skins = [];
+  /* { var array } | tasks */
+  public $tasks = [];
 
   /* { function } | plugin enable */ 
   public function onEnable(){
@@ -30,32 +34,31 @@ class Main extends PluginBase
    }
   }
 
-  /* { function } | plugin disable */
-  public function onDisable(){
-    $this->getLogger()->info($this->lang()->shutdown);
-    $players = $this->getServer()->getOnlinePlayers();
-  foreach($players as $player){
-    $player->close("", $this->lang()->shutdown_message);
-  }
-  if($this->config()->forceShutdown() === true && $this->getServer()->isRunning() === true){
-   $this->getLogger()->info($this->lang()->force_shutdown);
-   $this->getServer()->forceShutdown();
-   }
-  }
-
-  /* { function } | loads tasks, games, events, and other things*/
+  /* { function } | loads tasks, events, and other things*/
   public function load(){
+  //Events
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
-    $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\utils\Tasks\BorderTask($this), 20);
+  
+  //Tasks
+    $this->task["border"] = new \Plexus\utils\Tasks\BorderTask($this);
+    $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\utils\TaskHandler($this), 20);
 
-    $s = new \Plexus\utils\Skin();
+  //Npc's
   foreach($this->config()->npcData as $key => $data){
-    $skin = $s->getSkinFromFile($this->getDataFolder() . "skins/" . rand(1, 18) . ".png");
-    //$skin = $s->getSkinFromFile($this->getDataFolder() . "skins/" . $data[0] . ".png");
-    $npc = new \Plexus\utils\NPC($data[0], $data[1], $data[2], $data[3], $skin);
+    $npc = new \Plexus\utils\NPC($data[0], $data[1], $data[2], $data[3], $this->getRandSkin());
     $this->npc[$npc->getEid()] = $npc;
    }
-   return;
+  }
+
+  public function getRandSkin(){
+    $rand = rand(1, 21);
+  if(in_array($rand, $this->skins)){
+    return $this->getRandSkin();
+  } else {
+    $this->skins[] = $rand;
+    $s = new \Plexus\utils\Skin();
+    return $s->getSkinFromFile($this->getDataFolder() . "skins/" . $rand . ".png");
+   }
   }
 
   /* { function } | teleports the player to spawn */
@@ -71,5 +74,18 @@ class Main extends PluginBase
   /* { function } | returns the lang file for the plugin */
   public function lang(){
     return new \Data\Lang(); 
+  }
+
+  /* { function } | plugin disable */
+  public function onDisable(){
+    $this->getLogger()->info($this->lang()->shutdown);
+    $players = $this->getServer()->getOnlinePlayers();
+  foreach($players as $player){
+    $player->close("", $this->lang()->shutdown_message);
+  }
+  if($this->config()->forceShutdown() === true && $this->getServer()->isRunning() === true){
+   $this->getLogger()->info($this->lang()->force_shutdown);
+   $this->getServer()->forceShutdown();
+   }
   }
 }

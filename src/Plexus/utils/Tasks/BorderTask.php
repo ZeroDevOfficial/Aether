@@ -2,16 +2,13 @@
 
 namespace Plexus\utils\Tasks;
 
-use pocketmine\scheduler\PluginTask;
-
-class BorderTask extends PluginTask {
+class BorderTask {
     
   /* { var } | plugin */
   private $plugin;
   
    /* { constructor } */
   public function __construct(\Plexus\Main $plugin){
-    parent::__construct($plugin);
     $this->plugin = $plugin;
   }
   
@@ -21,7 +18,7 @@ class BorderTask extends PluginTask {
   }
   
   /* { function } | move task */
-  public function onRun($tick){
+  public function run(){
     $players = $this->getPlugin()->getServer()->getOnlinePlayers();
   foreach($players as $player){
     $spawn = $player->getLevel()->getSpawnLocation();

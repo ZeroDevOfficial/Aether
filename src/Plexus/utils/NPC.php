@@ -88,7 +88,7 @@ class NPC {
   public function look($player){
     $pk = new \pocketmine\network\mcpe\protocol\MovePlayerPacket();
     $pk->entityRuntimeId = $this->eid;
-  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($this->x, $this->y, $this->z))) <= 10){
+  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($this->x, $this->y, $this->z))) <= 20){
     $x = $this->x - $player->x;
     $y = $this->y - $player->y;
     $z = $this->z - $player->z;

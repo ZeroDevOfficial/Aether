@@ -46,13 +46,11 @@ class Events implements Listener
   public function move(\pocketmine\event\player\PlayerMoveEvent $e){
     $player = $e->getPlayer();
   if($e->getTo()->distance($e->getFrom()) > 0.1) {
+  if($player->getLevel()->getFolderName() === $this->getPlugin()->config()->spawn()){
     $spawn = $player->getLevel()->getSpawnLocation();
   foreach($this->getPlugin()->npc as $eid => $npc){
     $npc->look($player);
-  }
-  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($spawn->getX(), $spawn->getY(), $spawn->getZ()))) >= $this->getPlugin()->config()->border or $player->getY() <= 0){
-    $this->getPlugin()->spawn($player);
-    $player->addTitle($this->getPlugin()->lang()->border_reached, $this->getPlugin()->lang()->border_end_of_world, 50, 90, 40);
+     }
     }
    }
   }

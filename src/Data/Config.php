@@ -11,7 +11,7 @@ use pocketmine\utils\TextFormat as C;
 {
   
   public $max_players = 60;
-  public $border = 100;
+  public $border = 130;
   private $spawn = "hub";
   private $dev = true;
   private $testing = true;
@@ -64,8 +64,11 @@ use pocketmine\utils\TextFormat as C;
  
   /* { function } | npc's data */
   public $npcData = array(
-    'npc1' => array("NPC1", "Hello", '6', '12', '13'),
-    'npc2' => array("NPC2", "Hello", '1', '12', '13'),
-    'npc3' => array("NPC3", "Hello", '-3', '12', '13'),
+    'npc' => array("welcome", '1045', '117', '-594'),
+    'npc1' => array("NPC1", '1041', '116', '-629'),
+    'npc2' => array("NPC2", '1044', '116', '-629'),
+    'npc3' => array("NPC3", '1047', '116', '-629'),
+    'npc4' => array("NPC4", '1050', '116', '-629'),
+    'npc5' => array("NPC5", '1053', '116', '-629'),
   );
 }

@@ -11,7 +11,7 @@ class NPC {
   private $name;
 
   /* { var } | message */ 
-  private $message;
+  //private $message;
   
   /* { var } | npc Spawn */
   public $x;
@@ -22,14 +22,14 @@ class NPC {
   private $skin;
 
   /* { var } | yaw and pitch */
-  private $yaw = 1;
-  private $pitch = 1;
+  private $yaw = 180;
+  private $pitch = 0;
 
   /* { constructor } */
-	public function __construct($name, $message, $x, $y, $z, $skin){
+	public function __construct($name, $x, $y, $z, $skin){
     $this->name = $name;
   
-    $this->message = $message;
+    //$this->message = $message;
 
     $this->x = $x + 0.5;
     $this->y = $y;
@@ -48,7 +48,6 @@ class NPC {
 
   /* { function } | sends a message to the player */
   public function onInteract($player){
-    //$player->sendMessage($this->message);
     return;//will add an inventory later, the send message thing seems bad fn
   }
 

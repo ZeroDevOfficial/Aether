@@ -43,25 +43,24 @@ class Main extends PluginBase
    }
   }
 
-  /* { function } | picks a random spawn for the player */
-  public function spawn($player){
-    $rand = rand(1, 5);
-    $spawns = $this->config()->spawns;
-    $sr = "spawn" . $rand; 
-    $player->teleport(\pocketmine\Server::getInstance()->getLevelByName($this->config()->spawn())->getSafeSpawn());
-    $player->teleport(new \pocketmine\math\Vector3($spawns[$sr]['x'], 11, $spawns[$sr]['z']));
-  }
-
   /* { function } | loads tasks, games, events, and other things*/
   public function load(){
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
+    $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\utils\Tasks\BorderTask($this), 20);
 
     $s = new \Plexus\utils\Skin();
   foreach($this->config()->npcData as $key => $data){
-    $skin = $s->getSkinFromFile($this->getDataFolder() . "skins/" . $data[0] . ".png");
-    $npc = new \Plexus\utils\NPC($data[0], $data[1], $data[2], $data[3], $data[4], $skin);
+    $skin = $s->getSkinFromFile($this->getDataFolder() . "skins/" . rand(1, 18) . ".png");
+    //$skin = $s->getSkinFromFile($this->getDataFolder() . "skins/" . $data[0] . ".png");
+    $npc = new \Plexus\utils\NPC($data[0], $data[1], $data[2], $data[3], $skin);
     $this->npc[$npc->getEid()] = $npc;
    }
+   return;
+  }
+
+  /* { function } | teleports the player to spawn */
+  public function spawn($player){
+    $player->teleport(\pocketmine\Server::getInstance()->getLevelByName($this->config()->spawn())->getSafeSpawn());
   }
 
   /* { function } | returns config file for plugin */

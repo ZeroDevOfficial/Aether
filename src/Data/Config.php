@@ -46,23 +46,13 @@ use pocketmine\utils\TextFormat as C;
   public function staffOnly(){
     return $this->staff_only;
   }
-
-  /* { var } | spawns */
-  public $spawns = array(
-    'spawn1' => array('x' => "-6", 'z' => "-7"),
-    'spawn2' => array('x' => "10", 'z' => "-8"),
-    'spawn3' => array('x' => "7", 'z' => "-3"),
-    'spawn4' => array('x' => "3", 'z' => "6"),
-    'spawn5' => array('x' => "-5", 'z' => "9"), 
-  );
  
   /* { var } | npc's data */
   public $npcData = array(
-    'npc' => array(C::AQUA ."Welcome", '1045', '117', '-598'),
-    'npc1' => array("NPC1", '1041', '117', '-631'),
-    'npc2' => array("NPC2", '1044', '117', '-631'),
-    'npc3' => array("NPC3", '1047', '117', '-631'),
-    'npc4' => array("NPC4", '1050', '117', '-631'),
-    'npc5' => array("NPC5", '1053', '117', '-631'),
+    'npc' => array(C::AQUA ."Welcome", '2', '23', '-2'),
+    'npc1' => array("NPC1", '-4', '25', '-22'),
+    'npc2' => array("NPC2", '4', '25', '-22'),
+    'npc3' => array("NPC3", '4', '25', '-13'),
+    'npc4' => array("NPC4", '-4', '25', '-13'),
   );
 }

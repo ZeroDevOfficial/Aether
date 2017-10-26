@@ -16,6 +16,10 @@ class Main extends PluginBase
   public $skins = [];
   /* { var array } | tasks */
   public $tasks = [];
+  /* { var array } | forms */
+  public $form = [];
+  /* { var int } | form count */
+  public $formCount = 0;
 
   /* { function } | plugin enable */ 
   public function onEnable(){
@@ -41,6 +45,7 @@ class Main extends PluginBase
   
   //Tasks
     $this->task["border"] = new \Plexus\utils\Tasks\BorderTask($this);
+    $this->task["text"] = new \Plexus\utils\Tasks\FloatingTextTask($this);
     $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\utils\TaskHandler($this), 20);
 
   //Npc's
@@ -48,6 +53,7 @@ class Main extends PluginBase
     $npc = new \Plexus\utils\NPC($data[0], $data[1], $data[2], $data[3], $this->getRandSkin());
     $this->npc[$npc->getEid()] = $npc;
    }
+    $this->createForms();
   }
 
   public function getRandSkin(){
@@ -59,6 +65,23 @@ class Main extends PluginBase
     $s = new \Plexus\utils\Skin();
     return $s->getSkinFromFile($this->getDataFolder() . "skins/" . $rand . ".png");
    }
+  }
+
+  /* { function } | creates forms */
+  public function createForms(){
+  // Welcome
+    $this->formCount++;
+    $form = new \Plexus\utils\Form\SimpleForm($this->formCount);
+    $form->setTitle("Welcome to Plexus Studio!");
+    $form->addButton("Ok", -1);    
+    $this->form["welcome"] = $form;
+  // Andre is gay
+    $this->formCount++;
+    $form = new \Plexus\utils\Form\SimpleForm($this->formCount);
+    $form->setTitle("Join Game!");
+    $form->addButton("Join", -1);
+    $form->addButton("Cancel", -1);    
+    $this->form["gameScreen"] = $form;            
   }
 
   /* { function } | teleports the player to spawn */

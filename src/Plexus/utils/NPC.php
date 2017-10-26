@@ -46,6 +46,11 @@ class NPC {
     return $this->eid;
   }
 
+  /* { function } | returns name  */
+  public function getName(){
+    return $this->name;
+  }
+
   /* { function } | sends a message to the player */
   public function onInteract($player){
     return;//will add an inventory later, the send message thing seems bad fn

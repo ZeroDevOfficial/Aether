@@ -5,6 +5,8 @@ namespace Plexus;
 use pocketmine\event\Listener;
 use pocketmine\network\mcpe\protocol\InteractPacket;
 
+use pocketmine\utils\TextFormat as C;
+
 class Events implements Listener 
 {
   /* { var } | plugin */
@@ -26,9 +28,9 @@ class Events implements Listener
   if($this->getPlugin()->config()->staffOnly() === true){
   if($player->isOp() === false){
     $player->close("", $this->getPlugin()->lang()->is_not_op); 
-  } /*else {
+  } else {
       $this->getPlugin()->player[$player->getName()] = new \Plexus\utils\PlayerData($this->getPlugin(), $player);
-    }*/
+    }
    } 
   }
 
@@ -55,6 +57,26 @@ class Events implements Listener
    }
   }
 
+  /* { function } | Will add back later. */
+	public function onPacketReceived(\pocketmine\event\server\DataPacketReceiveEvent $e){
+    $player = $e->getPlayer();
+    $pk = $e->getPacket();
+  if($pk instanceof InteractPacket && $pk->action === InteractPacket::ACTION_MOUSEOVER && isset($this->getPlugin()->npc[$pk->target])){
+    $npc = $this->getPlugin()->npc[$pk->target];
+    $form = $this->getPlugin()->form;
+    $npc_games = array("NPC1", "NPC2", "NPC3", "NPC4", "NPC5");
+  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($npc->x, $npc->y, $npc->z))) <= 3){
+  // GameScreen
+  foreach($npc_games as $ng){
+  if($npc->getName() === $ng){
+    $form["gameScreen"]->setTitle("Join ". $ng);
+    $form["gameScreen"]->send($player);
+      }
+     }
+    }
+   }
+  }
+
   /* { function } | player quit event */
   public function quit(\pocketmine\event\player\PlayerQuitEvent $e){
     $player = $e->getPlayer();
@@ -62,22 +84,9 @@ class Events implements Listener
   foreach($this->getPlugin()->npc as $eid => $npc){
     $npc->remove($player);
   }
-  /*if(isset($this->getPlugin()->player[$player->getName()])){
+  if(isset($this->getPlugin()->player[$player->getName()])){
     $this->getPlugin()->player[$player->getName()]->save();
     unset($this->getPlugin()->player[$player->getName()]);
-   }*/
-  }
-
-  /*
-   * { function } | Will add back later.
-	public function onPacketReceived(\pocketmine\event\server\DataPacketReceiveEvent $e){
-    $player = $e->getPlayer();
-    $pk = $e->getPacket();
-  if($pk instanceof InteractPacket && $pk->action === InteractPacket::ACTION_MOUSEOVER){
-  if(isset($this->getPlugin()->npc[$pk->target])){
-    $npc = $this->getPlugin()->npc[$pk->target];
-    $npc->onInteract($player);
-    }
    }
-  }*/
+  }
 }

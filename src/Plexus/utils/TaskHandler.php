@@ -6,21 +6,33 @@ use pocketmine\scheduler\PluginTask;
 
 class TaskHandler extends PluginTask {
     
-  /* { var } | plugin */
+  /** @var string | Plexus\Main */
   private $plugin;
-  
-   /* { constructor } */
+
+  /* 
+   * Constructor
+   */
   public function __construct(\Plexus\Main $plugin){
     parent::__construct($plugin);
     $this->plugin = $plugin;
   }
   
-  /* { function } | returns plexus main file */
+  /*
+   * Returns Plugin
+   * ===============================
+   * - Returns $this->plugin = \Plexus\Main;
+   * ===============================
+   */
   public function getPlugin(){
     return $this->plugin;
   }
   
-  /* { function } | move task */
+  /*
+   * On Task Run\Tick
+   * ===============================
+   * - Runs All the Tasks
+   * =============================== 
+   */
   public function onRun($tick){
   foreach($this->getPlugin()->task as $key => $task){
     $task->run();

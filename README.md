@@ -1,14 +1,14 @@
-# Plexus Core
+![plexus1](https://user-images.githubusercontent.com/12077835/32135004-85147afe-bbac-11e7-9f67-1c729974016e.png)
 
-![npc](https://user-images.githubusercontent.com/12077835/31897396-1b7fab8e-b7cb-11e7-93a0-2edab458919a.png)
+# PlexusCore
 
-> Core: v0.1.3.4
+> Core: v0.1.3.5
 
 > PocketMine-MP: api-3.0.0-ALPHA9
 
 > Minecraft: v1.2.2
 
-this plugin is property of Plexus Studio
+# This plugin is property of Plexus Studio.
 
 **You are not allowed to distribute or use this plugin** 
 

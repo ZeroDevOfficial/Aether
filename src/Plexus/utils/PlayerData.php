@@ -7,16 +7,18 @@ use pocketmine\Player;
 
 class PlayerData {
 
-  /* { var } | plugin */
+  /** @var string | Plexus\Main */
   public $plugin;
-  /* { var } | player */
+  /** @var string | Player Name */
   public $player;
-  /* { var } | kills */
+  /** @var int | Kills */
   public $kills = 0;
-  /* { var } | deaths */
+  /** @var int | Deaths */
   public $deaths = 0;
 
-  /* { constructor } */
+  /* 
+   * Constructor
+   */
   public function __construct(Main $plugin, Player $player){
     $this->plugin = $plugin;
     $this->player = $player;
@@ -24,34 +26,68 @@ class PlayerData {
     $this->create();
   } else {
     $config = yaml_parse_file($this->getConfig());
-    //$this->rank = $config["rank"];
-    //$this->last_login = $config["last_login"];
+
     $this->kills = $config["kills"];
     $this->deaths = $config["deaths"];
    }
   }
 
+  /*
+   * Plugin
+   * ===============================
+   * - Returns $this->plugin = \Plexus\Main;
+   * ===============================
+   */
   public function getPlugin(){
     return $this->plugin;    
   }
 
+  /*
+   * Config
+   * ===============================
+   * - Returns Config
+   * ===============================
+   */
   public function getConfig(){
     return $this->getPlugin()->getDataFolder() ."players/". strtolower($this->player->getName()) . ".yml";    
   }
 
-  /* { function } | gets players kills */
+  /* 
+   * Kills
+   * ===============================
+   * - Gets players kills
+   * ===============================
+   */
   public function getKills(){
     return $this->kills; 
   }
 
+  /* 
+   * Deaths
+   * ===============================
+   * - Gets players deaths
+   * ===============================
+   */
   public function getDeaths(){
     return $this->deaths;
   }
  
+  /* 
+   * Save
+   * ===============================
+   * - Saves the Config
+   * ===============================
+   */
   public function save(){
     yaml_emit_file($this->getConfig(), ["username" => strtolower($this->player->getName()), "kills" => $this->getKills(), "deaths" => $this->getDeaths()]);
   }
 
+  /* 
+   * Create
+   * ===============================
+   * - Creates new player stats
+   * ===============================
+   */
   public function create(){
     $this->kills = 0;
     $this->deaths = 0;

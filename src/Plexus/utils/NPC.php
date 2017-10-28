@@ -7,29 +7,26 @@ use pocketmine\item\Item;
 
 class NPC {
 
-  /* { var } | name */ 
+  /** @var string | Npc's Name */
   private $name;
 
-  /* { var } | message */ 
-  //private $message;
-  
-  /* { var } | npc Spawn */
+  /** @var int | Npc's xyz */
   public $x;
   public $y;
   public $z;
 
-  /* { var } | skin */ 
+  /** @var string | Npc's skin */ 
   private $skin;
 
-  /* { var } | yaw and pitch */
+  /** @var int | Yaw and Pitch */
   private $yaw = 180;
   private $pitch = 0;
 
-  /* { constructor } */
+  /* 
+   * Constructor
+   */
 	public function __construct($name, $x, $y, $z, $skin){
     $this->name = $name;
-  
-    //$this->message = $message;
 
     $this->x = $x + 0.5;
     $this->y = $y;
@@ -41,22 +38,33 @@ class NPC {
     $this->uuid = \pocketmine\utils\UUID::fromRandom();
   }
 
-  /* { function } | returns Entity ID  */
+  /* 
+   * Eid
+   * ===============================
+   * - Returns Entity ID  
+   * ===============================
+   */
   public function getEid(){
     return $this->eid;
   }
 
-  /* { function } | returns name  */
+  /* 
+   * Name
+   * ===============================
+   * - Returns Name  
+   * ===============================
+   */
   public function getName(){
     return $this->name;
   }
 
-  /* { function } | sends a message to the player */
-  public function onInteract($player){
-    return;//will add an inventory later, the send message thing seems bad fn
-  }
 
-  /* { function } | spawn's npc to player */
+  /* 
+   * Spawn Npc 
+   * ===============================
+   * - Spawn's npc to player
+   * ===============================
+   */
   public function spawn($player){
     $pk = new \pocketmine\network\mcpe\protocol\AddPlayerPacket();
 		$pk->uuid = $this->uuid;
@@ -80,7 +88,12 @@ class NPC {
     $player->dataPacket($pk);
   }
 
-  /* { function } | removes Npc */
+  /* 
+   * Removes Npc 
+   * ===============================
+   * - Removes npc to player
+   * ===============================
+   */
   public function remove($player){
     $pk = new \pocketmine\network\mcpe\protocol\RemoveEntityPacket();
     $pk->entityUniqueId = $this->eid;
@@ -88,8 +101,12 @@ class NPC {
     $player->dataPacket($pk);
   }
 
-  // code from fengberd helped me fix this.
-  // https://github.com/fengberd/FNPC/blob/master/src/FNPC/npc/NPC.php#L171
+  /* 
+   * Look
+   * ===============================
+   * - Npc will look at the player
+   * ===============================
+   */
   public function look($player){
     $pk = new \pocketmine\network\mcpe\protocol\MovePlayerPacket();
     $pk->entityRuntimeId = $this->eid;

@@ -5,57 +5,97 @@ namespace Plexus;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 
-class Main extends PluginBase
-{
+use pocketmine\utils\TextFormat as C;
 
-  /* { var array } | player data */ 
+class Main extends PluginBase {
+
+  /** @var array */
   public $player = [];
-  /* { var array } | npc's */ 
-  public $npc = [];
-  /* { var array } | skins */
-  public $skins = [];
-  /* { var array } | tasks */
-  public $tasks = [];
-  /* { var array } | forms */
-  public $form = [];
-  /* { var int } | form count */
-  public $formCount = 0;
 
-  /* { function } | plugin enable */ 
+  /** @var array */
+  public $npc = [];
+  /** @var array |*/
+  public $skins = [];
+
+  /** @var array | tasks */
+  public $tasks = [];
+
+  /** @var array | ui data */
+  public $ui = [];
+  /** @var int | ui number */
+  public $uiCount = 0;
+
+  /*
+   * Plugin enable
+   * ===============================
+   * - Developer mode | bool
+   * - Testing mode | bool
+   * - Sets Server Name | developer or public
+   * ===============================
+   */ 
   public function onEnable(){
-    $this->getLogger()->info($this->lang()->load);
-  if($this->config()->developerMode() == true){
-    $this->getLogger()->info($this->lang()->dev_mode);
-  if($this->config()->testingMode() == true){
-    $this->getServer()->getNetwork()->setName($this->lang()->server_dev_name);
-    $this->getLogger()->info($this->lang()->testing_mode);
-    $this->load();
+    $this->getLogger()->info(C::YELLOW ."Loading all necessary core components.");
+  if($this->config()->developerMode() !== true){
+    $this->getLogger()->info(C::AQUA ."is Running in". C::GREEN ." Public". C::AQUA ." Mode.");
+    $this->getServer()->getNetwork()->setName(C::RED ."Plexus". C::AQUA ." Studio");
+  } elseif($this->config()->developerMode() === true){
+    $this->getLogger()->info(C::AQUA ."is Running in". C::RED ." Development". C::AQUA ." Mode.");
+    $this->getServer()->getNetwork()->setName(C::RED ."Plexus". C::AQUA ." Dev");
+  if($this->config()->testingMode() === true){
+    $this->getLogger()->info( C::AQUA ."is Running in". C::YELLOW ." Testing" . C::AQUA ." Mode");
+   }
   }
-   } else {
-    $this->getServer()->getNetwork()->setName($this->lang()->server_public_name);
-    $this->getLogger()->info($this->lang()->no_dev_mode);
-    $this->load();
+  if($this->load() === true){
+    $this->getLogger()->info(C::AQUA ."is". C::GREEN ." Online");
+  } else {
+    $this->onDisable();
    }
   }
 
-  /* { function } | loads tasks, events, and other things*/
+  /*
+   * Load
+   * ===============================
+   * - Loads Events and Tasks
+   * - Creates Npc's and UI's
+   * ===============================
+   */
   public function load(){
-  //Events
-    $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
-  
-  //Tasks
+  try {
     $this->task["border"] = new \Plexus\utils\Tasks\BorderTask($this);
     $this->task["text"] = new \Plexus\utils\Tasks\FloatingTextTask($this);
+
+    $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
     $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\utils\TaskHandler($this), 20);
 
-  //Npc's
   foreach($this->config()->npcData as $key => $data){
     $npc = new \Plexus\utils\NPC($data[0], $data[1], $data[2], $data[3], $this->getRandSkin());
     $this->npc[$npc->getEid()] = $npc;
+  }
+    return true;
+  } 
+  catch(Exception $e){
+    return false;  
    }
-    $this->createForms();
   }
 
+  /*
+   * Create UI 
+   * ===============================
+   * - Creates All UI used for the server. 
+   * ===============================
+   */
+  public function createUI(){
+  //TODO
+  }
+
+  /*
+   * Random Skin 
+   * ===============================
+   * picks a number between $min and $max,
+   * checks if that skin is being used,
+   * if not returns skin. 
+   * ===============================
+   */
   public function getRandSkin(){
     $rand = rand(1, 21);
   if(in_array($rand, $this->skins)){
@@ -67,47 +107,41 @@ class Main extends PluginBase
    }
   }
 
-  /* { function } | creates forms */
-  public function createForms(){
-  // Welcome
-    $this->formCount++;
-    $form = new \Plexus\utils\Form\SimpleForm($this->formCount);
-    $form->setTitle("Welcome to Plexus Studio!");
-    $form->addButton("Ok", -1);    
-    $this->form["welcome"] = $form;
-  // Andre is gay
-    $this->formCount++;
-    $form = new \Plexus\utils\Form\SimpleForm($this->formCount);
-    $form->setTitle("Join Game!");
-    $form->addButton("Join", -1);
-    $form->addButton("Cancel", -1);    
-    $this->form["gameScreen"] = $form;            
-  }
-
-  /* { function } | teleports the player to spawn */
+  /*
+   * Spawn
+   * ===============================
+   * - Spawns the player at hub spawn
+   * ===============================
+   */
   public function spawn($player){
     $player->teleport(\pocketmine\Server::getInstance()->getLevelByName($this->config()->spawn())->getSafeSpawn());
   }
-
-  /* { function } | returns config file for plugin */
+  
+  /*
+   * Config
+   * ===============================
+   * - Returns Config
+   * ===============================
+   */
   public function config(){
     return new \Data\Config(); 
   }
- 
-  /* { function } | returns the lang file for the plugin */
-  public function lang(){
-    return new \Data\Lang(); 
-  }
 
-  /* { function } | plugin disable */
+  /*
+   * Disable
+   * ===============================
+   * - Kicks all online players
+   * - If server is running it stops it
+   * ===============================
+   */
   public function onDisable(){
-    $this->getLogger()->info($this->lang()->shutdown);
+    $this->getLogger()->info(C::AQUA ."is". C::RED ." Offline.");
     $players = $this->getServer()->getOnlinePlayers();
   foreach($players as $player){
-    $player->close("", $this->lang()->shutdown_message);
+    $player->close("", C::AQUA ."Plexus Has closed, We will be back shortly.");
   }
   if($this->config()->forceShutdown() === true && $this->getServer()->isRunning() === true){
-   $this->getLogger()->info($this->lang()->force_shutdown);
+   $this->getLogger()->info(C::RED ."Server is still running, Shutting Down Server.");
    $this->getServer()->forceShutdown();
    }
   }

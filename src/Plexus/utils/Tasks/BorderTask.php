@@ -37,9 +37,14 @@ class BorderTask {
   foreach($players as $player){
     $spawn = $player->getLevel()->getSpawnLocation();
   if($player->getLevel()->getFolderName() === $this->getPlugin()->config()->spawn()){
-  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($spawn->getX(), $spawn->getY() + 2, $spawn->getZ()))) >= $this->getPlugin()->config()->border or $player->getY() <= 2){
+    //$player->sendTip("Yaw:". $player->yaw);
+  if($player->getY() <= 10 || $player->getY() >= 185){
+    $player->addTitle(C::YELLOW ."Border is near!", C::RED ."if you proceed you will be teleported to spawn.", 50, 90, 40);
+  }
+  if($player->getY() <= 2 || $player->getY() >= 200){
     $this->getPlugin()->spawn($player);
     $player->addTitle(C::YELLOW ."Border Reached!", C::RED ."You have reached the end of the world.", 50, 90, 40);
+    $player->setHealth(20);
      }
     }
    } 

@@ -68,7 +68,7 @@ class Main extends PluginBase {
     $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\utils\TaskHandler($this), 20);
 
   foreach($this->config()->npcData as $key => $data){
-    $npc = new \Plexus\utils\NPC($data[0], $data[1], $data[2], $data[3], $this->getRandSkin());
+    $npc = new \Plexus\utils\NPC($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $this->getRandSkin());
     $this->npc[$npc->getEid()] = $npc;
   }
     return true;

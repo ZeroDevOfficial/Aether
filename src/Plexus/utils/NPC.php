@@ -19,18 +19,21 @@ class NPC {
   private $skin;
 
   /** @var int | Yaw and Pitch */
-  private $yaw = 180;
-  private $pitch = 0;
+  private $yaw;
+  private $pitch;
 
   /* 
    * Constructor
    */
-	public function __construct($name, $x, $y, $z, $skin){
+	public function __construct($name, $x, $y, $z, $yaw, $pitch, $skin){
     $this->name = $name;
 
     $this->x = $x + 0.5;
     $this->y = $y;
     $this->z = $z + 0.5;
+ 
+    $this->yaw = $yaw;
+    $this->pitch = $pitch;
 
     $this->skin = $skin;
     
@@ -110,7 +113,7 @@ class NPC {
   public function look($player){
     $pk = new \pocketmine\network\mcpe\protocol\MovePlayerPacket();
     $pk->entityRuntimeId = $this->eid;
-  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($this->x, $this->y, $this->z))) <= 20){
+  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($this->x, $this->y, $this->z))) <= 5){
     $x = $this->x - $player->x;
     $y = $this->y - $player->y;
     $z = $this->z - $player->z;

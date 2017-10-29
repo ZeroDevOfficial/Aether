@@ -2,6 +2,8 @@
 
 namespace Plexus\utils\Tasks;
 
+use pocketmine\utils\TextFormat as C;
+
 class BorderTask {
     
   /** @var string | Plexus\Main */
@@ -35,12 +37,11 @@ class BorderTask {
   foreach($players as $player){
     $spawn = $player->getLevel()->getSpawnLocation();
   if($player->getLevel()->getFolderName() === $this->getPlugin()->config()->spawn()){
-  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($spawn->getX(), $spawn->getY() + 1, $spawn->getZ()))) >= $this->getPlugin()->config()->border or $player->getY() <= 2){
+  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($spawn->getX(), $spawn->getY() + 2, $spawn->getZ()))) >= $this->getPlugin()->config()->border or $player->getY() <= 2){
     $this->getPlugin()->spawn($player);
-    $player->addTitle($this->getPlugin()->lang()->border_reached, $this->getPlugin()->lang()->border_end_of_world, 50, 90, 40);
+    $player->addTitle(C::YELLOW ."Border Reached!", C::RED ."You have reached the end of the world.", 50, 90, 40);
      }
     }
    } 
   }
-
 }

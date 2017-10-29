@@ -72,7 +72,7 @@ class Main extends PluginBase {
     $this->npc[$npc->getEid()] = $npc;
   }
     return true;
-  } 
+  }
   catch(Exception $e){
     return false;  
    }

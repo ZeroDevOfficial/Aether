@@ -1,52 +1,45 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Plexus\utils\Tasks;
 
 use pocketmine\utils\TextFormat as C;
 
+use Plexus\Main;
+
 class BorderTask {
-    
-  /** @var string | Plexus\Main */
+
   private $plugin;
-  
-  /* 
-   * Constructor
-   */
-  public function __construct(\Plexus\Main $plugin){
+
+  public function __construct(Main $plugin){
     $this->plugin = $plugin;
   }
   
-  /*
-   * Plugin
-   * ===============================
-   * - Returns $this->plugin = \Plexus\Main;
-   * ===============================
-   */
-  public function getPlugin(){
+  public function getPlugin() : Main {
     return $this->plugin;
   }
-  
-  /* 
-   * Border
-   * ===============================
-   * - Task
-   * ===============================
-   */
-  public function run(){
+
+  public function run() : void {
     $players = $this->getPlugin()->getServer()->getOnlinePlayers();
   foreach($players as $player){
+  if(isset($this->getPlugin()->player[$player->getName()]) && $player->getLevel()->getFolderName() === $this->getPlugin()->config()->spawn()){
+    $p = $this->getPlugin()->player[$player->getName()];
     $spawn = $player->getLevel()->getSpawnLocation();
-  if($player->getLevel()->getFolderName() === $this->getPlugin()->config()->spawn()){
-    //$player->sendTip("Yaw:". $player->yaw);
-  if($player->getY() <= 10 || $player->getY() >= 185){
-    $player->addTitle(C::YELLOW ."Border is near!", C::RED ."if you proceed you will be teleported to spawn.", 50, 90, 40);
-  }
-  if($player->getY() <= 2 || $player->getY() >= 200){
-    $this->getPlugin()->spawn($player);
-    $player->addTitle(C::YELLOW ."Border Reached!", C::RED ."You have reached the end of the world.", 50, 90, 40);
+    $y = $player->getY();
+  switch(true){
+  case(($y <= 2 || $y >= 200)):
+    $player->addTitle(C::YELLOW .'Border Reached!', C::RED .'You have reached the end of the world.', 50, 90, 40);
+    $p->playSound(46);//SOUND_EXPLODE
     $player->setHealth(20);
+    $this->getPlugin()->spawn($player);
+  break;
+  case(($y <= 10 || $y >= 185)):
+    $player->addTitle(C::YELLOW .'Border is near!', C::RED .'if you proceed you will be teleported to spawn.', 50, 90, 40);
+    $p->playSound(73);//SOUND_DENY
+  break;
      }
     }
-   } 
+   }
   }
 }

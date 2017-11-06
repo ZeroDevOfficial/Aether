@@ -1,148 +1,85 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Plexus;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 
+use Data\Config;
+
 use pocketmine\utils\TextFormat as C;
+use pocketmine\Player;
 
 class Main extends PluginBase {
 
-  /** @var array */
   public $player = [];
-
-  /** @var array */
-  public $npc = [];
-  /** @var array |*/
-  public $skins = [];
-
-  /** @var array | tasks */
   public $tasks = [];
-
-  /** @var array | ui data */
   public $ui = [];
-  /** @var int | ui number */
-  public $uiCount = 0;
+  public $show_xyz = [];
+  public $hasLoaded = false;
 
-  /*
-   * Plugin enable
-   * ===============================
-   * - Developer mode | bool
-   * - Testing mode | bool
-   * - Sets Server Name | developer or public
-   * ===============================
-   */ 
-  public function onEnable(){
-    $this->getLogger()->info(C::YELLOW ."Loading all necessary core components.");
-  if($this->config()->developerMode() !== true){
-    $this->getLogger()->info(C::AQUA ."is Running in". C::GREEN ." Public". C::AQUA ." Mode.");
-    $this->getServer()->getNetwork()->setName(C::RED ."Plexus". C::AQUA ." Studio");
-  } elseif($this->config()->developerMode() === true){
-    $this->getLogger()->info(C::AQUA ."is Running in". C::RED ." Development". C::AQUA ." Mode.");
-    $this->getServer()->getNetwork()->setName(C::RED ."Plexus". C::AQUA ." Dev");
-  if($this->config()->testingMode() === true){
-    $this->getLogger()->info( C::AQUA ."is Running in". C::YELLOW ." Testing" . C::AQUA ." Mode");
-   }
-  }
-  if($this->load() === true){
-    $this->getLogger()->info(C::AQUA ."is". C::GREEN ." Online");
-  } else {
-    $this->onDisable();
-   }
-  }
-
-  /*
-   * Load
-   * ===============================
-   * - Loads Events and Tasks
-   * - Creates Npc's and UI's
-   * ===============================
-   */
-  public function load(){
+  const BR = "\n";
+  
+  public function onEnable() : void {
   try {
-    $this->task["border"] = new \Plexus\utils\Tasks\BorderTask($this);
-    $this->task["text"] = new \Plexus\utils\Tasks\FloatingTextTask($this);
+    $this->getServer()->getLogger()->info(C::DARK_PURPLE .'==================================');
+    $this->getServer()->getLogger()->info(C::YELLOW .'Plexus v'. $this->config()->version() .' is Loading...');
+    $this->task['border'] = new \Plexus\utils\Tasks\BorderTask($this);
+    $this->task['text'] = new \Plexus\utils\Tasks\FloatingTextTask($this);
+    $this->task['show_hide'] = new \Plexus\utils\Tasks\ShowHideTask($this);
+    $this->task['xyz'] = new \Plexus\utils\Tasks\xyzTask($this);
 
+    $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\utils\Tasks\TaskHandler($this), 20);
+    $this->getServer()->getLogger()->info(C::YELLOW .'Tasks have Loaded!');
+   
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
-    $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\utils\TaskHandler($this), 20);
+    $this->getServer()->getPluginManager()->registerEvents(new \Plexus\utils\UI\ListenerUI($this), $this);
+    $this->getServer()->getLogger()->info(C::YELLOW .'Events have been registered!');
+  
+    $this->getServer()->getCommandMap()->register('hub', new \Plexus\Commands\hubCommand($this));
+    $this->getServer()->getCommandMap()->register('welcome', new \Plexus\Commands\welcomeCommand($this));
+    $this->getServer()->getCommandMap()->register('xyz', new \Plexus\Commands\xyzCommand($this));
+    $this->getServer()->getLogger()->info(C::YELLOW .'Commands have been registered!');
 
-  foreach($this->config()->npcData as $key => $data){
-    $npc = new \Plexus\utils\NPC($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $this->getRandSkin());
-    $this->npc[$npc->getEid()] = $npc;
-  }
-    return true;
+    $this->hasLoaded = true;
+    $this->getServer()->getLogger()->info(C::YELLOW .'Everything has Loaded, Plexus is now Online!');
+    $this->getServer()->getLogger()->info(C::DARK_PURPLE .'==================================');
   }
   catch(Exception $e){
-    return false;  
+    $this->getLogger()->info(C::RED ."Plugin has Failed to Load due to $e");
+    $this->forceShutdown();
    }
   }
 
-  /*
-   * Create UI 
-   * ===============================
-   * - Creates All UI used for the server. 
-   * ===============================
-   */
-  public function createUI(){
-  //TODO
+  public function config() : Config {
+    return new Config();
   }
 
-  /*
-   * Random Skin 
-   * ===============================
-   * picks a number between $min and $max,
-   * checks if that skin is being used,
-   * if not returns skin. 
-   * ===============================
-   */
-  public function getRandSkin(){
-    $rand = rand(1, 21);
-  if(in_array($rand, $this->skins)){
-    return $this->getRandSkin();
-  } else {
-    $this->skins[] = $rand;
-    $s = new \Plexus\utils\Skin();
-    return $s->getSkinFromFile($this->getDataFolder() . "skins/" . $rand . ".png");
-   }
+  public function join(Player $player) : void {
+    $this->player[$player->getName()] = new \Plexus\utils\PlexusPlayer($this, $player);
+    $this->spawn($player);
   }
 
-  /*
-   * Spawn
-   * ===============================
-   * - Spawns the player at hub spawn
-   * ===============================
-   */
-  public function spawn($player){
+  public function spawn(Player $player) : void {
     $player->teleport(\pocketmine\Server::getInstance()->getLevelByName($this->config()->spawn())->getSafeSpawn());
   }
-  
-  /*
-   * Config
-   * ===============================
-   * - Returns Config
-   * ===============================
-   */
-  public function config(){
-    return new \Data\Config(); 
-  }
 
-  /*
-   * Disable
-   * ===============================
-   * - Kicks all online players
-   * - If server is running it stops it
-   * ===============================
-   */
-  public function onDisable(){
-    $this->getLogger()->info(C::AQUA ."is". C::RED ." Offline.");
+  public function onDisable() : void {
+    $this->getLogger()->info(C::AQUA .'is'. C::RED .' Offline.');
     $players = $this->getServer()->getOnlinePlayers();
   foreach($players as $player){
-    $player->close("", C::AQUA ."Plexus Has closed, We will be back shortly.");
+    $player->close('', C::AQUA .'Plexus Has closed, We will be back shortly.');
   }
+    $this->forceShutdown();
+  }
+
+  public function forceShutdown(){
   if($this->config()->forceShutdown() === true && $this->getServer()->isRunning() === true){
-   $this->getLogger()->info(C::RED ."Server is still running, Shutting Down Server.");
-   $this->getServer()->forceShutdown();
-   }
+    $this->getLogger()->info(C::RED .'Server is still running, Shutting Down Server.');
+    $this->getServer()->forceShutdown();
+   }   
   }
+  
 }

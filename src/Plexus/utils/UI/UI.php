@@ -1,42 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Plexus\utils\UI;
 
+use pocketmine\Player;
 use pocketmine\network\mcpe\protocol\ModalFormRequestPacket;
 
 abstract class UI {
 
-  /** @var int */
+
   public $id;
-  /** @var array */
   private $data = [];
-  /** @var string */
   public $player;
 
-  /* 
-   * Constructor
-   */
-  public function __construct($id) {
+  public function __construct($id){
     $this->id = $id;
   }
 
-  /* 
-   * getId
-   * ===============================
-   * - Returns Id  
-   * ===============================
-   */
-  public function getId(){
+  public function getId() : int {
     return $this->id;
   }
 
-  /* 
-   * send
-   * ===============================
-   * - sends UI to Player
-   * ===============================
-   */
-  public function send($player){
+  public function send(Player $player) : void {
     $pk = new ModalFormRequestPacket();
     $pk->formId = $this->id;
     $pk->formData = json_encode($this->data);

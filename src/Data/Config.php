@@ -1,4 +1,7 @@
 <?php 
+
+declare(strict_types=1);
+
 namespace Data;
 
 use pocketmine\utils\TextFormat as C;
@@ -7,79 +10,27 @@ use pocketmine\utils\TextFormat as C;
  * Config for Plexus Core.
  */
 
- class Config
-{
-  
-  /** @var string | hub name */
+ class Config {
+
+  /** Server Settings */
   private $spawn = "Alazar";
-  private $dev = true;
-  /** @var bool | Testing mode */
-  private $testing = true;
-  /** @var bool | Force shutdown */
   private $forceShutdown = true;
-  /** @var bool | Staff only */
-  private $staff_only = false;
-  /** @var array | Npc's data */
-  public $npcData = array(
-    'npc0' => array(C::AQUA ."Welcome", '857', '82', '1143', '180', '0'),
-    'npc1' => array("NPC1", '872', '84', '1118', '180', '0'),
-    'npc2' => array("NPC2", '882', '84', '1128', '270', '0'),
-    'npc3' => array("NPC3", '882', '84', '1164', '270', '0'),
-    'npc4' => array("NPC4", '872', '84', '1174', '0', '0'),
-    'npc5' => array("NPC5", '836', '84', '1174', '0', '0'),
-    'npc6' => array("NPC6", '826', '84', '1164', '70', '0'),
-    'npc7' => array("NPC7", '826', '84', '1128', '70', '0'),
-    'npc8' => array("NPC8", '836', '84', '1118', '180', '0'),
-  );
-  
-  /*
-   * Spawn
-   * ===============================
-   * - Returns spawn/lobby name
-   * ===============================
-   */
-  public function spawn(){
+  private $version = '0.1.3.7';
+
+  /* Lang */
+  public $info = C::YELLOW ."Plexus is a faction Server created by ZeroDevOfficial and Andrep0617\n\nThe server is running on PocketMine-MP\n\nPlugins developed by @ZeroDevOfficial";
+  public $staffList = C::YELLOW ."Owner:\n- ZeroDevOfficial\n\nHead Admin:\n- Andrep0617\n\nAdmins:\n- TheRoyalBlock\n\n\n\n". C::RED ."DO NOT ASK TO BE STAFF\n";
+  public $changelog = C::AQUA ."Update v0.1.3.7:". C::YELLOW ."\n- UI Changes\n- Added Stats to Floating Text\n- Floating Text no longer flickers\n- Finished Parkour\n- Started on World Protection.\n\n\n\n";
+
+  public function spawn() : string {
     return $this->spawn;
   }
-  
-  /*
-   * Developer Mode
-   * ===============================
-   * - Returns dev = true || false
-   * ===============================
-   */
-  public function developerMode(){
-    return $this->dev;
-  }
-  
-  /*
-   * Testing Mode
-   * ===============================
-   * - Returns testing = true || false
-   * ===============================
-   */
-  public function testingMode(){
-    return $this->testing;
-  }
-  
-  /*
-   * ForceShutdown
-   * ===============================
-   * - Returns forceShutdown = true || false
-   * ===============================
-   */
-  public function forceShutdown(){
+
+  public function forceShutdown() : bool {
     return $this->forceShutdown;
   }
-  
-  /*
-   * StaffOnly
-   * ===============================
-   * - Returns staff = true || false
-   * ===============================
-   */
-  public function staffOnly(){
-    return $this->staff_only;
-  }
 
+  public function version() : string {
+    return $this->version;
+  }
 }

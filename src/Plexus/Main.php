@@ -12,18 +12,26 @@ use Data\Config;
 use pocketmine\utils\TextFormat as C;
 use pocketmine\Player;
 
+use pocketmine\entity\Entity;
+use Plexus\entity\PlexusEntity;
+
 class Main extends PluginBase {
 
   public $player = [];
+  public $entity = [];
+  public $npc = [];
   public $tasks = [];
   public $ui = [];
   public $show_xyz = [];
   public $hasLoaded = false;
 
+  private static $instance = null;
+
   const BR = "\n";
   
   public function onEnable() : void {
   try {
+    self::$instance = $this; 
     $this->getServer()->getLogger()->info(C::DARK_PURPLE .'==================================');
     $this->getServer()->getLogger()->info(C::YELLOW .'Plexus v'. $this->config()->version() .' is Loading...');
     $this->task['border'] = new \Plexus\utils\Tasks\BorderTask($this);
@@ -43,6 +51,9 @@ class Main extends PluginBase {
     $this->getServer()->getCommandMap()->register('xyz', new \Plexus\Commands\xyzCommand($this));
     $this->getServer()->getLogger()->info(C::YELLOW .'Commands have been registered!');
 
+    $this->entity()->entityInit();
+    $this->getServer()->getLogger()->info(C::YELLOW .'Entities have been registered!');
+
     $this->hasLoaded = true;
     $this->getServer()->getLogger()->info(C::YELLOW .'Everything has Loaded, Plexus is now Online!');
     $this->getServer()->getLogger()->info(C::DARK_PURPLE .'==================================');
@@ -53,13 +64,22 @@ class Main extends PluginBase {
    }
   }
 
+	public static function getInstance(){
+		return self::$instance;
+	}
+
   public function config() : Config {
     return new Config();
+  }
+
+  public function entity() : PlexusEntity {
+    return new PlexusEntity($this);
   }
 
   public function join(Player $player) : void {
     $this->player[$player->getName()] = new \Plexus\utils\PlexusPlayer($this, $player);
     $this->spawn($player);
+    $this->entity['floatingText']->spawnTo($player);
   }
 
   public function spawn(Player $player) : void {
@@ -68,6 +88,7 @@ class Main extends PluginBase {
 
   public function onDisable() : void {
     $this->getLogger()->info(C::AQUA .'is'. C::RED .' Offline.');
+    $this->entity()->entitiesRemove();
     $players = $this->getServer()->getOnlinePlayers();
   foreach($players as $player){
     $player->close('', C::AQUA .'Plexus Has closed, We will be back shortly.');

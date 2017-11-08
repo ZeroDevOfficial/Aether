@@ -2,13 +2,20 @@
 
 # Plexus Core Factions:
 
-> Factions Core: v0.1.3.7
+> Factions Core: v0.1.3.8
 
 > PocketMine-MP: api-3.0.0-ALPHA9
 
 > Minecraft: v1.2.3
 
 # Change log:
+**For Update v0.1.3.7 and v0.1.3.8** 
+- Rewrite of UI
+- Rewrite of FloatingText
+- Moved Things Around in Config
+- Added Commands (/hub, /xyz, /welcome(testCmd))
+- Added Return type declaration to Functions
+- Added strict mode to the entire core
 
 # Info: 
 ```

@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Plexus\utils;
 
+use Plexus\Main;
+
 class Skin {
 
   public $skins = [];
 
-  public function getSkinFromFile(string $filename) : int {
+  public function getSkinFromFile($filename){
     $im = imagecreatefrompng($filename);
     list($width, $height) = getimagesize($filename);
     $bytes = '';
@@ -22,17 +24,17 @@ class Skin {
     $bytes .= chr($r) . chr($g) . chr($b) . chr($a);
    }
   }
-     imagedestroy($im);
+     //echo "BYTES=".strlen($bytes)."\n";
      return $bytes;
   }
 
-  public function getRandSkin(\Plexus\Main $plugin) : string {
+  public function getRandSkin(){
     $rand = rand(1, 21);
   if(in_array($rand, $this->skins)){
-    return $this->getRandSkin($plugin);
+    return $this->getRandSkin();
   } else {
     $this->skins[] = $rand;
-    return $this->getSkinFromFile($plugin->getDataFolder() . 'skins/' . $rand . '.png');
+    return $this->getSkinFromFile(Main::getInstance()->getDataFolder() . 'skins/' . $rand . '.png');
    }
   }
 }

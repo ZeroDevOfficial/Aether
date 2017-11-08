@@ -36,4 +36,32 @@ class Events implements Listener {
     unset($this->getPlugin()->player[$player->getName()]);
    }
   }
+
+  public function onEntityDamage(\pocketmine\event\entity\EntityDamageEvent $e){
+    $entity = $e->getEntity();
+  if($entity instanceof \Plexus\entity\FloatingNameTag){
+    $e->setCancelled(true);
+    return;
+  }
+  if(!$e instanceof \pocketmine\event\entity\EntityDamageByEntityEvent){
+     return;
+  }
+    $damager = $e->getDamager();
+  if(!$damager instanceof \pocketmine\Player) {
+     return;
+  }
+  if($entity instanceof \Plexus\entity\Npc){
+    $e->setCancelled(true);
+  if(isset($this->getPlugin()->npc[$entity->getId()])){
+    $damager->sendMessage("Y u hit me");
+    }
+   }
+  }
+
+  public function move(\pocketmine\event\player\PlayerQuitEvent $e) : void {
+    $player = $e->getPlayer();
+  foreach($this->getPlugin()->npc as $id => $npc){
+    $npc->lookAt($player);
+   }
+  }
 }

@@ -30,8 +30,10 @@ class PlexusEntity {
   public function entityInit() : void {
     Entity::registerEntity(\Plexus\entity\FloatingNameTag::class, true);
     Entity::registerEntity(\Plexus\entity\Npc::class, true);
-    $pos = $this->position(856, 82, 1148);
-    $this->addFloatingNameTag($pos, '');
+  foreach($this->getPlugin()->config()->floatingTextArrayData() as $key => $data){
+    $pos = $this->position($data[0], $data[1], $data[2]);
+    $this->addFloatingNameTag($pos, $data[3]);
+  }
   foreach($this->getPlugin()->config()->npcArrayData() as $key => $data){
     $pos = $this->position($data[0], $data[1], $data[2]);
     $this->addNpc($pos, $data[3], $data[5], $data[5], $data[6]);
@@ -58,7 +60,7 @@ class PlexusEntity {
   if($entity instanceof \Plexus\entity\FloatingNameTag){
     $entity->setText($text);
     $entity->spawnToAll();
-    $this->getPlugin()->entity['floatingText'] = $entity;
+    $this->getPlugin()->ft[$text] = $entity;
    }
   }
 
@@ -83,7 +85,6 @@ class PlexusEntity {
   if($npc instanceof \Plexus\entity\Npc){
     $npc->setNameTag($displayName);
     $npc->setDefaultYawPitch($yaw, $pitch);
-    //$npc->setNamedTag($npc);
     $npc->spawnToAll();
     $this->getPlugin()->npc[$npc->getId()] = $npc;
    }
@@ -98,7 +99,7 @@ class PlexusEntity {
   foreach($this->getPlugin()->npc as $id => $npc){
     $level->removeEntity($npc);
   }
-    $level->removeEntity($this->getPlugin()->entity['floatingText']);
+    $level->removeEntity($this->getPlugin()->ft['welcome']);
 
     $this->getPlugin()->getServer()->getLogger()->info(C::YELLOW .'Removed Entities');
   }

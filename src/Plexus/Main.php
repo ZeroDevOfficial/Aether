@@ -18,7 +18,7 @@ use Plexus\entity\PlexusEntity;
 class Main extends PluginBase {
 
   public $player = [];
-  public $entity = [];
+  public $ft = [];
   public $npc = [];
   public $tasks = [];
   public $ui = [];
@@ -79,7 +79,7 @@ class Main extends PluginBase {
   public function join(Player $player) : void {
     $this->player[$player->getName()] = new \Plexus\utils\PlexusPlayer($this, $player);
     $this->spawn($player);
-    $this->entity['floatingText']->spawnTo($player);
+    $this->ft['welcome']->spawnTo($player);
   }
 
   public function spawn(Player $player) : void {

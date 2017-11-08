@@ -21,12 +21,12 @@ class FloatingTextTask {
   }
 
   public function run() : void {
-    $fl = $this->getPlugin()->entity['floatingText'];
+    $ft = $this->getPlugin()->ft['welcome'];
     $players = $this->getPlugin()->getServer()->getOnlinePlayers();
     $text = C::BLACK .'>======================<' . 
     Main::BR . Main::BR. C::DARK_PURPLE .'Welcome to '. C::AQUA .'Plexus Studio'. 
     Main::BR . C::DARK_PURPLE ."Players Online: ". C::AQUA . count($players) . C::BLACK . 
     Main::BR  . Main::BR .">======================<";
-    $fl->setText($text);
+    $ft->setText($text);
   }
 }

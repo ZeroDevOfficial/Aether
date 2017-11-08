@@ -11,7 +11,7 @@ use pocketmine\utils\TextFormat as C;
   /** Server Settings */
   private $spawn = "Alazar";
   private $forceShutdown = true;
-  private $version = '0.1.3.8.1';
+  private $version = '0.1.3.8.2';
   
   public function spawn() : string {
     return $this->spawn;
@@ -29,6 +29,13 @@ use pocketmine\utils\TextFormat as C;
   
   public function staffList() : string {
     return C::YELLOW ."Owner:\n- ZeroDevOfficial\n\nHead Admin:\n- Andrep0617\n\nAdmins:\n- TheRoyalBlock\n\n\n\n". C::RED ."DO NOT ASK TO BE STAFF\n";
+  }
+
+  public function floatingTextArrayData() : array {
+    return array(
+      // 'name' =        [$x, $y, $z, $temp_text];
+      'welcome' => array(856, 82, 1148, 'welcome')
+    );
   }
 
   public function npcArrayData() : array {

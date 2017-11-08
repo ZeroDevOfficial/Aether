@@ -29,7 +29,7 @@ class Skin {
   }
 
   public function getRandSkin(){
-    $rand = rand(1, 21);
+    $rand = rand(1, 25);
   if(in_array($rand, $this->skins)){
     return $this->getRandSkin();
   } else {

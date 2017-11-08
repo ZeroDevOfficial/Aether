@@ -11,7 +11,7 @@ use pocketmine\utils\TextFormat as C;
   /** Server Settings */
   private $spawn = "Alazar";
   private $forceShutdown = true;
-  private $version = '0.1.3.8.2';
+  private $version = '0.1.3.8.3';
   
   public function spawn() : string {
     return $this->spawn;
@@ -29,6 +29,24 @@ use pocketmine\utils\TextFormat as C;
   
   public function staffList() : string {
     return C::YELLOW ."Owner:\n- ZeroDevOfficial\n\nHead Admin:\n- Andrep0617\n\nAdmins:\n- TheRoyalBlock\n\n\n\n". C::RED ."DO NOT ASK TO BE STAFF\n";
+  }
+
+  public function commandArrayData() : array {
+    $main = \Plexus\Main::getInstance();
+    return array(
+      'hub' => new \Plexus\Commands\hubCommand($main),
+      'xyz' => new \Plexus\Commands\xyzCommand($main)
+    );
+  }
+
+  public function taskArrayData() : array {
+    $main = \Plexus\Main::getInstance();
+    return array(
+      'border' => new \Plexus\utils\Tasks\BorderTask($main),
+      'text' => new \Plexus\utils\Tasks\FloatingTextTask($main),
+      'show_hide' => new \Plexus\utils\Tasks\ShowHideTask($main),
+      'xyz' => new \Plexus\utils\Tasks\xyzTask($main)
+    );
   }
 
   public function floatingTextArrayData() : array {

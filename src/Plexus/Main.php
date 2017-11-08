@@ -32,31 +32,25 @@ class Main extends PluginBase {
   public function onEnable() : void {
   try {
     self::$instance = $this; 
-    $this->getServer()->getLogger()->info(C::DARK_PURPLE .'==================================');
-    $this->getServer()->getLogger()->info(C::YELLOW .'Plexus v'. $this->config()->version() .' is Loading...');
-    $this->task['border'] = new \Plexus\utils\Tasks\BorderTask($this);
-    $this->task['text'] = new \Plexus\utils\Tasks\FloatingTextTask($this);
-    $this->task['show_hide'] = new \Plexus\utils\Tasks\ShowHideTask($this);
-    $this->task['xyz'] = new \Plexus\utils\Tasks\xyzTask($this);
-
+    $this->getServer()->getLogger()->info(C::DARK_PURPLE .'Plexus '. C::AQUA .'v'. $this->config()->version() . C::DARK_PURPLE .' is Loading...');
+  foreach($this->config()->taskArrayData() as $key => $task){
+    $this->task[$key] = $task;
+    $this->getServer()->getLogger()->info(C::YELLOW .'Task '. C::AQUA . $key . C::YELLOW .' has loaded');
+  }
     $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\utils\Tasks\TaskHandler($this), 20);
-    $this->getServer()->getLogger()->info(C::YELLOW .'Tasks have Loaded!');
-   
+    
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\utils\UI\ListenerUI($this), $this);
-    $this->getServer()->getLogger()->info(C::YELLOW .'Events have been registered!');
   
-    $this->getServer()->getCommandMap()->register('hub', new \Plexus\Commands\hubCommand($this));
-    $this->getServer()->getCommandMap()->register('welcome', new \Plexus\Commands\welcomeCommand($this));
-    $this->getServer()->getCommandMap()->register('xyz', new \Plexus\Commands\xyzCommand($this));
-    $this->getServer()->getLogger()->info(C::YELLOW .'Commands have been registered!');
+  foreach($this->config()->commandArrayData() as $key => $command){
+    $this->getServer()->getCommandMap()->register($key, $command);
+    $this->getServer()->getLogger()->info(C::YELLOW .'Command '. C::AQUA . $key . C::YELLOW .' has loaded');
+  }
 
     $this->entity()->entityInit();
-    $this->getServer()->getLogger()->info(C::YELLOW .'Entities have been registered!');
 
     $this->hasLoaded = true;
-    $this->getServer()->getLogger()->info(C::YELLOW .'Everything has Loaded, Plexus is now Online!');
-    $this->getServer()->getLogger()->info(C::DARK_PURPLE .'==================================');
+    $this->getServer()->getLogger()->info(C::DARK_PURPLE .'Everything has Loaded, Plexus is now Online!');
   }
   catch(Exception $e){
     $this->getLogger()->info(C::RED ."Plugin has Failed to Load due to $e");

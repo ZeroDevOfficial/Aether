@@ -57,11 +57,11 @@ class Events implements Listener {
     }
    }
   }
-
+/*
   public function move(\pocketmine\event\player\PlayerQuitEvent $e) : void {
     $player = $e->getPlayer();
   foreach($this->getPlugin()->npc as $id => $npc){
     $npc->lookAt($player);
    }
-  }
+  }*/
 }

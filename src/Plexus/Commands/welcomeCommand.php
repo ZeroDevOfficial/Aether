@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Plexus\Commands;
+namespace Plexus\commands;
 
 use pocketmine\Player;
 use pocketmine\command\Command;

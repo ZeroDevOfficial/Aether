@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Plexus\utils;
+namespace Plexus;
 
 use Plexus\Main;
 use pocketmine\Player;

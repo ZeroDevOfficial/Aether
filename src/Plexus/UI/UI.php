@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Plexus\utils\UI;
+namespace Plexus\UI;
 
 use pocketmine\Player;
 use pocketmine\network\mcpe\protocol\ModalFormRequestPacket;

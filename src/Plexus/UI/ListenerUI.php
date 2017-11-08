@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Plexus\utils\UI;
+namespace Plexus\UI;
 
 use pocketmine\event\Listener;
 use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;

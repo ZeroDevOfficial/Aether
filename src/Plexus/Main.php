@@ -37,10 +37,10 @@ class Main extends PluginBase {
     $this->task[$key] = $task;
     $this->getServer()->getLogger()->info(C::YELLOW .'Task '. C::AQUA . $key . C::YELLOW .' has loaded');
   }
-    $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\utils\Tasks\TaskHandler($this), 20);
+    $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\tasks\TaskHandler($this), 20);
     
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
-    $this->getServer()->getPluginManager()->registerEvents(new \Plexus\utils\UI\ListenerUI($this), $this);
+    //$this->getServer()->getPluginManager()->registerEvents(new \Plexus\UI\ListenerUI($this), $this);
   
   foreach($this->config()->commandArrayData() as $key => $command){
     $this->getServer()->getCommandMap()->register($key, $command);
@@ -58,9 +58,9 @@ class Main extends PluginBase {
    }
   }
 
-	public static function getInstance(){
-		return self::$instance;
-	}
+  public static function getInstance(){
+    return self::$instance;
+  }
 
   public function config() : Config {
     return new Config();
@@ -71,7 +71,7 @@ class Main extends PluginBase {
   }
 
   public function join(Player $player) : void {
-    $this->player[$player->getName()] = new \Plexus\utils\PlexusPlayer($this, $player);
+    $this->player[$player->getName()] = new \Plexus\PlexusPlayer($this, $player);
     $this->spawn($player);
     $this->ft['welcome']->spawnTo($player);
   }

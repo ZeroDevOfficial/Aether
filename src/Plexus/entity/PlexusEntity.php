@@ -30,30 +30,31 @@ class PlexusEntity {
   public function entityInit() : void {
     Entity::registerEntity(\Plexus\entity\FloatingNameTag::class, true);
     Entity::registerEntity(\Plexus\entity\Npc::class, true);
-    $pos = $this->position(856, 82, 1144);
+    $pos = $this->position(856, 82, 1148);
     $this->addFloatingNameTag($pos, '');
   foreach($this->getPlugin()->config()->npcArrayData() as $key => $data){
     $pos = $this->position($data[0], $data[1], $data[2]);
-    $this->addNpc($pos, $data[3]);
+    $this->addNpc($pos, $data[3], $data[5], $data[5], $data[6]);
    }
   }
 
   public function addFloatingNameTag(\pocketmine\level\Position $pos, string $text) : void {
-    $entity = Entity::createEntity("FloatingNameTag", $pos->level, new CompoundTag("", [
-    new ListTag("Pos", [
+    $nbt = new CompoundTag;
+    $nbt->Pos = new ListTag("Pos", [
       new DoubleTag("", $pos->x + 0.5),
       new DoubleTag("", $pos->y + 2),
       new DoubleTag("", $pos->z + 0.5)
-    ]),
-    new ListTag("Motion", [
+    ]);
+    $nbt->Motion = new ListTag("Motion", [
       new DoubleTag("", 0),
       new DoubleTag("", 0),
       new DoubleTag("", 0)
-    ]),
-    new ListTag("Rotation", [
+    ]);
+    $nbt->Rotation = new ListTag("Rotation", [
       new FloatTag("", 0),
       new FloatTag("", 0)
-    ])]));
+    ]);
+    $entity = Entity::createEntity("FloatingNameTag", $pos->level, $nbt);
   if($entity instanceof \Plexus\entity\FloatingNameTag){
     $entity->setText($text);
     $entity->spawnToAll();
@@ -61,24 +62,28 @@ class PlexusEntity {
    }
   }
 
-  public function addNpc(\pocketmine\level\Position $pos, string $name) : void {
-    $npc = Entity::createEntity("Npc", $pos->level, new CompoundTag("", [
-    new ListTag("Pos", [
+  public function addNpc(\pocketmine\level\Position $pos, $yaw, $pitch, string $displayName, string $name) : void {
+    $nbt = new CompoundTag;
+    $nbt->Pos = new ListTag("Pos", [
       new DoubleTag("", $pos->x + 0.5),
       new DoubleTag("", $pos->y),
       new DoubleTag("", $pos->z + 0.5)
-    ]),
-    new ListTag("Motion", [
+    ]);
+    $nbt->Motion = new ListTag("Motion", [
       new DoubleTag("", 0),
       new DoubleTag("", 0),
       new DoubleTag("", 0)
-    ]),
-    new ListTag("Rotation", [
-      new FloatTag("", 0),
-      new FloatTag("", 0)
-    ])]));
+    ]);
+    $nbt->Rotation = new ListTag("Rotation", [
+      new FloatTag("", intval($yaw)),
+      new FloatTag("", intval($pitch))
+    ]);
+    $nbt->Name = new StringTag("Name", $name);
+    $npc = Entity::createEntity("Npc", $pos->level, $nbt);
   if($npc instanceof \Plexus\entity\Npc){
-    $npc->setNameTag($name);
+    $npc->setNameTag($displayName);
+    $npc->setDefaultYawPitch($yaw, $pitch);
+    //$npc->setNamedTag($npc);
     $npc->spawnToAll();
     $this->getPlugin()->npc[$npc->getId()] = $npc;
    }

@@ -2,7 +2,7 @@
 
 # Plexus Core Factions:
 
-> Factions Core: v0.1.3.8
+> Factions Core: v0.1.3.8.1
 
 > PocketMine-MP: api-3.0.0-ALPHA9
 
@@ -12,6 +12,7 @@
 **For Update v0.1.3.7 and v0.1.3.8** 
 - Rewrite of UI
 - Rewrite of FloatingText
+- Rewrite of Npc's
 - Moved Things Around in Config
 - Added Commands (/hub, /xyz, /welcome(testCmd))
 - Added Return type declaration to Functions

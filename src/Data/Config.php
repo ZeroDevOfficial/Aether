@@ -11,7 +11,7 @@ use pocketmine\utils\TextFormat as C;
   /** Server Settings */
   private $spawn = "Alazar";
   private $forceShutdown = true;
-  private $version = '0.1.3.7';
+  private $version = '0.1.3.8.1';
   
   public function spawn() : string {
     return $this->spawn;
@@ -33,7 +33,9 @@ use pocketmine\utils\TextFormat as C;
 
   public function npcArrayData() : array {
     return array(
-      'welcome' => array(852, 82, 1144, C::AQUA .'Welcome')
+      // 'name' =        [$x, $y, $z, $yaw, $pitch, $displayName, $name];
+      'welcome' => array(852, 82, 1148, 0, 0, C::AQUA .'Welcome', 'welcome'),
+      'npc1' => array(836, 84, 1174, 0, 0, C::YELLOW .'Shop', 'shop')
     );
   }
 }

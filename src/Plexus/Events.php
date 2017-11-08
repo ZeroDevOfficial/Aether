@@ -28,15 +28,6 @@ class Events implements Listener {
     $this->getPlugin()->join($player);
   }
 
-  public function quit(\pocketmine\event\player\PlayerQuitEvent $e) : void {
-    $player = $e->getPlayer();
-    $e->setQuitMessage('');
-  if(isset($this->getPlugin()->player[$player->getName()])){
-    $this->getPlugin()->player[$player->getName()]->save();
-    unset($this->getPlugin()->player[$player->getName()]);
-   }
-  }
-
   public function onEntityDamage(\pocketmine\event\entity\EntityDamageEvent $e){
     $entity = $e->getEntity();
   if($entity instanceof \Plexus\entity\FloatingNameTag){
@@ -53,15 +44,30 @@ class Events implements Listener {
   if($entity instanceof \Plexus\entity\Npc){
     $e->setCancelled(true);
   if(isset($this->getPlugin()->npc[$entity->getId()])){
-    $damager->sendMessage("Y u hit me");
+    $npc = $this->getPlugin()->npc[$entity->getId()];
+  if($npc->getNamedTag()['Name'] === 'welcome'){
+    $damager->sendMessage('welcome');
+  }
+  if($npc->getNamedTag()['Name'] === 'shop'){
+    $damager->sendMessage('shop');
+  }
     }
    }
   }
-/*
-  public function move(\pocketmine\event\player\PlayerQuitEvent $e) : void {
+
+  public function move(\pocketmine\event\player\PlayerMoveEvent $e) : void {
     $player = $e->getPlayer();
   foreach($this->getPlugin()->npc as $id => $npc){
-    $npc->lookAt($player);
+    $npc->look($player);
    }
-  }*/
+  }
+
+  public function quit(\pocketmine\event\player\PlayerQuitEvent $e) : void {
+    $player = $e->getPlayer();
+    $e->setQuitMessage('');
+  if(isset($this->getPlugin()->player[$player->getName()])){
+    $this->getPlugin()->player[$player->getName()]->save();
+    unset($this->getPlugin()->player[$player->getName()]);
+   }
+  }
 }

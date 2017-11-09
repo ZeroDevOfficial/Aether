@@ -43,14 +43,14 @@ class Events implements Listener {
   }
   if($entity instanceof \Plexus\entity\Npc){
     $e->setCancelled(true);
-  if(isset($this->getPlugin()->npc[$entity->getId()])){
-    $npc = $this->getPlugin()->npc[$entity->getId()];
-  if($npc->getName() === C::AQUA .'Welcome'){
-    $damager->sendMessage('welcome');
+  if($entity->getNamedTag()->Name == C::AQUA .'Welcome'){
+    $ui = $this->plugin->ui['welcome'];
+    $ui->send($damager);
+    return;
   }
-  if($npc->getName() === C::YELLOW .'Shop'){
+  if($entity->getNamedTag()->Name == C::YELLOW .'Shop'){
     $damager->sendMessage('shop');
-  }
+    return;
     }
    }
   }

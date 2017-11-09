@@ -24,7 +24,7 @@ class Skin {
     $bytes .= chr($r) . chr($g) . chr($b) . chr($a);
    }
   }
-     echo "BYTES=".strlen($bytes)."\n";
+     //echo "BYTES=".strlen($bytes)."\n";
      return $bytes;
   }
 

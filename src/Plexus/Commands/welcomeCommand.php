@@ -24,7 +24,8 @@ class welcomeCommand extends VanillaCommand {
 
   public function execute(CommandSender $sender, $alias, array $args) : bool {
   if($sender instanceof Player){
-    $sender->sendMessage('Welcome '. $sender->getName());
+    $ui = $this->plugin->ui['welcome'];
+    $ui->send($sender);
     return true;
   } else {
     $sender->sendMessage(C::RED .'Command must be run in-game!');

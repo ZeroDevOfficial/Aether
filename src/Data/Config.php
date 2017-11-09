@@ -35,6 +35,7 @@ use pocketmine\utils\TextFormat as C;
     $main = \Plexus\Main::getInstance();
     return array(
       'hub' => new \Plexus\commands\hubCommand($main),
+      'welcome' => new \Plexus\commands\welcomeCommand($main),
       'xyz' => new \Plexus\commands\xyzCommand($main)
     );
   }
@@ -60,14 +61,14 @@ use pocketmine\utils\TextFormat as C;
     return array(
       // 'name' =        [$x, $y, $z, $yaw, $pitch, $displayName, $name];
       'welcome' => array(852, 82, 1148, 0, 0, C::AQUA .'Welcome'),
-      'npc1' => array(836, 84, 1174, 0, 0, C::YELLOW .'Shop', 'shop'),
-      'npc2' => array(826, 84, 1164, 90, 0, C::YELLOW .'Shop', 'shop'),
-      'npc3' => array(826, 84, 1128, 90, 0, C::YELLOW .'Shop', 'shop'),
-      'npc4' => array(836, 84, 1118, 180, 0, C::YELLOW .'Shop', 'shop'),
-      'npc5' => array(872, 84, 1118, 180, 0, C::YELLOW .'Shop', 'shop'),
-      'npc6' => array(882, 84, 1128, 270, 0, C::YELLOW .'Shop', 'shop'),
-      'npc7' => array(882, 84, 1164, 270, 0, C::YELLOW .'Shop', 'shop'),
-      'npc8' => array(872, 84, 1174, 0, 0, C::YELLOW .'Shop', 'shop')
+      'npc1' => array(836, 84, 1174, 0, 0, C::YELLOW .'Shop'),
+      'npc2' => array(826, 84, 1164, 90, 0, C::YELLOW .'Shop'),
+      'npc3' => array(826, 84, 1128, 90, 0, C::YELLOW .'Shop'),
+      'npc4' => array(836, 84, 1118, 180, 0, C::YELLOW .'Shop'),
+      'npc5' => array(872, 84, 1118, 180, 0, C::YELLOW .'Shop'),
+      'npc6' => array(882, 84, 1128, 270, 0, C::YELLOW .'Shop'),
+      'npc7' => array(882, 84, 1164, 270, 0, C::YELLOW .'Shop'),
+      'npc8' => array(872, 84, 1174, 0, 0, C::YELLOW .'Shop')
     );
   }
 }

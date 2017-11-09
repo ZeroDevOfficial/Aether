@@ -9,7 +9,6 @@ use pocketmine\network\mcpe\protocol\ModalFormRequestPacket;
 
 abstract class UI {
 
-
   public $id;
   private $data = [];
   public $player;

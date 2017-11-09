@@ -36,7 +36,7 @@ class PlexusEntity {
   }
   foreach($this->getPlugin()->config()->npcArrayData() as $key => $data){
     $pos = $this->position($data[0], $data[1], $data[2]);
-    $this->addNpc($pos, $data[3], $data[5], $data[5], $data[6]);
+    $this->addNpc($pos, $data[3], $data[5], $data[5]);
    }
   }
 
@@ -80,13 +80,13 @@ class PlexusEntity {
       new FloatTag("", intval($yaw)),
       new FloatTag("", intval($pitch))
     ]);
-    //$nbt->Name = new StringTag("Name", $name);
+    $nbt->Name = new StringTag("Name", $displayName);
     $npc = Entity::createEntity("Npc", $pos->level, $nbt);
   if($npc instanceof \Plexus\entity\Npc){
     $npc->setNameTag($displayName);
     $npc->setDefaultYawPitch($yaw, $pitch);
     $npc->spawnToAll();
-    $this->getPlugin()->npc[] = $npc;
+    $this->getPlugin()->npc[$npc->getId()] = $npc;
    }
   }
 
@@ -94,13 +94,13 @@ class PlexusEntity {
     return new \pocketmine\level\Position($x, $y, $z, $this->getPlugin()->getServer()->getLevelByName($this->getPlugin()->config()->spawn()));
   }
 
-  public function entitiesRemove(){
+  public function removeEntities(){
     $level = $this->getPlugin()->getServer()->getLevelByName($this->getPlugin()->config()->spawn());
-  foreach($this->getPlugin()->npc as $id => $npc){
-    $level->removeEntity($npc);
-  }
-    $level->removeEntity($this->getPlugin()->ft['welcome']);
-
-    $this->getPlugin()->getServer()->getLogger()->info(C::YELLOW .'Removed Entities');
+  foreach($level->getEntities() as $entity){
+  if($entity instanceof \Plexus\entity\Npc || $entity instanceof \Plexus\entity\FloatingNameTag){
+    //$this->getPlugin()->getLogger()->info($entity->getNameTag());//debugging
+    $level->removeEntity($entity);
+    }
+   }
   }
 }

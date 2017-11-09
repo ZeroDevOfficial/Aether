@@ -16,6 +16,7 @@ use Plexus\Main;
 class ListenerUI implements Listener {
 
   private $plugin;
+  private $id = [];
 
   public function __construct(Main $plugin){
     $this->plugin = $plugin;
@@ -34,4 +35,25 @@ class ListenerUI implements Listener {
   }
   }
   }*/
+
+  public function welcome(){
+    $id = $this->getRandId();
+    $ui = new \Plexus\UI\SimpleUI($id);
+    $ui->addTitle("Welcome");
+    $ui->addButton('About', 1, 'https://i.imgur.com/TgOsY7i.png');
+    $ui->addButton('Staff List', 1, 'https://i.imgur.com/xUSenna.png');
+    $ui->addButton('Changelog', 1, 'https://i.imgur.com/eiA3BZ5.png');
+    $ui->addButton('Cancel', 1, 'https://i.imgur.com/PcJEnVy.png');
+    $this->getPlugin()->ui['welcome'] = $ui;
+  }
+
+  public function getRandId(){
+    $rand = rand(1, 1000);
+  if(in_array($rand, $this->id)){
+    return self::getRandId();
+  } else {
+    $this->id[] = $rand;
+    return $rand;
+   }
+  }
 }

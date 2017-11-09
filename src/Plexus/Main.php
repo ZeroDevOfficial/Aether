@@ -37,11 +37,14 @@ class Main extends PluginBase {
     $this->getServer()->getLogger()->info(C::YELLOW .'Task '. C::AQUA . $key . C::YELLOW .' has loaded');
   }
     $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\tasks\TaskHandler($this), 20);
+    $this->getServer()->getPluginManager()->registerEvents(new \Plexus\UI\ListenerUI($this), $this);
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
   foreach($this->config()->commandArrayData() as $key => $command){
     $this->getServer()->getCommandMap()->register($key, $command);
     $this->getServer()->getLogger()->info(C::YELLOW .'Command '. C::AQUA . $key . C::YELLOW .' has loaded');
   }
+    $ui = new \Plexus\UI\ListenerUI($this);
+    $ui->welcome();  
     $this->entity()->entityInit();
     $this->hasLoaded = true;
     $this->getServer()->getLogger()->info(C::DARK_PURPLE .'Everything has Loaded, Plexus is now Online!');
@@ -71,7 +74,7 @@ class Main extends PluginBase {
 
   public function onDisable() : void {
     $this->getLogger()->info(C::AQUA .'is'. C::RED .' Offline.');
-    $this->entity()->entitiesRemove();
+    $this->entity()->removeEntities();
     $players = $this->getServer()->getOnlinePlayers();
   foreach($players as $player){
     $player->close('', C::AQUA .'Plexus Has closed, We will be back shortly.');

@@ -30,7 +30,6 @@ class Main extends PluginBase {
   const BR = "\n";
   
   public function onEnable() : void {
-  try {
     self::$instance = $this; 
     $this->getServer()->getLogger()->info(C::DARK_PURPLE .'Plexus '. C::AQUA .'v'. $this->config()->version() . C::DARK_PURPLE .' is Loading...');
   foreach($this->config()->taskArrayData() as $key => $task){
@@ -38,24 +37,14 @@ class Main extends PluginBase {
     $this->getServer()->getLogger()->info(C::YELLOW .'Task '. C::AQUA . $key . C::YELLOW .' has loaded');
   }
     $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\tasks\TaskHandler($this), 20);
-    
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
-    //$this->getServer()->getPluginManager()->registerEvents(new \Plexus\UI\ListenerUI($this), $this);
-  
   foreach($this->config()->commandArrayData() as $key => $command){
     $this->getServer()->getCommandMap()->register($key, $command);
     $this->getServer()->getLogger()->info(C::YELLOW .'Command '. C::AQUA . $key . C::YELLOW .' has loaded');
   }
-
     $this->entity()->entityInit();
-
     $this->hasLoaded = true;
     $this->getServer()->getLogger()->info(C::DARK_PURPLE .'Everything has Loaded, Plexus is now Online!');
-  }
-  catch(Exception $e){
-    $this->getLogger()->info(C::RED ."Plugin has Failed to Load due to $e");
-    $this->forceShutdown();
-   }
   }
 
   public static function getInstance(){

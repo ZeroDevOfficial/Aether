@@ -11,7 +11,7 @@ use pocketmine\utils\TextFormat as C;
   /** Server Settings */
   private $spawn = "Alazar";
   private $forceShutdown = true;
-  private $version = '0.1.3.8.4';
+  private $version = '0.1.3.8.5';
   
   public function spawn() : string {
     return $this->spawn;
@@ -59,8 +59,15 @@ use pocketmine\utils\TextFormat as C;
   public function npcArrayData() : array {
     return array(
       // 'name' =        [$x, $y, $z, $yaw, $pitch, $displayName, $name];
-      'welcome' => array(852, 82, 1148, 0, 0, C::AQUA .'Welcome', 'welcome'),
-      'npc1' => array(836, 84, 1174, 0, 0, C::YELLOW .'Shop', 'shop')
+      'welcome' => array(852, 82, 1148, 0, 0, C::AQUA .'Welcome'),
+      'npc1' => array(836, 84, 1174, 0, 0, C::YELLOW .'Shop', 'shop'),
+      'npc2' => array(826, 84, 1164, 90, 0, C::YELLOW .'Shop', 'shop'),
+      'npc3' => array(826, 84, 1128, 90, 0, C::YELLOW .'Shop', 'shop'),
+      'npc4' => array(836, 84, 1118, 180, 0, C::YELLOW .'Shop', 'shop'),
+      'npc5' => array(872, 84, 1118, 180, 0, C::YELLOW .'Shop', 'shop'),
+      'npc6' => array(882, 84, 1128, 270, 0, C::YELLOW .'Shop', 'shop'),
+      'npc7' => array(882, 84, 1164, 270, 0, C::YELLOW .'Shop', 'shop'),
+      'npc8' => array(872, 84, 1174, 0, 0, C::YELLOW .'Shop', 'shop')
     );
   }
 }

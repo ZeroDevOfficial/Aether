@@ -45,10 +45,10 @@ class Events implements Listener {
     $e->setCancelled(true);
   if(isset($this->getPlugin()->npc[$entity->getId()])){
     $npc = $this->getPlugin()->npc[$entity->getId()];
-  if($npc->getNamedTag()['Name'] === 'welcome'){
+  if($npc->getName() === C::AQUA .'Welcome'){
     $damager->sendMessage('welcome');
   }
-  if($npc->getNamedTag()['Name'] === 'shop'){
+  if($npc->getName() === C::YELLOW .'Shop'){
     $damager->sendMessage('shop');
   }
     }

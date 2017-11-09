@@ -64,7 +64,7 @@ class PlexusEntity {
    }
   }
 
-  public function addNpc(\pocketmine\level\Position $pos, $yaw, $pitch, string $displayName, string $name) : void {
+  public function addNpc(\pocketmine\level\Position $pos, $yaw, $pitch, string $displayName) : void {
     $nbt = new CompoundTag;
     $nbt->Pos = new ListTag("Pos", [
       new DoubleTag("", $pos->x + 0.5),
@@ -80,13 +80,13 @@ class PlexusEntity {
       new FloatTag("", intval($yaw)),
       new FloatTag("", intval($pitch))
     ]);
-    $nbt->Name = new StringTag("Name", $name);
+    //$nbt->Name = new StringTag("Name", $name);
     $npc = Entity::createEntity("Npc", $pos->level, $nbt);
   if($npc instanceof \Plexus\entity\Npc){
     $npc->setNameTag($displayName);
     $npc->setDefaultYawPitch($yaw, $pitch);
     $npc->spawnToAll();
-    $this->getPlugin()->npc[$npc->getId()] = $npc;
+    $this->getPlugin()->npc[] = $npc;
    }
   }
 

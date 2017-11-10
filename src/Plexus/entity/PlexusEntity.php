@@ -98,9 +98,9 @@ class PlexusEntity {
     $level = $this->getPlugin()->getServer()->getLevelByName($this->getPlugin()->config()->spawn());
   foreach($level->getEntities() as $entity){
   if($entity instanceof \Plexus\entity\Npc || $entity instanceof \Plexus\entity\FloatingNameTag){
-    //$this->getPlugin()->getLogger()->info($entity->getNameTag());//debugging
     $level->removeEntity($entity);
-    }
    }
+  }
+    $this->getPlugin()->getLogger()->info(C::YELLOW .'Removed Entities!');
   }
 }

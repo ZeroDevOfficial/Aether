@@ -66,10 +66,8 @@ class Main extends PluginBase {
     $x = $player->x;
     $y = $player->y;
     $z = $player->z;
-    $minX = 778; $maxX = 929;
-    $minY = 0; $maxY = 200;
-    $minZ = 1222; $maxZ = 1071;
-  if(($x >= $maxX && $x <= $minX) || ($y >= $maxY & $y <= $minY) || ($z >= $maxZ & $z <= $minZ)){
+    $minMax = array('min' => array(779, 0, 1071), 'max' => array(930, 200, 1222));
+  if(($x >= $minMax['min'][0] && $x <= $minMax['max'][0]) && ($y >= $minMax['min'][1] && $y <= $minMax['max'][1]) && ($z >= $minMax['min'][2] && $z <= $minMax['max'][2])){
     return true;
   } else {
     return false;

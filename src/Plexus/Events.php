@@ -28,6 +28,12 @@ class Events implements Listener {
     $this->getPlugin()->join($player);
   }
 
+  public function message(\pocketmine\event\player\PlayerChatEvent $e) : void {
+    $msg = $e->getMessage();
+    $player = $e->getPlayer();
+    $this->getPlugin()->discord("```\n". $player->getName() .' said '. $msg ."\n```", 'chat');
+  }
+
   public function onHungerEvent(\pocketmine\event\player\PlayerExhaustEvent $e){
     $player = $e->getPlayer();
   if($player instanceof \pocketmine\Player){

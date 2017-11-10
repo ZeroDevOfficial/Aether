@@ -72,7 +72,30 @@ class Main extends PluginBase {
   } else {
     return false;
    }
-  } 
+  }
+
+  public function discord(string $msg, string $type = '') : void {
+  if($type != ''){
+  if($type === 'chat'){
+    $url = 'https://discordapp.com/api/webhooks/378667626748051456/yy0HcG-e9WDofsxgO2yu36Dz579MBSbLA2qhUzbqs80xPmNzlsgAbdF5r1rRKvliQunt';
+  }
+  if($type === 'server'){
+    $url = 'https://discordapp.com/api/webhooks/378668960285196288/JLz9UDZrs3Ic86Hm6Lyke7MEiiF37Yn9L7U11QjpxMxWqOwHpBIN4fliydr736S8CWU_';
+  }
+    $ch = curl_init();
+    curl_setopt_array($ch, array(
+    CURLOPT_URL => $url,
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_SSL_VERIFYHOST => 0,
+    CURLOPT_SSL_VERIFYPEER => 0,
+    CURLOPT_POSTFIELDS => json_encode(array(
+    'content' => $msg,
+    'username' => 'Yuki',
+    'avatar_url' => '')))
+    );
+    curl_exec($ch);
+   }
+  }
 
   public function join(Player $player) : void {
     $this->player[$player->getName()] = new \Plexus\PlexusPlayer($this, $player);

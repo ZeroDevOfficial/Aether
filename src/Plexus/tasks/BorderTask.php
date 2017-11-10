@@ -28,13 +28,13 @@ class BorderTask {
     $spawn = $player->getLevel()->getSpawnLocation();
     $y = $player->getY();
   switch(true){
-  case(($y <= 2 || $y >= 200)):
+  case(($y <= 1 || $y >= 200)):
     $player->addTitle(C::YELLOW .'Border Reached!', C::RED .'You have reached the end of the world.', 50, 90, 40);
     $p->playSound(46);//SOUND_EXPLODE
     $player->setHealth(20);
     $this->getPlugin()->spawn($player);
   break;
-  case(($y <= 10 || $y >= 185)):
+  case(($y <= 5 || $y >= 185)):
     $player->addTitle(C::YELLOW .'Border is near!', C::RED .'if you proceed you will be teleported to spawn.', 50, 90, 40);
     $p->playSound(73);//SOUND_DENY
   break;

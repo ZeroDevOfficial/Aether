@@ -80,10 +80,14 @@ class Main extends PluginBase {
     $this->player[$player->getName()] = new \Plexus\PlexusPlayer($this, $player);
     $this->spawn($player);
     $this->ft['welcome']->spawnTo($player);
+  foreach($this->npc as $npc){
+    $npc->spawnTo($player);
+   }
   }
 
   public function spawn(Player $player) : void {
     $player->teleport(\pocketmine\Server::getInstance()->getLevelByName($this->config()->spawn())->getSafeSpawn());
+    $player->addTitle(C::DARK_PURPLE .'Welcome to Spawn.', C::YELLOW . $player->getName(), 50, 90, 40);
   }
 
   public function onDisable() : void {

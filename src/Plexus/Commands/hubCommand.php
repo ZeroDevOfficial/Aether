@@ -26,7 +26,6 @@ class hubCommand extends VanillaCommand {
   public function execute(CommandSender $sender, $alias, array $args) : bool {
   if($sender instanceof Player){
     $this->plugin->spawn($sender);
-    $sender->addTitle(C::DARK_PURPLE .'Welcome back to Spawn.', C::YELLOW . $sender->getName(), 50, 90, 40);
     return true;
   } else {
     $sender->sendMessage(C::RED .'Command must be run in-game!');

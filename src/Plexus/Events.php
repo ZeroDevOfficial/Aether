@@ -30,8 +30,10 @@ class Events implements Listener {
 
   public function onHungerEvent(\pocketmine\event\player\PlayerExhaustEvent $e){
     $player = $e->getPlayer();
+  if($player instanceof \pocketmine\Player){
   if($this->getPlugin()->atSpawn($player) === true){
     $e->setCancelled(true);
+    }
    }
   }
 
@@ -66,6 +68,12 @@ class Events implements Listener {
   if($entity->getNamedTag()->Name == C::YELLOW .'Shop'){
     $ui = $this->plugin->ui['shop_main'];
     $ui->send($damager);
+  }
+  if($entity->getNamedTag()->Name == C::AQUA .'Look at This Spawn'){
+    $damager->teleport(new \pocketmine\math\Vector3(870.50, 106, 1080.50));
+  }
+  if($entity->getNamedTag()->Name == C::YELLOW .'Return to Spawn'){
+    $this->getPlugin()->spawn($damager);
     }
    }
   }

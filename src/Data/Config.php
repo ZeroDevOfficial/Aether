@@ -68,7 +68,13 @@ use pocketmine\utils\TextFormat as C;
       'npc5' => array(872, 84, 1118, 180, 0, C::YELLOW .'Shop'),
       'npc6' => array(882, 84, 1128, 270, 0, C::YELLOW .'Shop'),
       'npc7' => array(882, 84, 1164, 270, 0, C::YELLOW .'Shop'),
-      'npc8' => array(872, 84, 1174, 0, 0, C::YELLOW .'Shop')
+      'npc8' => array(872, 84, 1174, 0, 0, C::YELLOW .'Shop'),
+
+      'parkour1' => array(815, 81, 1135, 180, 0, C::DARK_PURPLE .'Parkour'),
+      'parkour2' => array(811, 81, 1135, 180, 0, C::DARK_PURPLE .'Parkour'),
+
+      'lookout' => array(858, 153, 1104, 180, 0, C::AQUA .'Look at This Spawn'),
+      'to_spawn' => array(872, 106, 1080, 270, 0, C::YELLOW .'Return to Spawn')
     );
   }
 }

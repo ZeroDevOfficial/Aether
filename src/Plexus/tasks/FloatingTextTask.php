@@ -26,7 +26,12 @@ class FloatingTextTask {
     $text = C::BLACK .'>======================<' . 
     Main::BR . Main::BR. C::DARK_PURPLE .'Welcome to '. C::AQUA .'Plexus Studio'. 
     Main::BR . C::DARK_PURPLE ."Players Online: ". C::AQUA . count($players) . C::BLACK . 
+    Main::BR . C::DARK_PURPLE ."Staff Online: ". C::AQUA . count($this->getPlugin()->getOps()->getAll()) . C::BLACK . 
     Main::BR  . Main::BR .">======================<";
+  foreach($players as $player){
+  if(round($player->getPosition()->distance(new \pocketmine\math\Vector3($ft->x, $ft->y, $ft->z))) <= 10){
     $ft->setText($text);
+    }
+   }
   }
 }

@@ -11,7 +11,7 @@ use pocketmine\utils\TextFormat as C;
   /** Server Settings */
   private $spawn = "Alazar";
   private $forceShutdown = true;
-  private $version = '0.1.3.8.5';
+  private $version = '0.1.3.8.6';
   
   public function spawn() : string {
     return $this->spawn;

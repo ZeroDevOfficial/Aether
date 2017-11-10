@@ -28,37 +28,54 @@ class Events implements Listener {
     $this->getPlugin()->join($player);
   }
 
+  public function onHungerEvent(\pocketmine\event\player\PlayerHungerChangeEvent $e){
+    $player = $e->getPlayer();
+  if($this->getPlugin()->atSpawn($entity) === true){
+    $e->setCancelled(true);
+   }
+  }
+
   public function onEntityDamage(\pocketmine\event\entity\EntityDamageEvent $e){
     $entity = $e->getEntity();
   if($entity instanceof \Plexus\entity\FloatingNameTag){
     $e->setCancelled(true);
-    return;
+  }
+  if($entity instanceof \pocketmine\Player){
+  if($this->getPlugin()->atSpawn($entity) === true){
+    $e->setCancelled(true);
+   }
   }
   if(!$e instanceof \pocketmine\event\entity\EntityDamageByEntityEvent){
-     return;
+    return;
   }
     $damager = $e->getDamager();
   if(!$damager instanceof \pocketmine\Player) {
-     return;
+    return;
   }
-  if($entity instanceof \Plexus\entity\Npc){
+  if($entity instanceof \pocketmine\Player && $damager instanceof \pocketmine\Player){
+  if($this->getPlugin()->atSpawn($entity) === false && $this->getPlugin()->atSpawn($damager) === true){
+    $e->setCancelled(true);
+   }
+  }
+  if($entity instanceof \Plexus\entity\Npc && $damager instanceof \pocketmine\Player){
     $e->setCancelled(true);
   if($entity->getNamedTag()->Name == C::AQUA .'Welcome'){
     $ui = $this->plugin->ui['welcome'];
     $ui->send($damager);
-    return;
   }
   if($entity->getNamedTag()->Name == C::YELLOW .'Shop'){
-    $damager->sendMessage('shop');
-    return;
+    $ui = $this->plugin->ui['shop_main'];
+    $ui->send($damager);
     }
    }
   }
 
   public function move(\pocketmine\event\player\PlayerMoveEvent $e) : void {
     $player = $e->getPlayer();
-  foreach($this->getPlugin()->npc as $id => $npc){
+  if($e->getTo()->distance($e->getFrom()) > 0.2){
+  foreach($this->getPlugin()->npc as $npc){
     $npc->look($player);
+    } 
    }
   }
 

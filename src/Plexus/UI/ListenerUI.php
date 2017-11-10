@@ -36,15 +36,29 @@ class ListenerUI implements Listener {
   }
   }*/
 
+  public function createUIArray(){
+    $this->welcome();
+    $this->shopMain();
+  }
+
   public function welcome(){
     $id = $this->getRandId();
     $ui = new \Plexus\UI\SimpleUI($id);
     $ui->addTitle("Welcome");
     $ui->addButton('About', 1, 'https://i.imgur.com/TgOsY7i.png');
-    $ui->addButton('Staff List', 1, 'https://i.imgur.com/xUSenna.png');
-    $ui->addButton('Changelog', 1, 'https://i.imgur.com/eiA3BZ5.png');
+    $ui->addButton('Staff List', 1, 'https://i.imgur.com/eiA3BZ5.png');
+    $ui->addButton('Changelog', 1, 'https://i.imgur.com/xUSenna.png');
     $ui->addButton('Cancel', 1, 'https://i.imgur.com/PcJEnVy.png');
     $this->getPlugin()->ui['welcome'] = $ui;
+  }
+
+  public function shopMain(){
+    $id = $this->getRandId();
+    $ui = new \Plexus\UI\SimpleUI($id);
+    $ui->addTitle("Shop");
+    $ui->addButton('Coming Soon', 1, 'https://i.imgur.com/lqBIiXL.png');
+    $ui->addButton('Cancel', 1, 'https://i.imgur.com/PcJEnVy.png');
+    $this->getPlugin()->ui['shop_main'] = $ui;
   }
 
   public function getRandId(){

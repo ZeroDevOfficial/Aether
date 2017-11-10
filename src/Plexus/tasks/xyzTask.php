@@ -29,8 +29,16 @@ class xyzTask {
     $z = round($player->z, 2);
     $yaw = round($player->yaw, 2);
     $pitch = round($player->pitch, 2);
-    $player->sendPopup(C::DARK_PURPLE .'x: '. C::YELLOW . $x . C::DARK_PURPLE .' | y: '. C::YELLOW . $y . C::DARK_PURPLE .' | z: '. C::YELLOW . $z . C::DARK_PURPLE .' | yaw: '. C::YELLOW . $yaw . C::DARK_PURPLE .' | pitch: '. C::YELLOW . $pitch);
+    $player->sendPopup(C::DARK_PURPLE .'x: '. C::YELLOW . $x . C::DARK_PURPLE .' | y: '. C::YELLOW . $y . C::DARK_PURPLE .' | z: '. C::YELLOW . $z . C::DARK_PURPLE .' | yaw: '. C::YELLOW . $yaw . C::DARK_PURPLE .' | pitch: '. C::YELLOW . $pitch . C::DARK_PURPLE .' | at Spawn: '. C::YELLOW . $this->checkSpawn($player));
     }
    }
   }  
+
+  public function checkSpawn($player){
+  if($this->getPlugin()->atSpawn($player) === true){
+    return 'true';
+  } else {
+    return 'false';
+   }
+  }
 }

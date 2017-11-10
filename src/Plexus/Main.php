@@ -44,7 +44,7 @@ class Main extends PluginBase {
     $this->getServer()->getLogger()->info(C::YELLOW .'Command '. C::AQUA . $key . C::YELLOW .' has loaded');
   }
     $ui = new \Plexus\UI\ListenerUI($this);
-    $ui->welcome();  
+    $ui->createUIArray();  
     $this->entity()->entityInit();
     $this->hasLoaded = true;
     $this->getServer()->getLogger()->info(C::DARK_PURPLE .'Everything has Loaded, Plexus is now Online!');
@@ -61,6 +61,20 @@ class Main extends PluginBase {
   public function entity() : PlexusEntity {
     return new PlexusEntity($this);
   }
+
+  public function atSpawn(Player $player) : bool {
+    $x = $player->x;
+    $y = $player->y;
+    $z = $player->z;
+    $minX = 778; $maxX = 929;
+    $minY = 0; $maxY = 200;
+    $minZ = 1222; $maxZ = 1071;
+  if(($x >= $maxX && $x <= $minX) || ($y >= $maxY & $y <= $minY) || ($z >= $maxZ & $z <= $minZ)){
+    return true;
+  } else {
+    return false;
+   }
+  } 
 
   public function join(Player $player) : void {
     $this->player[$player->getName()] = new \Plexus\PlexusPlayer($this, $player);

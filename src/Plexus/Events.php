@@ -28,9 +28,9 @@ class Events implements Listener {
     $this->getPlugin()->join($player);
   }
 
-  public function onHungerEvent(\pocketmine\event\player\PlayerHungerChangeEvent $e){
+  public function onHungerEvent(\pocketmine\event\player\PlayerExhaustEvent $e){
     $player = $e->getPlayer();
-  if($this->getPlugin()->atSpawn($entity) === true){
+  if($this->getPlugin()->atSpawn($player) === true){
     $e->setCancelled(true);
    }
   }

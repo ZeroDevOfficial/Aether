@@ -11,7 +11,7 @@ use pocketmine\utils\TextFormat as C;
   /** Server Settings */
   private $spawn = "Alazar";
   private $forceShutdown = true;
-  private $version = '0.1.3.8.7';
+  private $version = '0.1.3.8.8';
   
   public function spawn() : string {
     return $this->spawn;
@@ -43,10 +43,10 @@ use pocketmine\utils\TextFormat as C;
   public function taskArrayData() : array {
     $main = \Plexus\Main::getInstance();
     return array(
-      'border' => new \Plexus\tasks\BorderTask($main),
-      'text' => new \Plexus\tasks\FloatingTextTask($main),
-      'show_hide' => new \Plexus\tasks\ShowHideTask($main),
-      'xyz' => new \Plexus\tasks\xyzTask($main)
+      'borderTask' => new \Plexus\tasks\BorderTask($main),
+      'floatingTextTask' => new \Plexus\tasks\FloatingTextTask($main),
+      'showHideTask' => new \Plexus\tasks\ShowHideTask($main),
+      'xyzTask' => new \Plexus\tasks\xyzTask($main)
     );
   }
 

@@ -23,30 +23,30 @@ class Main extends PluginBase {
   public $tasks = [];
   public $ui = [];
   public $show_xyz = [];
-  public $hasLoaded = false;
 
   private static $instance = null;
 
   const BR = "\n";
-  
+
   public function onEnable() : void {
     self::$instance = $this; 
     $this->getServer()->getLogger()->info(C::DARK_PURPLE .'Plexus '. C::AQUA .'v'. $this->config()->version() . C::DARK_PURPLE .' is Loading...');
   foreach($this->config()->taskArrayData() as $key => $task){
     $this->task[$key] = $task;
-    $this->getServer()->getLogger()->info(C::YELLOW .'Task '. C::AQUA . $key . C::YELLOW .' has loaded');
   }
+    $this->getServer()->getLogger()->info(C::DARK_PURPLE .'Task(s) '. C::AQUA . implode(", ", array_keys($this->config()->taskArrayData())) . C::DARK_PURPLE .' have been Started');
+    
     $this->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\tasks\TaskHandler($this), 20);
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\UI\ListenerUI($this), $this);
     $this->getServer()->getPluginManager()->registerEvents(new \Plexus\Events($this), $this);
   foreach($this->config()->commandArrayData() as $key => $command){
     $this->getServer()->getCommandMap()->register($key, $command);
-    $this->getServer()->getLogger()->info(C::YELLOW .'Command '. C::AQUA . $key . C::YELLOW .' has loaded');
   }
+    $this->getServer()->getLogger()->info(C::DARK_PURPLE .'Command(s) '. C::AQUA . implode(", ", array_keys($this->config()->commandArrayData())) . C::DARK_PURPLE .' have been Activated');
+
     $ui = new \Plexus\UI\ListenerUI($this);
     $ui->createUIArray();  
     $this->entity()->entityInit();
-    $this->hasLoaded = true;
     $this->getServer()->getLogger()->info(C::DARK_PURPLE .'Everything has Loaded, Plexus is now Online!');
   }
 
@@ -100,7 +100,9 @@ class Main extends PluginBase {
   public function join(Player $player) : void {
     $this->player[$player->getName()] = new \Plexus\PlexusPlayer($this, $player);
     $this->spawn($player);
-    $this->ft['welcome']->spawnTo($player);
+  foreach($this->ft as $key => $ft){//in case I add more later
+    $ft->spawnTo($player);
+  }
   foreach($this->npc as $npc){
     $npc->spawnTo($player);
    }

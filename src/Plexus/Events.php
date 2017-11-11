@@ -25,13 +25,17 @@ class Events implements Listener {
   public function join(\pocketmine\event\player\PlayerJoinEvent $e) : void {
     $e->setJoinMessage('');
     $player = $e->getPlayer();
+  if($player instanceof \pocketmine\Player){
     $this->getPlugin()->join($player);
+   }
   }
 
   public function message(\pocketmine\event\player\PlayerChatEvent $e) : void {
     $msg = $e->getMessage();
     $player = $e->getPlayer();
+  if($player instanceof \pocketmine\Player){
     $this->getPlugin()->discord("```\n". $player->getName() .' said '. $msg ."\n```", 'chat');
+   }
   }
 
   public function onHungerEvent(\pocketmine\event\player\PlayerExhaustEvent $e){
@@ -87,8 +91,10 @@ class Events implements Listener {
   public function move(\pocketmine\event\player\PlayerMoveEvent $e) : void {
     $player = $e->getPlayer();
   if($e->getTo()->distance($e->getFrom()) > 0.2){
+  if($player instanceof \pocketmine\Player){
   foreach($this->getPlugin()->npc as $npc){
     $npc->look($player);
+     }
     } 
    }
   }
@@ -96,9 +102,11 @@ class Events implements Listener {
   public function quit(\pocketmine\event\player\PlayerQuitEvent $e) : void {
     $player = $e->getPlayer();
     $e->setQuitMessage('');
+  if($player instanceof \pocketmine\Player){
   if(isset($this->getPlugin()->player[$player->getName()])){
     $this->getPlugin()->player[$player->getName()]->save();
     unset($this->getPlugin()->player[$player->getName()]);
+    }
    }
   }
 }

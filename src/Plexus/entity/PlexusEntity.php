@@ -30,6 +30,7 @@ class PlexusEntity {
   public function entityInit() : void {
     Entity::registerEntity(\Plexus\entity\FloatingNameTag::class, true);
     Entity::registerEntity(\Plexus\entity\Npc::class, true);
+    $this->removeEntities();//if any didnt despawn they will be removed now
   foreach($this->getPlugin()->config()->floatingTextArrayData() as $key => $data){
     $pos = $this->position($data[0], $data[1], $data[2]);
     $this->addFloatingNameTag($pos, $data[3]);
@@ -37,7 +38,8 @@ class PlexusEntity {
   foreach($this->getPlugin()->config()->npcArrayData() as $key => $data){
     $pos = $this->position($data[0], $data[1], $data[2]);
     $this->addNpc($pos, $data[3], $data[5], $data[5]);
-   }
+  }
+    $this->getPlugin()->getServer()->getLogger()->info(C::DARK_PURPLE .'Spawned Entities');
   }
 
   public function addFloatingNameTag(\pocketmine\level\Position $pos, string $text) : void {
@@ -86,21 +88,21 @@ class PlexusEntity {
     $npc->setNameTag($displayName);
     $npc->setDefaultYawPitch($yaw, $pitch);
     $npc->spawnToAll();
-    $this->getPlugin()->npc[$npc->getId()] = $npc;
+    $this->getPlugin()->npc[] = $npc;
    }
   }
 
-  public function position(int $x, int $y, int $z){
-    return new \pocketmine\level\Position($x, $y, $z, $this->getPlugin()->getServer()->getLevelByName($this->getPlugin()->config()->spawn()));
-  }
-
-  public function removeEntities(){
+  public function removeEntities() : void {
     $level = $this->getPlugin()->getServer()->getLevelByName($this->getPlugin()->config()->spawn());
   foreach($level->getEntities() as $entity){
   if($entity instanceof \Plexus\entity\Npc || $entity instanceof \Plexus\entity\FloatingNameTag){
     $level->removeEntity($entity);
    }
   }
-    $this->getPlugin()->getLogger()->info(C::YELLOW .'Removed Entities!');
+    $this->getPlugin()->getServer()->getLogger()->info(C::RED .'Removed Entities!');
+  }
+
+  public function position(int $x, int $y, int $z){
+    return new \pocketmine\level\Position($x, $y, $z, $this->getPlugin()->getServer()->getLevelByName($this->getPlugin()->config()->spawn()));
   }
 }

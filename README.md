@@ -8,18 +8,10 @@
 
 > Minecraft: v1.2.3
 
-# Change log:
-**For Update v0.1.3.x**
-- Rewrite of UI
-- Rewrite of FloatingText
-- Rewrite of Npc's
-- Moved Things Around in Config
-- Added Commands (/hub, /xyz, /welcome(testCmd))
-- Added Return type declaration to Functions
-- Added strict mode to the entire core
-- Added Discord Chat
-
 # Info: 
+Plexus has been put on hiatus, I need to rewrite and fix some core elements
+
+
 ```
 This plugin is property of Plexus Studio.
 You are not allowed to distribute or use this plugin without Permission From ZeroDevOfficial.

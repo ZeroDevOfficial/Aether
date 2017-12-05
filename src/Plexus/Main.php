@@ -27,8 +27,9 @@ use Plexus\utils\Utils;
 
 class Main extends PluginBase {
 
-  public $hadLoaded;
-  public $players;
+  public $hadLoaded = false;
+  public $players = [];
+  public $utils = null;
 
   private static $instance = null;
 
@@ -45,7 +46,12 @@ class Main extends PluginBase {
   }
 
   public function getUtils() : Utils {
-    return new Utils($this);
+  if($this->utils !== null){
+    return $this->utils;
+  } else {
+    $this->utils = new \Plexus\utils\Utils($this);
+    return $this->utils;
+   }
   }
 
   public function hasLoaded(bool $hasLoaded) : void {
@@ -56,7 +62,7 @@ class Main extends PluginBase {
     $this->getServer()->getLogger()->info('| '. self::PREFIX . C::WHITE .C::RESET .' | '. $msg);
   }
 
-  public function registerEvents(\pocketmine\event\Listener $event) : void {
+  public function registerEvent(\pocketmine\event\Listener $event) : void {
     $this->getServer()->getPluginManager()->registerEvents($event, $this);
   }
 

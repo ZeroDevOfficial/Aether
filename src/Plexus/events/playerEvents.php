@@ -45,7 +45,7 @@ class playerEvents implements Listener {
   public function quit(\pocketmine\event\player\PlayerQuitEvent $e) : void {
     $player = $e->getPlayer();
     $e->setQuitMessage('');
-  if(!isset($this->getPlugin()->players[$player->getName()])){//TODO
+  if(isset($this->getPlugin()->players[$player->getName()])){//TODO
     $this->getPlugin()->info(C::AQUA .'Saving Player Data: '. C::YELLOW . $player->getName());
    }
   }

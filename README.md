@@ -2,7 +2,7 @@
 
 # Plexus Core:
 
-> Factions Core: v0.1.4
+> Plexus: v0.1.4
 
 > PocketMine-MP: api-3.0.0-ALPHA10
 > Minecraft: v1.2.5

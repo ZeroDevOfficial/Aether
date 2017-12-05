@@ -1,16 +1,17 @@
 ![plexus1](https://user-images.githubusercontent.com/12077835/32135004-85147afe-bbac-11e7-9f67-1c729974016e.png)
 
-# Plexus Core Factions:
+# Plexus Core:
 
-> Factions Core: v0.1.3.8.8
+> Factions Core: v0.1.4
 
-> PocketMine-MP: api-3.0.0-ALPHA9
-
-> Minecraft: v1.2.3
+> PocketMine-MP: api-3.0.0-ALPHA10
+> Minecraft: v1.2.5
 
 # Info: 
-Plexus has been put on hiatus, I need to rewrite and fix some core elements
+Core developed by ZeroDevOfficial for Plexus
 
+# Changelog  
+- Semi-Rewrite
 
 ```
 This plugin is property of Plexus Studio.

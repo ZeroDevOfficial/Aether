@@ -22,10 +22,10 @@ class StartupTask extends PluginTask {
   }
 
   public function onRun($tick) : void {
-    $this->getPlugin()->hasLoaded(false);
     $this->getPlugin()->info(C::AQUA .'v'. $this->getPlugin()->getDescription()->getVersion() . C::DARK_PURPLE .' is Loading');
-    $this->getPlugin()->registerEvent(new \Plexus\events\playerEvents($this->getPlugin()));
     $this->getPlugin()->info(C::AQUA .'has Loaded');
     $this->getPlugin()->hasLoaded(true);
   }
+
+
 }

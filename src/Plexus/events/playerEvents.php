@@ -24,29 +24,21 @@ class playerEvents implements Listener {
   
   public function preJoin(\pocketmine\event\player\PlayerPreLoginEvent $e) : void {
   if($this->getPlugin()->hadLoaded !== true){
+    $e->getPlayer()->close(Main::PREFIX, C::RED .'Server Has Not Loaded yet or has Failed to load'. C::WHITE ."\n\n". C::AQUA .'if this continues to happen contact administration');
     $e->setCancelled(true);
     return;
-  }
+   }
   }
 
   public function join(\pocketmine\event\player\PlayerJoinEvent $e) : void {
     $player = $e->getPlayer();
     $e->setJoinMessage('');
-    $this->createPlayer($player);
-  }
-
-  public function createPlayer(Player $player) : void {
-  if(!isset($this->getPlugin()->players[$player->getName()])){
-    $this->getPlugin()->players[$player->getName()] = new \Plexus\PlexusPlayer($player, $this->getPlugin());
-    $this->getPlugin()->info(C::AQUA .'Creating Player: '. C::YELLOW . $player->getName());
-   }
+    $this->getPlugin()->getPlayer($player)->setup();
   }
 
   public function quit(\pocketmine\event\player\PlayerQuitEvent $e) : void {
     $player = $e->getPlayer();
     $e->setQuitMessage('');
-  if(isset($this->getPlugin()->players[$player->getName()])){//TODO
-    $this->getPlugin()->info(C::AQUA .'Saving Player Data: '. C::YELLOW . $player->getName());
-   }
+    $this->getPlugin()->getPlayer($player)->saveData();
   }
 }

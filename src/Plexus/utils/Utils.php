@@ -10,6 +10,8 @@ namespace Plexus\utils;
 
 class Utils {
 
+  private $events = [];
+
   public function removeEntities(){
     $main = \Plexus\Main::getInstance();
     $removed = 0;
@@ -29,5 +31,11 @@ class Utils {
   }
     unset($removed);
   }
-
+  
+  public function getEvents(){
+    $main = \Plexus\Main::getInstance();
+    return array(
+      'playerEvents' => new \Plexus\events\playerEvents($main)
+    );
+  }
 }

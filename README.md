@@ -85,4 +85,5 @@ In this Agreement, the party granting the right to use the licensed property, Pl
 
 
 note: this is not a real copyright agreement
+but stealing this plugin is forbidden and doing so means you lose your waifu and you must buy me a pc
 ```

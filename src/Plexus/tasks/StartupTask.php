@@ -23,6 +23,7 @@ class StartupTask extends PluginTask {
 
   public function onRun($tick) : void {
     $this->getPlugin()->info(C::AQUA .'v'. $this->getPlugin()->getDescription()->getVersion() . C::DARK_PURPLE .' is Loading');
+    $this->getUtils()->removeEntities();
     $this->getPlugin()->info(C::AQUA .'has Loaded');
     $this->getPlugin()->hasLoaded(true);
   }

@@ -42,7 +42,6 @@ class Main extends PluginBase {
     $this->hasLoaded(false);
     $this->registerEvents();
     $this->getServer()->getScheduler()->scheduleDelayedTask(new \Plexus\tasks\StartupTask($this), 20);
-    $this->getUtils()->removeEntities();
   }
 
   public static function getInstance() : Main {
@@ -56,8 +55,8 @@ class Main extends PluginBase {
   if($event instanceof \pocketmine\event\Listener){
     $this->getServer()->getPluginManager()->registerEvents($event, $this);
     $regEvents[$name] = $event;
-    }
    }
+  }
     $this->info(C::AQUA .'Loaded '. C::DARK_PURPLE . implode(", ", array_keys($regEvents)));
     unset($regEvents);
   }

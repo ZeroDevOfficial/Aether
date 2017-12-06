@@ -34,4 +34,55 @@ Core developed by ZeroDevOfficial for Plexus
 ```
 This plugin is property of Plexus Studio.
 You are not allowed to distribute or use this plugin without Permission From ZeroDevOfficial.
+
+This Copyright License Agreement Agreement is made effective as of 12-6-2017 between ZeroDevOfficial, of Plexus Studio, Spanaway, 98387 and ZeroDevOfficial, of Spanaway, 98387.
+
+This Agreement shall be governed by the laws of Washington State. This Agreement will commence on the 12-6-2017 and continue until the 12-6-2020 or until either party provides written notice of termination to the other party with a 30 days notice.
+
+In this Agreement, the party granting the right to use the licensed property, Plexus Studio, will be referred to as the “Owner” and the party who is receiving the right to use the licensed property, ZeroDevOfficial, will be referred to as the “User.”
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+note: this is not a real copyright agreement
 ```

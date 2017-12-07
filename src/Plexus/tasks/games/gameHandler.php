@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Plexus\games;
+namespace Plexus\tasks\games;
 
 use pocketmine\scheduler\PluginTask;
 use Plexus\Main;

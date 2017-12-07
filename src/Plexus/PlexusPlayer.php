@@ -121,4 +121,13 @@ class PlexusPlayer {
     $this->lastLoggedIn = array(date('h:i'), date('Y-m-d'));
     $this->saveData();
   }
+
+  public function playSound(int $sound) : void {
+    $pk = new \pocketmine\network\mcpe\protocol\LevelSoundEventPacket();
+    $pk->sound = $sound;
+    $pk->position = $this->player->getPosition();
+    $pk->extraData = -1;
+    $pk->pitch = 1;
+    $this->player->dataPacket($pk);
+  }
 }

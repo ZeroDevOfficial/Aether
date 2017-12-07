@@ -24,7 +24,7 @@ class playerEvents implements Listener {
   
   public function preJoin(\pocketmine\event\player\PlayerPreLoginEvent $e) : void {
   if($this->getPlugin()->hadLoaded !== true){
-    $e->getPlayer()->close(Main::PREFIX, C::RED .'Server Has Not Loaded yet or has Failed to load'. C::WHITE ."\n\n". C::AQUA .'if this continues to happen contact administration');
+    $e->getPlayer()->close(Main::PREFIX, C::RED .'Server Has Not Loaded yet.');
     $e->setCancelled(true);
     return;
    }
@@ -34,6 +34,7 @@ class playerEvents implements Listener {
     $player = $e->getPlayer();
     $e->setJoinMessage('');
     $this->getPlugin()->getPlayer($player)->setup();
+    $this->getPlugin()->games['gameTestWorld']->join($player);
   }
 
   public function quit(\pocketmine\event\player\PlayerQuitEvent $e) : void {

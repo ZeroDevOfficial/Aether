@@ -31,6 +31,13 @@ class Utils {
   }
     unset($removed);
   }
+
+  public function getGames(){
+    $main = \Plexus\Main::getInstance();
+    return array(
+    'gameTestWorld' => new \Plexus\tasks\games\gameTest($main, 'gameTestWorld', 12, 120, 60)
+    );
+  }
   
   public function getEvents(){
     $main = \Plexus\Main::getInstance();

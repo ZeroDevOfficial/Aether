@@ -23,10 +23,13 @@ class StartupTask extends PluginTask {
 
   public function onRun($tick) : void {
     $this->getPlugin()->info(C::AQUA .'v'. $this->getPlugin()->getDescription()->getVersion() . C::DARK_PURPLE .' is Loading');
-    $this->getUtils()->removeEntities();
+  foreach($this->getPlugin()->getUtils()->getGames() as $map => $game){
+    $this->getPlugin()->games[$map] = $game;
+  }  
+    $this->getPlugin()->info(C::AQUA .'Loaded '. C::DARK_PURPLE . implode(", ", array_keys($this->getPlugin()->games)) . C::AQUA .' Game(s)');
+    $this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\tasks\games\gameHandler($this->getPlugin()), 20);
+    $this->getPlugin()->getUtils()->removeEntities();
     $this->getPlugin()->info(C::AQUA .'has Loaded');
     $this->getPlugin()->hasLoaded(true);
   }
-
-
 }

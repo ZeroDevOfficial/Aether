@@ -31,6 +31,7 @@ class Main extends PluginBase {
 
   public $hadLoaded = false;
   public $players = [];
+  public $games = [];
   public $utils = null;
 
   private static $instance = null;

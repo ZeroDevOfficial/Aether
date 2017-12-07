@@ -11,9 +11,6 @@
 # Info: 
 Core developed by ZeroDevOfficial for Plexus
 
-# Changelog:
-- Semi-Rewrite
-
 # Player Config Example:
 *player.json file*
 ```JSON

@@ -11,23 +11,6 @@
 # Info: 
 Core developed by ZeroDevOfficial for Plexus
 
-# Player Config Example:
-*player.json file*
-```JSON
-{
-    "account-version": "0.1.4",
-    "username": "username",
-    "logins": 5,
-    "last-logged-in": [
-        "00:00",
-        "year-month-day"
-    ],
-    "coins": 0,
-    "kills": 0,
-    "deaths": 0
-}
-```
-
 ```
 This plugin is property of Plexus Studio.
 You are not allowed to distribute or use this plugin without Permission From ZeroDevOfficial.

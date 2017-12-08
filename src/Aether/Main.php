@@ -39,7 +39,7 @@ class Main extends PluginBase {
     self::$instance = $this;
     $this->hasLoaded(false);
     $this->registerEvents();
-    $this->getServer()->getScheduler()->scheduleDelayedTask(new \Plexus\tasks\StartupTask($this), 20);
+    $this->getServer()->getScheduler()->scheduleDelayedTask(new \Aether\tasks\StartupTask($this), 20);
   }
 
   public static function getInstance() : Main {

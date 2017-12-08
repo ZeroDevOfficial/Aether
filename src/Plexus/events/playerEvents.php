@@ -34,7 +34,6 @@ class playerEvents implements Listener {
     $player = $e->getPlayer();
     $e->setJoinMessage('');
     $this->getPlugin()->getPlayer($player)->setup();
-    $this->getPlugin()->games['gameTestWorld']->join($player);
   }
 
   public function quit(\pocketmine\event\player\PlayerQuitEvent $e) : void {

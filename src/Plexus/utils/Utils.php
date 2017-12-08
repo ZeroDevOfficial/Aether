@@ -35,7 +35,8 @@ class Utils {
   public function getGames(){
     $main = \Plexus\Main::getInstance();
     return array(
-    'gameTestWorld' => new \Plexus\tasks\games\gameTest($main, 'gameTestWorld', 12, 120, 60)
+    //'map' => new \Plexus\tasks\games\('Main', 'map', 'maxplayers', 'countdown', 'maxGameTime')
+    'gameTestWorld' => new \Plexus\tasks\games\sw($main, 'gameTestWorld', 12, 60, 60)
     );
   }
   
@@ -43,6 +44,13 @@ class Utils {
     $main = \Plexus\Main::getInstance();
     return array(
       'playerEvents' => new \Plexus\events\playerEvents($main)
+    );
+  }
+
+  public function getCommands(){
+    $main = \Plexus\Main::getInstance();
+    return array(
+      'join' => new \Plexus\commands\joinCommand($main)
     );
   }
 }

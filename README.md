@@ -1,4 +1,4 @@
-![Aether](https://github.com/ZeroDevOfficial/Aether/blob/0.1.4/icons/icon2.jpg)
+<img src="https://github.com/ZeroDevOfficial/Aether/blob/0.1.4/icons/icon.png" width="250" height="250" />
 
 # Aether Core:
 

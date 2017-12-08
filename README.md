@@ -1,4 +1,4 @@
-<img src="https://github.com/ZeroDevOfficial/Aether/blob/0.1.4/icons/icon.png" width="250" height="250" />
+<img src="https://github.com/ZeroDevOfficial/Aether/blob/0.1.4/icons/icon2.jpg" width="150" height="150" />
 
 # Aether Core:
 

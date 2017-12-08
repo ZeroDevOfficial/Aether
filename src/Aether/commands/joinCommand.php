@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Plexus\commands;
+namespace Aether\commands;
 
-//Pocketmine
 use pocketmine\Player;
 use pocketmine\utils\TextFormat as C;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\defaults\VanillaCommand;
 
-//Plexus
-use Plexus\Main;
+use Aether\Main;
 
 class joinCommand extends VanillaCommand {
     
@@ -31,7 +29,7 @@ class joinCommand extends VanillaCommand {
       public function onSubmit(Player $sender): ?\pocketmine\form\Form{
         $selectedOption = $this->getSelectedOption()->getText();
       if($selectedOption === 'Game 1.'){
-        $main = \Plexus\Main::getInstance();
+        $main = \Aether\Main::getInstance();
         $main->games['gameTestWorld']->join($sender);
       }
         return null;

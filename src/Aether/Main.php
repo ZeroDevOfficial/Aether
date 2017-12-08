@@ -2,27 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Plexus;
+namespace Aether;
 
-//Pocketmine
 use pocketmine\Server;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat as C;
 use pocketmine\entity\Entity;
 use pocketmine\Player;
-
-//Plexus
-use Plexus\utils\Utils;
-use Plexus\PlexusPlayer;
+use Aether\utils\Utils;
+use Aether\AetherPlayer;
 
 /**
  * @author ZeroDevOfficial
  * 
  * @since 0.0.1
  * 
- * Plexus Core was Developed by ZeroDevOfficial
- * This Core is property of Plexus, Nobody is allowed to distribute, Modify, or Use
+ * Aether Core was Developed by ZeroDevOfficial
+ * This Core is property of Aether, Nobody is allowed to distribute, Modify, or Use
  * The Core without ZeroDevOfficial's Permission
  * 
  */
@@ -36,7 +33,7 @@ class Main extends PluginBase {
 
   private static $instance = null;
 
-  public const PREFIX = C::YELLOW .'»'. C::DARK_PURPLE .' Plexus '. C::YELLOW .'«';
+  public const PREFIX = C::YELLOW .'»'. C::DARK_PURPLE .' Aether '. C::YELLOW .'«';
 
   public function onEnable() : void {
     self::$instance = $this;
@@ -62,16 +59,16 @@ class Main extends PluginBase {
     unset($regEvents);
   }
 
-  public function getPlayer(Player $player) : PlexusPlayer {
+  public function getPlayer(Player $player) : AetherPlayer {
   if(!isset($this->player[$player->getName()])){
-    $this->player[$player->getName()] = new PlexusPlayer($player, $this);
+    $this->player[$player->getName()] = new AetherPlayer($player, $this);
   }  
     return $this->player[$player->getName()];
   }
 
   public function getUtils() : Utils {
   if($this->utils === null){
-    $this->utils = new \Plexus\utils\Utils($this);
+    $this->utils = new \Aether\utils\Utils($this);
   }
     return $this->utils;
   }

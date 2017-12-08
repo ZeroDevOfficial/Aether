@@ -1,13 +1,10 @@
 <?php
 
-namespace Plexus\tasks\games;
+namespace Aether\tasks\games;
 
-//Pocketmine
 use pocketmine\Player;
 use pocketmine\utils\TextFormat as C;
-
-//Plexus
-use Plexus\Main;
+use Aether\Main;
 
 class sw {
 

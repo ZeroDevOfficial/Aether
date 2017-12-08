@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Plexus\tasks;
+namespace Aether\tasks;
 
 use pocketmine\utils\TextFormat as C;
 use pocketmine\scheduler\PluginTask;
-use Plexus\Main;
+use Aether\Main;
 
 class StartupTask extends PluginTask {
     
@@ -31,7 +31,7 @@ class StartupTask extends PluginTask {
     $this->getPlugin()->getServer()->getCommandMap()->register($key, $cmd);
   }
   $this->getPlugin()->info(C::AQUA .'Registered '. C::DARK_PURPLE . implode(", ", array_keys($this->getPlugin()->getUtils()->getCommands())) . C::AQUA .' Command(s)');
-    $this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask(new \Plexus\tasks\games\gameHandler($this->getPlugin()), 20);
+    $this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask(new \Aether\tasks\games\gameHandler($this->getPlugin()), 20);
     $this->getPlugin()->getUtils()->removeEntities();
     $this->getPlugin()->info(C::AQUA .'has Loaded');
     $this->getPlugin()->hasLoaded(true);

@@ -1,6 +1,6 @@
-name: Plexus
-main: Plexus\Main
+name: Aether
+main: Aether\Main
 version: 0.1.4
 api: 3.0.0-ALPHA10
 author: ZeroDev
-description: a core for plexus studio
+description: a core for aether network

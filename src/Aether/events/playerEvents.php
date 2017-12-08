@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Plexus\events;
+namespace Aether\events;
 
 use pocketmine\event\Listener;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat as C;
-
-use Plexus\Main;
+use Aether\Main;
 
 class playerEvents implements Listener {
 

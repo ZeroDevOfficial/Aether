@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Plexus\tasks\games;
+namespace Aether\tasks\games;
 
 use pocketmine\scheduler\PluginTask;
-use Plexus\Main;
+use Aether\Main;
 
 class gameHandler extends PluginTask {
 

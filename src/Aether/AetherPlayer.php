@@ -1,15 +1,12 @@
 <?php
 
-namespace Plexus;
+namespace Aether;
 
-//Pocketmine
 use pocketmine\Player;
 use pocketmine\utils\TextFormat as C;
+use Aether\Main;
 
-//Plexus
-use Plexus\Main;
-
-class PlexusPlayer {
+class AetherPlayer {
 
   private $player;
   private $plugin;

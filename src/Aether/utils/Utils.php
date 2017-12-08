@@ -1,19 +1,13 @@
 <?php
 
-namespace Plexus\utils;
-
-/**
- * Main utils (not plugin main)
- * 
- * will have some rand things in here for now
- */
+namespace Aether\utils;
 
 class Utils {
 
   private $events = [];
 
   public function removeEntities(){
-    $main = \Plexus\Main::getInstance();
+    $main = \Aether\Main::getInstance();
     $removed = 0;
     $level = $main->getServer()->getLevelByName('hub');
   if($level instanceof \pocketmine\level\Level){
@@ -33,24 +27,23 @@ class Utils {
   }
 
   public function getGames(){
-    $main = \Plexus\Main::getInstance();
+    $main = \Aether\Main::getInstance();
     return array(
-    //'map' => new \Plexus\tasks\games\('Main', 'map', 'maxplayers', 'countdown', 'maxGameTime')
-    'gameTestWorld' => new \Plexus\tasks\games\sw($main, 'gameTestWorld', 12, 60, 60)
+    'gameTestWorld' => new \Aether\tasks\games\sw($main, 'gameTestWorld', 12, 60, 60)
     );
   }
   
   public function getEvents(){
-    $main = \Plexus\Main::getInstance();
+    $main = \Aether\Main::getInstance();
     return array(
-      'playerEvents' => new \Plexus\events\playerEvents($main)
+      'playerEvents' => new \Aether\events\playerEvents($main)
     );
   }
 
   public function getCommands(){
-    $main = \Plexus\Main::getInstance();
+    $main = \Aether\Main::getInstance();
     return array(
-      'join' => new \Plexus\commands\joinCommand($main)
+      'join' => new \Aether\commands\joinCommand($main)
     );
   }
 }

@@ -6,7 +6,7 @@ import cn.nukkit.utils.TextFormat;
 
 public class Main extends PluginBase {
 
-  private final String PREFIX = TextFormat.DARK_GRAY +"["+ TextFormat.AQUA + "Aether" + TextFormat.DARK_GRAY +"] ";
+  private final String PREFIX = TextFormat.DARK_GRAY +"["+ TextFormat.AQUA + "Aether" + TextFormat.DARK_GRAY +"]";
 
   @Override
   public void onEnable(){

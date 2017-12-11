@@ -1,6 +1,6 @@
 name: AetherCore
 main: Aether.Main
-version: "0.0.1"
+version: 0.1.4
 api: [1.0.0]
 author: ZeroDevOfficial
 description: Aether Minigame Core

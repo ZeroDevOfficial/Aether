@@ -1,15 +1,17 @@
-# Plexus Core
+# Aether Core
+<img src="https://github.com/ZeroDevOfficial/Aether/blob/0.1.4/icons/icon2.jpg" width="150" height="150" />
 
-> Java-Core: v0.1.2
+> Java-Core: v0.1.4
 
 > Nukkit: api-1.0.0
 
-> Minecraft: v1.2.2
+> Minecraft: v1.2.x
 
-this plugin is property of Plexus Studio
 
-**You are not allowed to distribute or use this plugin** 
+# Info: 
+Core developed by ZeroDevOfficial for Aether
 
-This plugin is only meant to run on Official Plexus Servers
-
-**Java Core For Nukkit**
+```
+This plugin is property of Aether Network
+You are not allowed to distribute or use this plugin without Permission From ZeroDevOfficial.
+```

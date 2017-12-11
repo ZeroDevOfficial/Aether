@@ -1,8 +1,6 @@
-name: Plexus
-main: Plexus.Main
-version: "0.1.1"
+name: AetherCore
+main: Aether.Main
+version: "0.0.1"
 api: [1.0.0]
-
-load: POSTWORLD
-author: oshiire & EpicSteve33
-description: Plexus Core & Everything else
+author: ZeroDevOfficial
+description: Aether Minigame Core

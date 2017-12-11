@@ -11,11 +11,16 @@ public class Utils {
   }
   
   public Aether.Main getPlugin(){
-	    return this.plugin;
+    return this.plugin;
   }
+  
+  /** will do this later
+  public Aether.games.Game[] getGames(){
+    
+  }*/
 
   public Listener[] getEvents(){
-    Listener events[] = new Listener[4];
+    Listener events[] = new Listener[0];
     events[0] = new Aether.events.playerEvents(getPlugin());
     return events;
   }

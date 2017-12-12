@@ -20,7 +20,7 @@ public class Startup {
 
   public void load(){
     getPlugin().registerEvents();
-    getPlugin().hasLoaded = true;
+    getPlugin().getServer().getNetwork().setName(TextFormat.BOLD + getPlugin().getPrefix() + TextFormat.DARK_GRAY);
     getPlugin().info(TextFormat.GREEN + "has Loaded");
   }
 }

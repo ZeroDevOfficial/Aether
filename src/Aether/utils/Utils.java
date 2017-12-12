@@ -63,6 +63,8 @@ public class Utils {
   }
   
   public void getHubItems(Player player){
+	player.getInventory().clearAll();  
+	
 	Item profile = Item.get(Item.PAPER);
 	profile.setCustomName(TextFormat.YELLOW +"Your Profile.");
 	profile.addEnchantment(Enchantment.getEnchantment(1));

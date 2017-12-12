@@ -8,4 +8,8 @@ public class AetherPlayer extends Player {
    public AetherPlayer(SourceInterface interfaz, Long clientID, String ip, int port){
    super(interfaz, clientID, ip, port);
    }
+
+  public void sendHub() {
+	// TODO Auto-generated method stub
+  }
 }

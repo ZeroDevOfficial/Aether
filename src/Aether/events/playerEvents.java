@@ -1,8 +1,10 @@
 package Aether.events;
 
 import cn.nukkit.Player;
+import cn.nukkit.block.Block;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
+import cn.nukkit.math.Vector3;
 import cn.nukkit.utils.TextFormat;
 
 public class playerEvents implements Listener {
@@ -22,14 +24,6 @@ public class playerEvents implements Listener {
   }
   
   @EventHandler
-  public void preJoin(cn.nukkit.event.player.PlayerPreLoginEvent event){
-    cn.nukkit.Player player = event.getPlayer();
-  if(getPlugin().hasLoaded != true) {
-	player.kick(getPlugin().getPrefix() + TextFormat.YELLOW +"Server Has Not Loaded yet.", false);
-   }
-  }
-  
-  @EventHandler
   public void playerCreation(cn.nukkit.event.player.PlayerCreationEvent e){
     e.setPlayerClass(Aether.AetherPlayer.class);
   }
@@ -41,6 +35,19 @@ public class playerEvents implements Listener {
     getPlugin().getUtils().getHubItems(player);
   }
   
+  @EventHandler
+  public void move(cn.nukkit.event.player.PlayerMoveEvent event){
+    Player player = event.getPlayer();
+  if(player instanceof Player){
+  if(event.getTo().distance(event.getFrom()) > 0.2){
+  if(player.getLevel().getBlock(new Vector3(player.x, player.y - 1, player.z)).getId() == Block.REDSTONE_BLOCK){
+    player.knockBack(player, 0, player.getDirectionVector().x, player.getDirectionVector().z, 1);
+    player.getLevel().addSound(new cn.nukkit.level.sound.EndermanTeleportSound(player));
+    player.sendPopup(TextFormat.GREEN + "Boosted!");
+     }
+    }
+   }
+  }
 
   @EventHandler
   public void quit(cn.nukkit.event.player.PlayerQuitEvent event){

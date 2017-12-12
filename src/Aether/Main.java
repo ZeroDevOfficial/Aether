@@ -1,13 +1,13 @@
 package Aether;
 
+import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.event.Listener;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
 
 public class Main extends PluginBase {
 
-  public boolean hasLoaded = false;
-  private final String prefix = TextFormat.DARK_GRAY + "[" + TextFormat.AQUA + "Aether" + TextFormat.DARK_GRAY + "]" + TextFormat.WHITE;
+  private final String prefix = TextFormat.DARK_GRAY + "[" + TextFormat.AQUA + "Aether Network" + TextFormat.DARK_GRAY + "]" + TextFormat.WHITE;
 
   @Override
   public void onEnable(){
@@ -22,6 +22,13 @@ public class Main extends PluginBase {
 	info(TextFormat.AQUA + event.getClass().getSimpleName() + TextFormat.GREEN + " has Been Registered");
    }
   }
+  
+  /*public void registerCommands(){
+    VanillaCommand[] cmds = getUtils().getCommands();
+  for(VanillaCommand cmd : cmds){
+    info(TextFormat.AQUA + event.getClass().getSimpleName() + TextFormat.GREEN + " has Been Registered");
+   }
+  }*/
   
   public Aether.utils.Utils getUtils() {
 	return new Aether.utils.Utils(this);

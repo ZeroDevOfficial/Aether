@@ -6,7 +6,7 @@ import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.utils.TextFormat;
 
-public class hubCommand extends VanillaCommand {
+public class hub extends VanillaCommand {
 
   private Aether.Main plugin;
 

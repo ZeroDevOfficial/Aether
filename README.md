@@ -1,20 +1,17 @@
-![plexus1](https://user-images.githubusercontent.com/12077835/32135004-85147afe-bbac-11e7-9f67-1c729974016e.png)
+<img src="https://github.com/ZeroDevOfficial/Aether/blob/0.1.4/icons/icon2.jpg" width="150" height="150" />
 
-[![Build Status](https://travis-ci.com/ZeroDevOfficial/Plexus.svg?token=isGCePGv2hYt7nzPVTpm&branch=master)](https://travis-ci.com/ZeroDevOfficial/Plexus)
+# Aether Core:
 
-# Plexus Core Factions:
+> Plexus: v0.1.4
 
-> Factions Core: v0.1.3.8.8
+> PocketMine-MP: api-3.0.0-ALPHA10
 
-> PocketMine-MP: api-3.0.0-ALPHA9
-
-> Minecraft: v1.2.3
+> Minecraft: v1.2.x
 
 # Info: 
-Plexus has been put on hiatus, I need to rewrite and fix some core elements
-
+Core developed by ZeroDevOfficial for Aether
 
 ```
-This plugin is property of Plexus Studio.
+This plugin is property of Aether Network
 You are not allowed to distribute or use this plugin without Permission From ZeroDevOfficial.
 ```

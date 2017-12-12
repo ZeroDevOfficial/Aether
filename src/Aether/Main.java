@@ -11,16 +11,15 @@ public class Main extends PluginBase {
 
   @Override
   public void onEnable(){
-    registerEvents();
-    info(TextFormat.GREEN + "has Loaded");
-    hasLoaded = true;
+   Aether.Startup startup = new Aether.Startup(this);
+   startup.load();
   }
 
   public void registerEvents(){
     Listener[] u = getUtils().getEvents();
   for(Listener event : u){
 	getServer().getPluginManager().registerEvents(event, this);
-	info(TextFormat.AQUA + event.getClass().getSimpleName() + TextFormat.GREEN + " Has Been Registered");
+	info(TextFormat.AQUA + event.getClass().getSimpleName() + TextFormat.GREEN + " has Been Registered");
    }
   }
   

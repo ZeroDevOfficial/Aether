@@ -3,6 +3,7 @@ package Aether.utils;
 import java.io.File;
 import java.io.IOException;
 
+import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.event.Listener;
@@ -50,6 +51,12 @@ public class Utils {
     events[0] = new Aether.events.playerEvents(getPlugin());
     events[1] = new Aether.events.serverEvents(getPlugin());
     return events;
+  }
+
+  public VanillaCommand[] getCommands(){
+    VanillaCommand cmds = new VanillaCommand[1];
+    cmds[0] = new Aether.commands.hub(getPlugin(), "hub");
+    return cmds;
   }
   
   public ItemMap getMap(String img){

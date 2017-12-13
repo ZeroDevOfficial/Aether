@@ -9,7 +9,6 @@ import cn.nukkit.entity.Entity;
 import cn.nukkit.event.Listener;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemMap;
-import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.level.Level;
 import cn.nukkit.utils.TextFormat;
 
@@ -74,22 +73,19 @@ public class Utils {
 	
     Item profile = Item.get(Item.PAPER);
     profile.setCustomName(TextFormat.YELLOW +"Your Profile.");
-    profile.addEnchantment(Enchantment.getEnchantment(1));
+    profile.setLore(TextFormat.AQUA + player.getName() +"\n"+ TextFormat.YELLOW +"This item will display\n- Stats:\n * Kills\n * Deaths\n and more");
     player.getInventory().setItem(0, profile);
 	
     Item games = Item.get(Item.COMPASS);
     games.setCustomName(TextFormat.YELLOW + "Games");
-    games.addEnchantment(Enchantment.getEnchantment(1));
    player.getInventory().setItem(3, games);
 
-    Item icon = getPlugin().getUtils().getMap("icon.jpg");
-    icon.setCustomName(TextFormat.YELLOW + "Aether Network");
-    icon.addEnchantment(Enchantment.getEnchantment(1));
-    player.getInventory().setItem(4, icon);
+    Item lobbySelector = Item.get(Item.CHEST);
+    lobbySelector.setCustomName(TextFormat.YELLOW + "Lobby Selector");
+    player.getInventory().setItem(4, lobbySelector);
 	
     Item leaper = Item.get(Item.FEATHER);
     leaper.setCustomName(TextFormat.YELLOW + "Leaper");
-    leaper.addEnchantment(Enchantment.getEnchantment(1));
     player.getInventory().setItem(8, leaper);
   }
  }

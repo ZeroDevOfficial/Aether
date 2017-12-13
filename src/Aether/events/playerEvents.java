@@ -32,7 +32,7 @@ public class playerEvents implements Listener {
   public void join(cn.nukkit.event.player.PlayerJoinEvent event){
 	Player player = event.getPlayer();
     event.setJoinMessage("");
-    getPlugin().getUtils().getHubItems(player);
+    new Aether.tasks.sendHub((Player) player, false).runTaskLater(getPlugin(), 30);
   }
   
   @EventHandler

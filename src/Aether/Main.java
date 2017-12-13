@@ -7,10 +7,12 @@ import cn.nukkit.utils.TextFormat;
 
 public class Main extends PluginBase {
 
+  private static Main instance;
   private final String prefix = TextFormat.DARK_GRAY + "[" + TextFormat.AQUA + "Aether Network" + TextFormat.DARK_GRAY + "]" + TextFormat.WHITE;
 
   @Override
   public void onEnable(){
+   instance = this;
    Aether.Startup startup = new Aether.Startup(this);
    startup.load();
   }
@@ -23,15 +25,20 @@ public class Main extends PluginBase {
    }
   }
   
-  /*public void registerCommands(){
+  public void registerCommands(){
     VanillaCommand[] cmds = getUtils().getCommands();
   for(VanillaCommand cmd : cmds){
-    info(TextFormat.AQUA + event.getClass().getSimpleName() + TextFormat.GREEN + " has Been Registered");
+    getServer().getCommandMap().register(cmd.getClass().getSimpleName(), cmd);
+    info(TextFormat.AQUA + cmd.getClass().getSimpleName() + TextFormat.GREEN + " Command has Been Registered");
    }
-  }*/
+  }
   
   public Aether.utils.Utils getUtils() {
 	return new Aether.utils.Utils(this);
+  }
+  
+  public static Main getInstance(){
+    return instance;
   }
   
   public String getPrefix(){

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import cn.nukkit.Player;
+import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.event.Listener;
 import cn.nukkit.item.Item;
@@ -52,6 +53,12 @@ public class Utils {
     return events;
   }
   
+  public VanillaCommand[] getCommands(){
+    VanillaCommand cmds[] = new VanillaCommand[1];
+    cmds[0] = new Aether.commands.hub(getPlugin(), "hub");
+    return cmds;
+  }
+  
   public ItemMap getMap(String img){
     final ItemMap map = new ItemMap();
   try {
@@ -63,26 +70,26 @@ public class Utils {
   }
   
   public void getHubItems(Player player){
-	player.getInventory().clearAll();  
+    player.getInventory().clearAll();  
 	
-	Item profile = Item.get(Item.PAPER);
-	profile.setCustomName(TextFormat.YELLOW +"Your Profile.");
-	profile.addEnchantment(Enchantment.getEnchantment(1));
-	player.getInventory().setItem(0, profile);
+    Item profile = Item.get(Item.PAPER);
+    profile.setCustomName(TextFormat.YELLOW +"Your Profile.");
+    profile.addEnchantment(Enchantment.getEnchantment(1));
+    player.getInventory().setItem(0, profile);
 	
-	Item games = Item.get(Item.COMPASS);
-	games.setCustomName(TextFormat.YELLOW + "Games");
-	games.addEnchantment(Enchantment.getEnchantment(1));
-	player.getInventory().setItem(3, games);
+    Item games = Item.get(Item.COMPASS);
+    games.setCustomName(TextFormat.YELLOW + "Games");
+    games.addEnchantment(Enchantment.getEnchantment(1));
+   player.getInventory().setItem(3, games);
 
-	Item icon = getPlugin().getUtils().getMap("icon.jpg");
-	icon.setCustomName(TextFormat.YELLOW + "Aether Network");
-	icon.addEnchantment(Enchantment.getEnchantment(1));
-	player.getInventory().setItem(4, icon);
+    Item icon = getPlugin().getUtils().getMap("icon.jpg");
+    icon.setCustomName(TextFormat.YELLOW + "Aether Network");
+    icon.addEnchantment(Enchantment.getEnchantment(1));
+    player.getInventory().setItem(4, icon);
 	
-	Item leaper = Item.get(Item.FEATHER);
-	leaper.setCustomName(TextFormat.YELLOW + "Leaper");
-	leaper.addEnchantment(Enchantment.getEnchantment(1));
-	player.getInventory().setItem(8, leaper);
+    Item leaper = Item.get(Item.FEATHER);
+    leaper.setCustomName(TextFormat.YELLOW + "Leaper");
+    leaper.addEnchantment(Enchantment.getEnchantment(1));
+    player.getInventory().setItem(8, leaper);
   }
  }

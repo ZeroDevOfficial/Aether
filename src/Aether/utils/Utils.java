@@ -10,6 +10,7 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemMap;
 import cn.nukkit.level.Level;
+import cn.nukkit.level.Position;
 import cn.nukkit.utils.TextFormat;
 
 public class Utils {
@@ -53,9 +54,16 @@ public class Utils {
   }
   
   public VanillaCommand[] getCommands(){
-    VanillaCommand cmds[] = new VanillaCommand[1];
+    VanillaCommand cmds[] = new VanillaCommand[2];
     cmds[0] = new Aether.commands.hub(getPlugin(), "hub");
+    cmds[1] = new Aether.commands.xyz(getPlugin(), "xyz");
     return cmds;
+  }
+
+  public Position[] getNpcs(){
+    Position npc[] = new Position[1];
+    npc[0] = (new Position(36.50, 151, 45.50, getPlugin().getServer().getDefaultLevel()));
+    return npc;
   }
   
   public ItemMap getMap(String img){

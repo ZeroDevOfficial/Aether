@@ -2,10 +2,8 @@ package Aether.events;
 
 import Aether.AetherPlayer;
 import cn.nukkit.Player;
-import cn.nukkit.block.Block;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
-import cn.nukkit.math.Vector3;
 import cn.nukkit.utils.DummyBossBar;
 import cn.nukkit.utils.TextFormat;
 
@@ -36,8 +34,10 @@ public class playerEvents implements Listener {
     event.setJoinMessage("");
     new Aether.tasks.sendHub((Player) player, false).runTaskLater(getPlugin(), 30);
 
-    ((AetherPlayer) player).currentBossBar = new DummyBossBar.Builder(player).text(TextFormat.DARK_GRAY + "[ "+ TextFormat.YELLOW +"Your Playing on "+ TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network" + TextFormat.DARK_GRAY +" ]" + TextFormat.RESET.toString()).length(100).build();
+    ((AetherPlayer) player).currentBossBar = new DummyBossBar.Builder(player).text(TextFormat.DARK_GRAY + "[ "+ TextFormat.YELLOW +"Your Playing on "+ TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network" + TextFormat.RESET + TextFormat.DARK_GRAY +" ]").length(100).build();
     player.createBossBar(((AetherPlayer) player).currentBossBar);
+
+    ((Aether.entity.entities) getPlugin().getEntities()).addNpc(player);
   }
 
   @EventHandler
@@ -55,18 +55,11 @@ public class playerEvents implements Listener {
 	event.setCancelled(true);
    }
   }
-  
-  @EventHandler
-  public void move(cn.nukkit.event.player.PlayerMoveEvent event){
-    Player player = event.getPlayer();
-  if(player instanceof Player){
-  if(event.getTo().distance(event.getFrom()) > 0.2){
-  if(player.getLevel().getBlock(new Vector3(player.x, player.y - 1, player.z)).getId() == Block.REDSTONE_BLOCK){
-    player.knockBack(player, 0, player.getDirectionVector().x, player.getDirectionVector().z, 1);
-    player.getLevel().addSound(new cn.nukkit.level.sound.EndermanTeleportSound(player));
-    player.sendPopup(TextFormat.GREEN + "Boosted!");
-     }
-    }
+
+  public void hunger(cn.nukkit.event.player.PlayerFoodLevelChangeEvent event){
+	Player player = event.getPlayer();
+  if(player.getLevel() == getPlugin().getServer().getDefaultLevel()){
+    event.setCancelled(true);
    }
   }
 

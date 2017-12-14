@@ -1,12 +1,15 @@
 package Aether;
 
 import cn.nukkit.command.defaults.VanillaCommand;
+import cn.nukkit.entity.EntityHuman;
 import cn.nukkit.event.Listener;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
 
 public class Main extends PluginBase {
 
+  public EntityHuman[] npcs;
+	
   private static Main instance;
   private final String prefix = TextFormat.DARK_GRAY + "[" + TextFormat.AQUA + "Aether Network" + TextFormat.DARK_GRAY + "]" + TextFormat.WHITE;
 
@@ -21,7 +24,6 @@ public class Main extends PluginBase {
     Listener[] u = getUtils().getEvents();
   for(Listener event : u){
 	getServer().getPluginManager().registerEvents(event, this);
-	info(TextFormat.AQUA + event.getClass().getSimpleName() + TextFormat.GREEN + " has Been Registered");
    }
   }
   
@@ -29,12 +31,15 @@ public class Main extends PluginBase {
     VanillaCommand[] cmds = getUtils().getCommands();
   for(VanillaCommand cmd : cmds){
     getServer().getCommandMap().register(cmd.getClass().getSimpleName(), cmd);
-    info(TextFormat.AQUA + cmd.getClass().getSimpleName() + TextFormat.GREEN + " Command has Been Registered");
    }
   }
   
   public Aether.utils.Utils getUtils() {
 	return new Aether.utils.Utils(this);
+  }
+  
+  public Aether.entity.entities getEntities(){
+	return new Aether.entity.entities(this);
   }
   
   public static Main getInstance(){
@@ -47,5 +52,11 @@ public class Main extends PluginBase {
 
   public void info(String msg){
     getServer().getLogger().info(getPrefix() + " " + msg);
+  }
+  
+  public void onDisbale(){
+  for(EntityHuman npc : npcs){
+    npc.kill();
+   }
   }
 }

@@ -22,13 +22,13 @@ public class Startup {
   public void load(){
     getPlugin().registerEvents();
     getPlugin().registerCommands();
-    getPlugin().getServer().getNetwork().setName(TextFormat.BOLD + getPlugin().getPrefix() + TextFormat.DARK_GRAY);
     
     Level level = getPlugin().getServer().getDefaultLevel();
     level.setTime(14000);
-    level.stopTime = true;
+    level.stopTime();
     level.setRaining(false);
-    level.setRainTime(10000);
+    
+    getPlugin().getServer().getNetwork().setName(TextFormat.BOLD + getPlugin().getPrefix() + TextFormat.DARK_GRAY);
     
     getPlugin().info(TextFormat.GREEN + "has Loaded");
   }

@@ -2,6 +2,8 @@ package Aether.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.defaults.VanillaCommand;
@@ -33,11 +35,13 @@ public class Utils {
     Level level = getPlugin().getServer().getLevelByName(lvl);
   if(level instanceof Level){
 	Entity[] entity = level.getEntities();
+	getPlugin().info("Deleting " + entity.length +" Entities!");
   for(Entity e : entity){
   if(!(e instanceof Player)){
 	e.kill();
-     }
-    }
+   }
+  }
+    getPlugin().info("There are now " + entity.length +" Entities!");
    }
   }
   
@@ -60,9 +64,9 @@ public class Utils {
     return cmds;
   }
 
-  public Position[] getNpcs(){
-    Position npc[] = new Position[1];
-    npc[0] = (new Position(36.50, 151, 45.50, getPlugin().getServer().getDefaultLevel()));
+  public Map<String, Position> getNpcs(){
+    Map<String, Position> npc = new HashMap<String, Position>();
+    npc.put("Test", new Position(36.50, 151, 45.50, getPlugin().getServer().getDefaultLevel()));
     return npc;
   }
   

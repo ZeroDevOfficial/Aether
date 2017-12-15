@@ -20,13 +20,16 @@ public class Startup {
   }
 
   public void load(){
-    getPlugin().registerEvents();
-    getPlugin().registerCommands();
-    
     Level level = getPlugin().getServer().getDefaultLevel();
     level.setTime(14000);
     level.stopTime();
+    level.checkTime();
     level.setRaining(false);
+    level.setThundering(true);
+    
+    getPlugin().registerNpcs();
+    getPlugin().registerEvents();
+    getPlugin().registerCommands();
     
     getPlugin().getServer().getNetwork().setName(TextFormat.BOLD + getPlugin().getPrefix() + TextFormat.DARK_GRAY);
     

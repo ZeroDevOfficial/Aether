@@ -1,7 +1,7 @@
 package Aether.events;
 
+import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
-import cn.nukkit.event.weather.WeatherChangeEvent;
 
 public class serverEvents implements Listener {
 
@@ -19,7 +19,8 @@ public class serverEvents implements Listener {
     this.plugin = plugin;
   }
   
-  public void weather(WeatherChangeEvent event) {
+  @EventHandler
+  public void weather(cn.nukkit.event.weather.WeatherChangeEvent event) {
     event.setCancelled(true);
   }
 }

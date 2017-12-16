@@ -1,15 +1,11 @@
 package Aether.events;
 
-import java.util.Map.Entry;
-
 import Aether.AetherPlayer;
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
-import cn.nukkit.network.protocol.AddPlayerPacket;
 import cn.nukkit.utils.DummyBossBar;
-import cn.nukkit.utils.TextFormat;
 
 public class playerEvents implements Listener {
 
@@ -38,12 +34,11 @@ public class playerEvents implements Listener {
     event.setJoinMessage("");
     new Aether.tasks.sendHub((Player) player, false).runTaskLater(getPlugin(), 30);
 
-    ((AetherPlayer) player).currentBossBar = new DummyBossBar.Builder(player).text(TextFormat.DARK_GRAY + "[ "+ TextFormat.YELLOW +"Your Playing on "+ TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network" + TextFormat.RESET + TextFormat.DARK_GRAY +" ]").length(100).build();
+    ((AetherPlayer) player).currentBossBar = new DummyBossBar.Builder(player).text(getPlugin().getUtils().getBossBars().get("hub").replace("{PLAYERS}", "Online 0")).length(100).build();
     player.createBossBar(((AetherPlayer) player).currentBossBar);
 
-  for(Entry<String, AddPlayerPacket> npc : getPlugin().npcs.entrySet()){
-	player.dataPacket(npc.getValue());
-   }
+    player.setCheckMovement(false);
+    getPlugin().spawnNpcs(player);
   }
   
   @EventHandler

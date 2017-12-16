@@ -9,6 +9,9 @@ import cn.nukkit.utils.DummyBossBar;
 public class AetherPlayer extends Player {
 	
   public DummyBossBar currentBossBar;
+  public int kills = 0;
+  public int deaths = 0;
+  public String lastLogin = null;
 
   public AetherPlayer(SourceInterface interfaz, Long clientID, String ip, int port){
   super(interfaz, clientID, ip, port);

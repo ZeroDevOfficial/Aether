@@ -25,11 +25,12 @@ public class Startup {
     level.stopTime();
     level.checkTime();
     level.setRaining(false);
-    level.setThundering(true);
     
-    getPlugin().registerNpcs();
+    //getPlugin().registerNpcs();
     getPlugin().registerEvents();
     getPlugin().registerCommands();
+    
+    getPlugin().getServer().getScheduler().scheduleRepeatingTask(new Aether.tasks.bossBarTask(getPlugin()), 20);
     
     getPlugin().getServer().getNetwork().setName(TextFormat.BOLD + getPlugin().getPrefix() + TextFormat.DARK_GRAY);
     

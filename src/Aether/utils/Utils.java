@@ -1,7 +1,5 @@
 package Aether.utils;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +8,6 @@ import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.event.Listener;
 import cn.nukkit.item.Item;
-import cn.nukkit.item.ItemMap;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
 import cn.nukkit.utils.TextFormat;
@@ -51,9 +48,10 @@ public class Utils {
   }*/
 
   public Listener[] getEvents(){
-    Listener events[] = new Listener[2];
-    events[0] = new Aether.events.playerEvents(getPlugin());
-    events[1] = new Aether.events.serverEvents(getPlugin());
+    Listener events[] = new Listener[3];
+    events[0] = new Aether.events.gadgetEvents(getPlugin());
+    events[1] = new Aether.events.playerEvents(getPlugin());
+    events[2] = new Aether.events.serverEvents(getPlugin());
     return events;
   }
   
@@ -66,18 +64,17 @@ public class Utils {
 
   public Map<String, Position> getNpcs(){
     Map<String, Position> npc = new HashMap<String, Position>();
-    npc.put("Test", new Position(36.50, 151, 45.50, getPlugin().getServer().getDefaultLevel()));
+    npc.put("Game1", new Position(36.50, 151, 45.50, getPlugin().getServer().getDefaultLevel()));
+    npc.put("Game2", new Position(42.50, 151, 45.50, getPlugin().getServer().getDefaultLevel()));
+    npc.put("Game3", new Position(42.50, 151, 51.50, getPlugin().getServer().getDefaultLevel()));
+    npc.put("Game4", new Position(36.50, 151, 51.50, getPlugin().getServer().getDefaultLevel()));
     return npc;
   }
   
-  public ItemMap getMap(String img){
-    final ItemMap map = new ItemMap();
-  try {
-    map.setImage(new File(getPlugin().getDataFolder() + "/images/" + img));
-  } catch (IOException e){
-    getPlugin().info(TextFormat.RED + "Could not create map image!");
-  }
-    return map;
+  public Map<String, String> getBossBars(){
+   Map<String, String> bossBars = new HashMap<String, String>();
+   bossBars.put("hub", TextFormat.DARK_GRAY + "  [ "+ TextFormat.YELLOW +"Your Playing on "+ TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network" + TextFormat.RESET + TextFormat.DARK_GRAY +" ]\n\n" + TextFormat.YELLOW + TextFormat.BOLD +"Beta MiniGames Server | {PLAYERS}"+ TextFormat.RESET);
+   return bossBars;
   }
   
   public void getHubItems(Player player){
@@ -88,16 +85,24 @@ public class Utils {
     profile.setLore(TextFormat.AQUA + player.getName() +"\n"+ TextFormat.YELLOW +"This item will display\n- Stats:\n * Kills\n * Deaths\n and more");
     player.getInventory().setItem(0, profile);
 	
-    Item games = Item.get(Item.COMPASS);
+    Item games = Item.get(Item.MAGMA_CREAM);
     games.setCustomName(TextFormat.YELLOW + "Games");
-   player.getInventory().setItem(3, games);
+    games.setLore(TextFormat.AQUA +"Aether MiniGames\n"+ TextFormat.YELLOW +"No Current games Available");
+    player.getInventory().setItem(3, games);
 
-    Item lobbySelector = Item.get(Item.CHEST);
-    lobbySelector.setCustomName(TextFormat.YELLOW + "Lobby Selector");
-    player.getInventory().setItem(4, lobbySelector);
+    Item gadgets = Item.get(Item.REDSTONE_DUST);
+    gadgets.setCustomName(TextFormat.YELLOW + "Gadgets");
+    gadgets.setLore(TextFormat.RED +"Coming Soon!");
+    player.getInventory().setItem(4, gadgets);
 	
+    Item lobbies = Item.get(Item.EMPTY_MAP);
+    lobbies.setCustomName(TextFormat.YELLOW + "Lobbies");
+    lobbies.setLore(TextFormat.RED +"More Lobbies Coming Soon!");
+    player.getInventory().setItem(5, lobbies);
+    
     Item leaper = Item.get(Item.FEATHER);
     leaper.setCustomName(TextFormat.YELLOW + "Leaper");
+    leaper.setLore(TextFormat.AQUA +"Lets you jump around the map.");
     player.getInventory().setItem(8, leaper);
   }
  }

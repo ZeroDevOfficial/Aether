@@ -26,7 +26,7 @@ public class xyz extends VanillaCommand {
   @Override
   public boolean execute(CommandSender player, String alias, String[] args){	
   if(player instanceof Player){
-    player.sendMessage("Your xyz is "+ ((Vector3) player).x +", "+ ((Vector3) player).y +", "+ ((Vector3) player).z);
+    player.sendMessage("Your xyz is "+ Math.round(((Vector3) player).x) +", "+ Math.round(((Vector3) player).y) +", "+ Math.round(((Vector3) player).z));
   } else {
 	player.sendMessage(TextFormat.RED +"You can only use /hub in-game!");  
   }

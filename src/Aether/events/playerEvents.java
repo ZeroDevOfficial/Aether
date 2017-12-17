@@ -38,7 +38,6 @@ public class playerEvents implements Listener {
     player.createBossBar(((AetherPlayer) player).currentBossBar);
 
     player.setCheckMovement(false);
-    getPlugin().spawnNpcs(player);
   }
   
   @EventHandler
@@ -55,7 +54,7 @@ public class playerEvents implements Listener {
   public void blockBreak(cn.nukkit.event.block.BlockBreakEvent event){
     Player player = event.getPlayer();
   if(player.getLevel() == getPlugin().getServer().getDefaultLevel()){
-	event.setCancelled(true);
+	//event.setCancelled(true);
    }
   }
 
@@ -63,7 +62,7 @@ public class playerEvents implements Listener {
   public void blockPlace(cn.nukkit.event.block.BlockPlaceEvent event){
     Player player = event.getPlayer();
   if(player.getLevel() == getPlugin().getServer().getDefaultLevel()){
-	event.setCancelled(true);
+	//event.setCancelled(true);
    }
   }
 

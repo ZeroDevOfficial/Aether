@@ -44,7 +44,7 @@ public class gadgetEvents implements Listener {
   if(item.getCustomName().contains("Games")){
     FormWindowSimple window = new FormWindowSimple("Games", "Click a MiniGame");
     window.addButton(new ElementButton("Cancel", new ElementButtonImageData("url", "https://i.imgur.com/PcJEnVy.png")));
-    window.addButton(new ElementButton(TextFormat.GRAY +"Skywars", new ElementButtonImageData("url", "https://i.imgur.com/SfYBMNl.png")));
+    window.addButton(new ElementButton(TextFormat.GRAY +"Skywars | Not Available Yet!", new ElementButtonImageData("url", "https://i.imgur.com/SfYBMNl.png")));
     player.showFormWindow(window);
   }
   if(item.getCustomName().contains("Leaper")){

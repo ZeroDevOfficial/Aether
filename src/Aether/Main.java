@@ -1,20 +1,12 @@
 package Aether;
 
-import java.util.Map;
-import java.util.UUID;
-
-import cn.nukkit.Player;
 import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.event.Listener;
-import cn.nukkit.item.Item;
-import cn.nukkit.level.Position;
-import cn.nukkit.network.protocol.AddPlayerPacket;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
 
 public class Main extends PluginBase {
-	
-  private int npcId = 4000;
+
   private static Main instance;
   private final String prefix = TextFormat.DARK_GRAY + "[" + TextFormat.AQUA + "Aether Network" + TextFormat.DARK_GRAY + "]" + TextFormat.WHITE;
 
@@ -28,25 +20,6 @@ public class Main extends PluginBase {
   @Override
   public void onDisable(){
     getUtils().killEntiies(getServer().getDefaultLevel().getName());
-  }
-  
-  public void spawnNpcs(Player player){
-    Map<String, Position> npcsUtils = getUtils().getNpcs();
-  for(Map.Entry<String, Position> npc : npcsUtils.entrySet()){
-	AddPlayerPacket packet = new AddPlayerPacket();
-	packet.uuid = UUID.randomUUID();
-	packet.username = npc.getKey();
-	packet.entityRuntimeId = npcId;
-	packet.entityUniqueId = npcId;
-	packet.x = (float) npc.getValue().x;
-	packet.y = (float) npc.getValue().y;
-	packet.z = (float) npc.getValue().z;
-	packet.yaw = 0;
-	packet.pitch = 0;
-	packet.item = Item.get(0);
-	player.dataPacket(packet);
-	npcId++;
-   }
   }
 
   public void registerEvents(){

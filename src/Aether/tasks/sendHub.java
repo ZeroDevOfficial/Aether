@@ -16,6 +16,8 @@ public class sendHub extends NukkitRunnable {
 	
   @Override
   public void run(){
+  if(this.player != null){
 	((AetherPlayer) this.player).sendHub(teleport);
+   }
   }
 }

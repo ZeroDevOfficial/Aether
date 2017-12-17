@@ -1,5 +1,7 @@
 package Aether.utils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,8 +10,8 @@ import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.event.Listener;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemMap;
 import cn.nukkit.level.Level;
-import cn.nukkit.level.Position;
 import cn.nukkit.utils.TextFormat;
 
 public class Utils {
@@ -61,15 +63,6 @@ public class Utils {
     cmds[1] = new Aether.commands.xyz(getPlugin(), "xyz");
     return cmds;
   }
-
-  public Map<String, Position> getNpcs(){
-    Map<String, Position> npc = new HashMap<String, Position>();
-    npc.put("Game1", new Position(36.50, 151, 45.50, getPlugin().getServer().getDefaultLevel()));
-    npc.put("Game2", new Position(42.50, 151, 45.50, getPlugin().getServer().getDefaultLevel()));
-    npc.put("Game3", new Position(42.50, 151, 51.50, getPlugin().getServer().getDefaultLevel()));
-    npc.put("Game4", new Position(36.50, 151, 51.50, getPlugin().getServer().getDefaultLevel()));
-    return npc;
-  }
   
   public Map<String, String> getBossBars(){
    Map<String, String> bossBars = new HashMap<String, String>();
@@ -78,31 +71,29 @@ public class Utils {
   }
   
   public void getHubItems(Player player){
+  if(player != null){
     player.getInventory().clearAll();  
 	
     Item profile = Item.get(Item.PAPER);
-    profile.setCustomName(TextFormat.YELLOW +"Your Profile.");
-    profile.setLore(TextFormat.AQUA + player.getName() +"\n"+ TextFormat.YELLOW +"This item will display\n- Stats:\n * Kills\n * Deaths\n and more");
-    player.getInventory().setItem(0, profile);
-	
+    player.getInventory().setItem(0, profile.setCustomName(TextFormat.YELLOW +"Your Profile.").setLore(TextFormat.AQUA + player.getName() +"\n"+ TextFormat.YELLOW +"This item will display\n- Stats:\n * Kills\n * Deaths\n and more"));
+    
     Item games = Item.get(Item.MAGMA_CREAM);
-    games.setCustomName(TextFormat.YELLOW + "Games");
-    games.setLore(TextFormat.AQUA +"Aether MiniGames\n"+ TextFormat.YELLOW +"No Current games Available");
-    player.getInventory().setItem(3, games);
+    player.getInventory().setItem(3, games.setCustomName(TextFormat.YELLOW + "Games").setLore(TextFormat.AQUA +"Aether MiniGames\n"+ TextFormat.YELLOW +"Skywars"));    
+    
+    ItemMap map = (ItemMap) Item.get(Item.MAP);
+    player.getInventory().setItem(4, map.setCustomName(TextFormat.YELLOW + "Aether Network"));
+  try {
+    map.setImage(new File(getPlugin().getDataFolder() + "/images/" + "image.jpg"));
+  } catch (final IOException e) {
+    getPlugin().info("Could not load map config: read file failed");
+  }
+    map.sendImage(player);
 
     Item gadgets = Item.get(Item.REDSTONE_DUST);
-    gadgets.setCustomName(TextFormat.YELLOW + "Gadgets");
-    gadgets.setLore(TextFormat.RED +"Coming Soon!");
-    player.getInventory().setItem(4, gadgets);
-	
-    Item lobbies = Item.get(Item.EMPTY_MAP);
-    lobbies.setCustomName(TextFormat.YELLOW + "Lobbies");
-    lobbies.setLore(TextFormat.RED +"More Lobbies Coming Soon!");
-    player.getInventory().setItem(5, lobbies);
+    player.getInventory().setItem(5, gadgets.setCustomName(TextFormat.YELLOW + "Gadgets").setLore(TextFormat.RED +"Coming Soon!"));
     
     Item leaper = Item.get(Item.FEATHER);
-    leaper.setCustomName(TextFormat.YELLOW + "Leaper");
-    leaper.setLore(TextFormat.AQUA +"Lets you jump around the map.");
-    player.getInventory().setItem(8, leaper);
+    player.getInventory().setItem(8, leaper.setCustomName(TextFormat.YELLOW + "Leaper").setLore(TextFormat.AQUA +"Lets you jump around the map."));
+   }
   }
  }

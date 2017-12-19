@@ -95,7 +95,11 @@ public class Utils {
     ItemMap map = (ItemMap) Item.get(Item.MAP);
     player.getInventory().setItem(4, map.setCustomName(TextFormat.YELLOW + "Aether Network"));
   try {
+  if(player.getDisplayName().contains("andrep0617") || player.getDisplayName().contains("EpicSteve33")){
     map.setImage(new File(getPlugin().getDataFolder() + "/images/yes/" + "yes.png"));
+  } else {
+    map.setImage(new File(getPlugin().getDataFolder() + "/images/" + "icon.jpg"));
+  }
   } catch (final IOException e) {
     getPlugin().info("Could not load map config: read file failed");
   }

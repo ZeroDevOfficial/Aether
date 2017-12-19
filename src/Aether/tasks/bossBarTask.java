@@ -10,10 +10,12 @@ import cn.nukkit.utils.TextFormat;
 public class bossBarTask extends Task {
 
   private Main plugin;
-  private int length = 10;
+  private int length;
+  private final int defaultLength = 5;
 
   public bossBarTask(Main main) {
     setPlugin(main);
+    length = defaultLength;
   }
 
   public Aether.Main getPlugin(){
@@ -32,9 +34,9 @@ public class bossBarTask extends Task {
   if(((AetherPlayer) player).currentBossBar != null){
     DummyBossBar bossBar = ((AetherPlayer) player).currentBossBar;
     bossBar.setText(getPlugin().getUtils().getBossBars().get("hub").replace("{PLAYERS}", "Online: "+ TextFormat.AQUA + getPlugin().getServer().getOnlinePlayers().size()));
-    length+=10;
+    length+=defaultLength;
   if(length == 100){
-	length = 10;
+	length = defaultLength;
   }
     bossBar.reshow();
     bossBar.setLength(length);

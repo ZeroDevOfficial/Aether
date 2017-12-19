@@ -1,5 +1,8 @@
 package Aether;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import cn.nukkit.Player;
 import cn.nukkit.level.Level;
 import cn.nukkit.network.SourceInterface;
@@ -15,23 +18,28 @@ public class AetherPlayer extends Player {
 
   public AetherPlayer(SourceInterface interfaz, Long clientID, String ip, int port){
   super(interfaz, clientID, ip, port);
+    Date date = new Date();
+    SimpleDateFormat ft = new SimpleDateFormat ("MM/dd/yyyy hh:mm a zzz");
+    lastLogin = ft.format(date);
   }
    
   public Main getPlugin() {
     return Aether.Main.getInstance();
   }
 
-  public void sendHub(boolean teleport){
+  public void sendHub(boolean teleport, String title, String subTitle){
   if(teleport == true){
-    Level level = getServer().getDefaultLevel();
+    Level level = getPlugin().getDefaultLevel();
     this.teleport(level.getSafeSpawn());
   }
+    this.sendTitle(title, subTitle);
     sendLevelEvent(LevelEventPacket.EVENT_GUARDIAN_CURSE);
     getPlugin().getUtils().getHubItems(this);
+    this.setImmobile(false);
   }
   
   public void sendLevelEvent(int evid){
-    LevelEventPacket pk = new cn.nukkit.network.protocol.LevelEventPacket();
+    LevelEventPacket pk = new LevelEventPacket();
     pk.evid = evid;
     pk.data = 0;
     pk.x = (float) this.x;

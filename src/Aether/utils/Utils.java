@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import Aether.entity.Npc;
 import cn.nukkit.Player;
 import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.entity.Entity;
@@ -12,7 +13,9 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemMap;
 import cn.nukkit.level.Level;
+import cn.nukkit.level.Location;
 import cn.nukkit.utils.TextFormat;
+import io.netty.util.internal.ThreadLocalRandom;
 
 public class Utils {
 	
@@ -34,13 +37,13 @@ public class Utils {
     Level level = getPlugin().getServer().getLevelByName(lvl);
   if(level instanceof Level){
 	Entity[] entity = level.getEntities();
-	getPlugin().info("Deleting " + entity.length +" Entities!");
+	getPlugin().info("Deleting "+ entity.length +" Entities!");
   for(Entity e : entity){
   if(!(e instanceof Player)){
 	e.kill();
    }
   }
-    getPlugin().info("There are now " + entity.length +" Entities!");
+    getPlugin().info("There are now "+ entity.length +" Entities!");
    }
   }
   
@@ -66,8 +69,17 @@ public class Utils {
   
   public Map<String, String> getBossBars(){
    Map<String, String> bossBars = new HashMap<String, String>();
-   bossBars.put("hub", TextFormat.DARK_GRAY + "  [ "+ TextFormat.YELLOW +"Your Playing on "+ TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network" + TextFormat.RESET + TextFormat.DARK_GRAY +" ]\n\n" + TextFormat.YELLOW + TextFormat.BOLD +"Beta MiniGames Server | {PLAYERS}"+ TextFormat.RESET);
+   bossBars.put("hub", TextFormat.DARK_GRAY + " [ "+ TextFormat.YELLOW +"Your Playing on "+ TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network" + TextFormat.RESET + TextFormat.DARK_GRAY +" ]\n\n" + TextFormat.YELLOW + TextFormat.BOLD +"Beta MiniGames Server | {PLAYERS}"+ TextFormat.RESET);
    return bossBars;
+  }
+  
+  public Map<String, Npc> getNpcs(){
+    Map<String, Npc> npcs = new HashMap<String, Npc>();
+    npcs.put("Test", new Npc(getPlugin(), new Location(35, 151, 44, 320, -10, getPlugin().getDefaultLevel()), "Test", Integer.toString(ThreadLocalRandom.current().nextInt(1, 2 + 1))));
+    npcs.put("Test2", new Npc(getPlugin(), new Location(43, 151, 44, 50, -10, getPlugin().getDefaultLevel()), "Test2", Integer.toString(ThreadLocalRandom.current().nextInt(3, 4 + 1))));
+    npcs.put("Test3", new Npc(getPlugin(), new Location(43, 151, 52, 135, -10, getPlugin().getDefaultLevel()), "Test3", Integer.toString(ThreadLocalRandom.current().nextInt(5, 6 + 1))));
+    npcs.put("Test4", new Npc(getPlugin(), new Location(35, 151, 52, 225, -10, getPlugin().getDefaultLevel()), "Test4", Integer.toString(ThreadLocalRandom.current().nextInt(7, 8 + 1))));
+    return npcs;
   }
   
   public void getHubItems(Player player){
@@ -83,7 +95,7 @@ public class Utils {
     ItemMap map = (ItemMap) Item.get(Item.MAP);
     player.getInventory().setItem(4, map.setCustomName(TextFormat.YELLOW + "Aether Network"));
   try {
-    map.setImage(new File(getPlugin().getDataFolder() + "/images/" + "image.jpg"));
+    map.setImage(new File(getPlugin().getDataFolder() + "/images/yes/" + "yes.png"));
   } catch (final IOException e) {
     getPlugin().info("Could not load map config: read file failed");
   }

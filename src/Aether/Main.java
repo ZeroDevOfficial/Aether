@@ -2,6 +2,7 @@ package Aether;
 
 import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.event.Listener;
+import cn.nukkit.level.Level;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
 
@@ -15,11 +16,6 @@ public class Main extends PluginBase {
    instance = this;
    Aether.Startup startup = new Aether.Startup(this);
    startup.load();
-  }
-
-  @Override
-  public void onDisable(){
-    getUtils().killEntiies(getServer().getDefaultLevel().getName());
   }
 
   public void registerEvents(){
@@ -40,16 +36,16 @@ public class Main extends PluginBase {
 	return new Aether.utils.Utils(this);
   }
 
-  public Aether.entity.entities getEntities(){
-	return new Aether.entity.entities(this);
-  }
-
   public static Main getInstance(){
     return instance;
   }
 
   public String getPrefix(){
 	return prefix;  
+  }
+  
+  public Level getDefaultLevel(){
+    return getServer().getLevelByName("hub");
   }
 
   public void info(String msg){

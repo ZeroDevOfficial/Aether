@@ -1,18 +1,15 @@
 package Aether.tasks;
-
 import Aether.AetherPlayer;
 import Aether.Main;
 import cn.nukkit.Player;
 import cn.nukkit.scheduler.Task;
-import cn.nukkit.utils.DummyBossBar;
 import cn.nukkit.utils.TextFormat;
 
-public class bossBarTask extends Task {
+public class borderTask extends Task {
 
   private Main plugin;
-  private int length = 10;
 
-  public bossBarTask(Main main) {
+  public borderTask(Main main) {
     setPlugin(main);
   }
 
@@ -29,15 +26,11 @@ public class bossBarTask extends Task {
   for(Player player : getPlugin().getServer().getOnlinePlayers().values()){
   if(player != null){
   if(player.getLevel() == getPlugin().getDefaultLevel()){
-  if(((AetherPlayer) player).currentBossBar != null){
-    DummyBossBar bossBar = ((AetherPlayer) player).currentBossBar;
-    bossBar.setText(getPlugin().getUtils().getBossBars().get("hub").replace("{PLAYERS}", "Online: "+ TextFormat.AQUA + getPlugin().getServer().getOnlinePlayers().size()));
-    length+=10;
-  if(length == 100){
-	length = 10;
-  }
-    bossBar.reshow();
-    bossBar.setLength(length);
+  if(player.getPosition().distance(getPlugin().getDefaultLevel().getSafeSpawn()) >= 70){
+    ((Player) player).setImmobile(true);
+    ((Player) player).getInventory().clearAll();
+    ((Player) player).teleport(getPlugin().getDefaultLevel().getSafeSpawn());
+    ((AetherPlayer) player).sendHub(false, TextFormat.RED +"Woah", TextFormat.RED +"You can't leave spawn silly :)");
       }
      }
     }

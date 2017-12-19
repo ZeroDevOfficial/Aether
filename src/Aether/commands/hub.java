@@ -25,8 +25,10 @@ public class hub extends VanillaCommand {
   @Override
   public boolean execute(CommandSender player, String alias, String[] args){	
   if(player instanceof Player){
+	((Player) player).setImmobile(true);
 	((Player) player).getInventory().clearAll();
-    new Aether.tasks.sendHub((Player) player, true).runTaskLater(getPlugin(), 20);
+	((Player) player).teleport(getPlugin().getDefaultLevel().getSafeSpawn());
+    new Aether.tasks.sendHub((Player) player, false, TextFormat.YELLOW +"Welcome to spawn", TextFormat.AQUA + player.getName()).runTaskLater(getPlugin(), 20);
   } else {
 	player.sendMessage(TextFormat.RED +"You can only use /hub in-game!");  
   }

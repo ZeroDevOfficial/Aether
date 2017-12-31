@@ -18,7 +18,7 @@ public class database {
             String url = "jdbc:mysql://mysql8.db4free.net:3307/";
             String dbname = "aether";
             String username = "zero";
-            String password = "flowerpot2";
+            String password = "";
             Class.forName(driver);
 
             database.conn = DriverManager.getConnection(url + dbname + "?autoReconnect=true&useSSL=false", username, password);

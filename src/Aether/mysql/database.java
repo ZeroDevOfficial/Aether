@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 
 public class database {
 
-    private static Main plugin;
+    private static Main plugin; 
     private static Connection conn;
 
     public database(Main main) {

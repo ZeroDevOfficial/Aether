@@ -9,9 +9,11 @@ import cn.nukkit.utils.TextFormat;
 
 public class bossBarTask extends Task {
 
+    private final int defaultLength = 5;
     private Main plugin;
     private int length;
-    private final int defaultLength = 5;
+
+    private int msg = 0;
 
     public bossBarTask(Main main) {
         setPlugin(main);
@@ -33,7 +35,8 @@ public class bossBarTask extends Task {
                 if (player.getLevel() == getPlugin().getDefaultLevel()) {
                     if (((AetherPlayer) player).currentBossBar != null) {
                         DummyBossBar bossBar = ((AetherPlayer) player).currentBossBar;
-                        bossBar.setText(getPlugin().getUtils().getBossBars().get("hub").replace("{PLAYERS}", "Online: " + TextFormat.AQUA + getPlugin().getServer().getOnlinePlayers().size()));
+                        String bossBarText = getPlugin().getUtils().getBossBars().get("hub");
+                        bossBar.setText(bossBarText.replace("{MSG}", getBossBarMessages() + TextFormat.RESET));
                         length += defaultLength;
                         if (length == 100) {
                             length = defaultLength;
@@ -44,5 +47,24 @@ public class bossBarTask extends Task {
                 }
             }
         }
+    }
+
+    private String getBossBarMessages() {
+        String currentMessage = TextFormat.BOLD + " Beta MiniGames Server" + TextFormat.RESET + TextFormat.DARK_GRAY + " | " + TextFormat.YELLOW + "Online: " + TextFormat.AQUA + "0";
+        switch (this.msg) {
+            case 0:
+                currentMessage = TextFormat.BOLD + " Beta MiniGames Server" + TextFormat.RESET + TextFormat.DARK_GRAY + " | " + TextFormat.YELLOW + "Online: " + TextFormat.AQUA + getPlugin().getServer().getOnlinePlayers().size();
+                this.msg++;
+                break;
+            case 1:
+                currentMessage = " Follow us on Twitter" + TextFormat.RESET + TextFormat.AQUA + " @aether_network";
+                this.msg++;
+                break;
+            case 2:
+                currentMessage = " Follow us on Twitter" + TextFormat.RESET + TextFormat.AQUA + " @aether_network";
+                this.msg = 0;
+                break;
+        }
+        return currentMessage;
     }
 }

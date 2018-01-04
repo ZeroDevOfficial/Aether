@@ -7,6 +7,8 @@ import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.utils.TextFormat;
 
+import java.text.DecimalFormat;
+
 public class xyz extends VanillaCommand {
 
     private Aether.Main plugin;
@@ -27,7 +29,9 @@ public class xyz extends VanillaCommand {
     @Override
     public boolean execute(CommandSender player, String alias, String[] args) {
         if (player instanceof Player) {
-            player.sendMessage("Your xyz is " + Math.round(((Vector3) player).x) + ", " + Math.round(((Vector3) player).y) + ", " + Math.round(((Vector3) player).z) + "\nYour yaw and pitch are: " + Math.round(((Location) player).getYaw()) + ", " + Math.round(((Location) player).getPitch()));
+            DecimalFormat decimal = new DecimalFormat("##.##");
+
+            player.sendMessage(String.format("Your xyz is %s, %s, %s\nYour yaw and pitch is: %s, %s", decimal.format(((Vector3) player).x), decimal.format(((Vector3) player).y), decimal.format(((Vector3) player).z), decimal.format(((Location) player).getYaw()), decimal.format(((Location) player).getPitch())));
         } else {
             player.sendMessage(TextFormat.RED + "You can only use /hub in-game!");
         }

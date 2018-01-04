@@ -1,13 +1,16 @@
 package Aether;
 
+import Aether.entity.Npc;
 import cn.nukkit.Player;
 import cn.nukkit.level.Level;
 import cn.nukkit.network.SourceInterface;
 import cn.nukkit.network.protocol.LevelEventPacket;
+import cn.nukkit.scheduler.NukkitRunnable;
 import cn.nukkit.utils.DummyBossBar;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 public class AetherPlayer extends Player {
 
@@ -23,22 +26,43 @@ public class AetherPlayer extends Player {
         lastLogin = ft.format(date);
     }
 
-    public Main getPlugin() {
+    private Main getPlugin() {
         return Aether.Main.getInstance();
     }
 
     public void sendHub(boolean teleport, String title, String subTitle) {
-        if (teleport == true) {
-            Level level = getPlugin().getDefaultLevel();
-            this.teleport(level.getSafeSpawn());
-        }
-        this.sendTitle(title, subTitle);
-        sendLevelEvent(LevelEventPacket.EVENT_GUARDIAN_CURSE);
-        getPlugin().getUtils().getHubItems(this);
-        this.setImmobile(false);
+        new NukkitRunnable() {
+            @Override
+            public void run() {
+                if (teleport == true) {
+                    Level level = getPlugin().getDefaultLevel();
+                    getPlayer().teleport(level.getSafeSpawn());
+                }
+
+                new NukkitRunnable() {
+                    @Override
+                    public void run() {
+                        getPlayer().sendTitle(title, subTitle);
+                        sendLevelEvent(LevelEventPacket.EVENT_GUARDIAN_CURSE);
+
+
+                    }
+                }.runTaskLater(getPlugin(), 30);
+
+                getPlayer().removeAllEffects();
+                getPlayer().setImmobile(false);
+                getPlayer().setEnableClientCommand(true);
+                getPlugin().getUtils().getHubItems(getPlayer());
+
+                for (Map.Entry<String, Npc> npc : getPlugin().npc.entrySet()) {
+                    npc.getValue().despawnFrom(getPlayer());
+                    npc.getValue().spawnTo(getPlayer());
+                }
+            }
+        }.runTaskLater(getPlugin(), 30);
     }
 
-    public void sendLevelEvent(int evid) {
+    private void sendLevelEvent(int evid) {
         LevelEventPacket pk = new LevelEventPacket();
         pk.evid = evid;
         pk.data = 0;

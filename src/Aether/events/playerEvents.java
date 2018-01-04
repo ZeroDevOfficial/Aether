@@ -1,23 +1,27 @@
 package Aether.events;
 
+import Aether.AetherPlayer;
 import Aether.Main;
-import Aether.tasks.end;
+import Aether.tasks.changeDimensionTask;
+import Aether.tasks.sendHub;
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.potion.Effect;
+import cn.nukkit.scheduler.NukkitRunnable;
+import cn.nukkit.utils.DummyBossBar;
 import cn.nukkit.utils.TextFormat;
 
 public class playerEvents implements Listener {
 
-    private Aether.Main plugin;
+    private Main plugin;
 
-    public playerEvents(Aether.Main main) {
+    public playerEvents(Main main) {
         this.setPlugin(main);
     }
 
-    private Aether.Main getPlugin() {
+    private Main getPlugin() {
         return plugin;
     }
 
@@ -34,17 +38,34 @@ public class playerEvents implements Listener {
     public void join(cn.nukkit.event.player.PlayerJoinEvent event) {
         Player player = event.getPlayer();
         event.setJoinMessage("");
-        player.addEffect(new Effect(14, "Invisibility", 0, 0, 0).setDuration(100000));
-        player.setImmobile(true);
-        //player.setCanClimbWalls(true);
-        player.setCheckMovement(false);
-        player.sendMessage(TextFormat.YELLOW + "Loading... Please Wait!");
 
-        new end(player, getPlugin()).runTaskLater(getPlugin(), 200);
+        player.addEffect(new Effect(Effect.INVISIBILITY, "Invisibility", 0, 0, 0).setDuration(100000));
+
+        player.setImmobile(true);
+        player.setEnableClientCommand(false);
+        player.setCheckMovement(false);
+
+        new NukkitRunnable() {
+            @Override
+            public void run() {
+                player.sendTitle(TextFormat.YELLOW + "Teleporting...", TextFormat.AQUA + "Please Wait!");
+
+                new changeDimensionTask(getPlugin(), player, 2, getPlugin().getDefaultLevel().getName()).runTaskLater(getPlugin(), 100);
+                new sendHub(player, false, TextFormat.YELLOW + "Welcome to", getPlugin().getPrefix()).runTaskLater(getPlugin(), 120);
+            }
+        }.runTaskLater(getPlugin(), 60);
+
+        new NukkitRunnable() {
+            @Override
+            public void run() {
+                ((AetherPlayer) player).currentBossBar = new DummyBossBar.Builder(player).text(getPlugin().getUtils().getBossBars().get("hub").replace("{PLAYERS}", "Online 0")).length(100).build();
+                player.createBossBar(((AetherPlayer) player).currentBossBar);
+            }
+        }.runTaskLater(getPlugin(), 200);
     }
 
     @EventHandler
-    public void damage(cn.nukkit.event.entity.EntityDamageEvent event) {
+    public void entityDamage(cn.nukkit.event.entity.EntityDamageEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof Player) {
             if (entity.getLevel() == getPlugin().getDefaultLevel()) {

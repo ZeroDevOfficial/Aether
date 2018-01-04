@@ -37,16 +37,16 @@ public class gadgetEvents implements Listener {
                 switch (customBlockData) {
                     case "profile":
                         FormWindowSimple window = new FormWindowSimple("Your Profile",
-                                TextFormat.GRAY + "---------------------------------\n\n" +
-                                        TextFormat.YELLOW + "- Display Name: " + TextFormat.AQUA + player.getDisplayName() + "\n" +
-                                        TextFormat.GRAY + "---------------------------------\n\n" +
-                                        TextFormat.YELLOW + "- Kills: " + TextFormat.AQUA + ((AetherPlayer) player).kills + "\n" +
-                                        TextFormat.GRAY + "---------------------------------\n\n" +
-                                        TextFormat.YELLOW + "- Deaths: " + TextFormat.AQUA + ((AetherPlayer) player).deaths + "\n" +
-                                        TextFormat.GRAY + "---------------------------------\n\n" +
-                                        TextFormat.YELLOW + "- Last Login: " + TextFormat.AQUA + ((AetherPlayer) player).lastLogin + "\n" +
+                                TextFormat.GRAY + "---------------------------------\n" +
+                                        TextFormat.YELLOW + "Display Name: " + TextFormat.AQUA + player.getDisplayName() + "\n" +
+                                        TextFormat.GRAY + "\n" +
+                                        TextFormat.YELLOW + "Kills: " + TextFormat.AQUA + ((AetherPlayer) player).kills + "\n" +
+                                        TextFormat.YELLOW + "Deaths: " + TextFormat.AQUA + ((AetherPlayer) player).deaths + "\n" +
+                                        TextFormat.GRAY + "\n" +
+                                        TextFormat.YELLOW + "Last Login: " + TextFormat.AQUA + ((AetherPlayer) player).lastLogin + "\n" +
                                         TextFormat.GRAY + "---------------------------------\n"
                         );
+                        window.addButton(new ElementButton("Close."));
                         player.showFormWindow(window);
                         break;
                     case "games":

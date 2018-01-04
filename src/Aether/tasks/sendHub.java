@@ -20,10 +20,10 @@ public class sendHub extends NukkitRunnable {
 
     @Override
     public void run() {
-        if (this.player != null) {
-            ((AetherPlayer) this.player).sendHub(teleport, title, subTitle);
-        } else {
+        if (!this.player.isOnline()) {
             this.cancel();
+        } else {
+            ((AetherPlayer) this.player).sendHub(teleport, title, subTitle);
         }
     }
 }

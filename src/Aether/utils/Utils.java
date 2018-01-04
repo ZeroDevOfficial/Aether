@@ -1,7 +1,6 @@
 package Aether.utils;
 
 import Aether.Main;
-import Aether.entity.Npc;
 import cn.nukkit.Player;
 import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.entity.Entity;
@@ -12,7 +11,6 @@ import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.utils.TextFormat;
-import io.netty.util.internal.ThreadLocalRandom;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +19,7 @@ import java.util.Map;
 
 public class Utils {
 
+    public int skin = 1;
     private Aether.Main plugin;
 
     public Utils(Aether.Main main) {
@@ -35,55 +34,27 @@ public class Utils {
         this.plugin = plugin;
     }
 
-    public void killEntiies(String lvl) {
-        Level level = getPlugin().getServer().getLevelByName(lvl);
-        if (level instanceof Level) {
-            Entity[] entity = level.getEntities();
-            getPlugin().info("Deleting " + entity.length + " Entities!");
-            for (Entity e : entity) {
-                if (!(e instanceof Player)) {
-                    e.kill();
-                }
-            }
-            getPlugin().info("There are now " + entity.length + " Entities!");
-        }
-    }
-
-    /**
-     * will do this later
-     * public Aether.games.Game[] getGames(){
-     * <p>
-     * }
-     */
-
-    public Listener[] getEvents() {
-        Listener events[] = new Listener[3];
-        events[0] = new Aether.events.gadgetEvents(getPlugin());
-        events[1] = new Aether.events.playerEvents(getPlugin());
-        events[2] = new Aether.events.serverEvents(getPlugin());
-        return events;
-    }
-
-    public VanillaCommand[] getCommands() {
-        VanillaCommand cmds[] = new VanillaCommand[2];
-        cmds[0] = new Aether.commands.hub(getPlugin(), "hub");
-        cmds[1] = new Aether.commands.xyz(getPlugin(), "xyz");
-        return cmds;
-    }
-
     public Map<String, String> getBossBars() {
-        Map<String, String> bossBars = new HashMap<String, String>();
-        bossBars.put("hub", TextFormat.DARK_GRAY + " [ " + TextFormat.YELLOW + "Your Playing on " + TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network" + TextFormat.RESET + TextFormat.DARK_GRAY + " ]\n\n" + TextFormat.YELLOW + TextFormat.BOLD + "Beta MiniGames Server | {PLAYERS}" + TextFormat.RESET);
+        Map<String, String> bossBars = new HashMap<>();
+        bossBars.put("hub", TextFormat.DARK_GRAY + " [ " + TextFormat.YELLOW + "Your Playing on " + TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network" + TextFormat.RESET + TextFormat.DARK_GRAY + " ]\n\n" + TextFormat.YELLOW + "{MSG}" + TextFormat.RESET);
         return bossBars;
     }
 
-    public Map<String, Npc> getNpcs() {
-        Map<String, Npc> npcs = new HashMap<String, Npc>();
-        npcs.put("Test", new Npc(getPlugin(), new Location(35, 151, 44, 320, -10, getPlugin().getDefaultLevel()), "Test", Integer.toString(ThreadLocalRandom.current().nextInt(1, 2 + 1))));
-        npcs.put("Test2", new Npc(getPlugin(), new Location(43, 151, 44, 50, -10, getPlugin().getDefaultLevel()), "Test2", Integer.toString(ThreadLocalRandom.current().nextInt(3, 4 + 1))));
-        npcs.put("Test3", new Npc(getPlugin(), new Location(43, 151, 52, 135, -10, getPlugin().getDefaultLevel()), "Test3", Integer.toString(ThreadLocalRandom.current().nextInt(5, 6 + 1))));
-        npcs.put("Test4", new Npc(getPlugin(), new Location(35, 151, 52, 225, -10, getPlugin().getDefaultLevel()), "Test4", Integer.toString(ThreadLocalRandom.current().nextInt(7, 8 + 1))));
-        return npcs;
+    public VanillaCommand[] getCommands() {
+        VanillaCommand cmds[] = new VanillaCommand[3];
+        cmds[0] = new Aether.commands.clearinv(getPlugin(), "clearinv");
+        cmds[1] = new Aether.commands.hub(getPlugin(), "hub");
+        cmds[2] = new Aether.commands.xyz(getPlugin(), "xyz");
+        return cmds;
+    }
+
+    public Listener[] getEvents() {
+        Listener events[] = new Listener[4];
+        events[0] = new Aether.events.entityEvents(getPlugin());
+        events[1] = new Aether.events.gadgetEvents(getPlugin());
+        events[2] = new Aether.events.playerEvents(getPlugin());
+        events[3] = new Aether.events.serverEvents(getPlugin());
+        return events;
     }
 
     public void getHubItems(Player player) {
@@ -114,6 +85,29 @@ public class Utils {
 
             Item leaper = Item.get(Item.FEATHER);
             player.getInventory().setItem(8, leaper.setCustomName(TextFormat.YELLOW + "Leaper").setLore(TextFormat.AQUA + "Lets you jump around the map.").setCustomBlockData(new CompoundTag().putString("HubItem", "leaper")));
+        }
+    }
+
+    public Map<String, Location> getNpcs() {
+        Map<String, Location> npcs = new HashMap<>();
+        npcs.put("Test", new Location(54, 109, 38, 90, 0, getPlugin().getDefaultLevel()));
+        npcs.put("Test2", new Location(54, 109, 42, 90, 0, getPlugin().getDefaultLevel()));
+        npcs.put("Test3", new Location(54, 109, 46, 90, 0, getPlugin().getDefaultLevel()));
+        npcs.put("Test4", new Location(54, 109, 50, 90, 0, getPlugin().getDefaultLevel()));
+        return npcs;
+    }
+
+    public void killEntiies(String lvl) {
+        Level level = getPlugin().getServer().getLevelByName(lvl);
+        if (level instanceof Level) {
+            Entity[] entity = level.getEntities();
+            getPlugin().info("Deleting " + entity.length + " Entities!");
+            for (Entity e : entity) {
+                if (!(e instanceof Player)) {
+                    e.kill();
+                }
+            }
+            getPlugin().info("There are now " + entity.length + " Entities!");
         }
     }
 }

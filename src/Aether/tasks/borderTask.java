@@ -28,9 +28,9 @@ public class borderTask extends Task {
             if (player != null) {
                 if (player.getLevel() == getPlugin().getDefaultLevel()) {
                     if (player.getPosition().distance(getPlugin().getDefaultLevel().getSafeSpawn()) >= 70) {
-                        ((Player) player).setImmobile(true);
-                        ((Player) player).getInventory().clearAll();
-                        ((Player) player).teleport(getPlugin().getDefaultLevel().getSafeSpawn());
+                        player.setImmobile(true);
+                        player.getInventory().clearAll();
+                        player.teleport(getPlugin().getDefaultLevel().getSafeSpawn());
                         ((AetherPlayer) player).sendHub(false, TextFormat.RED + "Woah", TextFormat.RED + "You can't leave spawn silly :)");
                     }
                 }

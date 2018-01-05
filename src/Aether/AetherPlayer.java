@@ -1,16 +1,17 @@
 package Aether;
 
+import Aether.entity.FloatingText;
 import Aether.entity.Npc;
+import cn.nukkit.AdventureSettings;
 import cn.nukkit.Player;
 import cn.nukkit.level.Level;
 import cn.nukkit.network.SourceInterface;
-import cn.nukkit.network.protocol.LevelEventPacket;
+import cn.nukkit.network.protocol.LevelSoundEventPacket;
 import cn.nukkit.scheduler.NukkitRunnable;
 import cn.nukkit.utils.DummyBossBar;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
 
 public class AetherPlayer extends Player {
 
@@ -34,41 +35,53 @@ public class AetherPlayer extends Player {
         new NukkitRunnable() {
             @Override
             public void run() {
-                if (teleport == true) {
+                if (teleport) {
                     Level level = getPlugin().getDefaultLevel();
                     getPlayer().teleport(level.getSafeSpawn());
                 }
 
+                getPlayer().sendTitle(title, subTitle);
+
                 new NukkitRunnable() {
                     @Override
                     public void run() {
-                        getPlayer().sendTitle(title, subTitle);
-                        sendLevelEvent(LevelEventPacket.EVENT_GUARDIAN_CURSE);
 
+                        getPlayer().removeAllEffects();
+                        getPlayer().setEnableClientCommand(true);
+
+                        getPlugin().getUtils().getHubItems(getPlayer());
+
+                        for (Npc npc : getPlugin().npc.values()) {
+                            npc.despawnFrom(getPlayer());
+                            npc.spawnTo(getPlayer());
+                        }
+
+                        for (FloatingText text : getPlugin().texts.values()) {
+                            text.despawnFrom(getPlayer());
+                            text.spawnTo(getPlayer());
+                        }
+
+                        getPlayer().setImmobile(false);
+                        getPlayer().getAdventureSettings().set(AdventureSettings.Type.ALLOW_FLIGHT, true);
+                        getPlayer().getAdventureSettings().update();
+
+                        playSound(55);
 
                     }
-                }.runTaskLater(getPlugin(), 30);
-
-                getPlayer().removeAllEffects();
-                getPlayer().setImmobile(false);
-                getPlayer().setEnableClientCommand(true);
-                getPlugin().getUtils().getHubItems(getPlayer());
-
-                for (Map.Entry<String, Npc> npc : getPlugin().npc.entrySet()) {
-                    npc.getValue().despawnFrom(getPlayer());
-                    npc.getValue().spawnTo(getPlayer());
-                }
+                }.runTaskLater(getPlugin(), 10);
             }
         }.runTaskLater(getPlugin(), 30);
     }
 
-    private void sendLevelEvent(int evid) {
-        LevelEventPacket pk = new LevelEventPacket();
-        pk.evid = evid;
-        pk.data = 0;
+    public void playSound(int sound) {
+        LevelSoundEventPacket pk = new LevelSoundEventPacket();
+        pk.sound = sound;
         pk.x = (float) this.x;
         pk.y = (float) this.y;
         pk.z = (float) this.z;
+        pk.extraData = -1;
+        pk.pitch = 1;
+
         this.dataPacket(pk);
     }
 

@@ -38,8 +38,8 @@ public class entityEvents implements Listener {
             UseItemOnEntityData entityData = (UseItemOnEntityData) pk.transactionData;
             for (Map.Entry<String, Npc> npc : getPlugin().npc.entrySet()) {
                 if (entityData.entityRuntimeId == npc.getValue().getId()) {
-                    if (npc.getValue().getName().toLowerCase().contains("test")) {
-                        FormWindowModal form = new FormWindowModal("", "Do you want to join " + npc.getValue().getName() + "?", "Ok", "Cancel");
+                    if (npc.getValue().getName().contains("Test")) {
+                        FormWindowModal form = new FormWindowModal("", "Game '" + npc.getValue().getName() + "' Coming Soon!", "Ok", "Cancel");
                         player.showFormWindow(form);
                     }
                 }

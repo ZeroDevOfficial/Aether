@@ -61,7 +61,7 @@ public class playerEvents implements Listener {
                 ((AetherPlayer) player).currentBossBar = new DummyBossBar.Builder(player).text(getPlugin().getUtils().getBossBars().get("hub").replace("{PLAYERS}", "Online 0")).length(100).build();
                 player.createBossBar(((AetherPlayer) player).currentBossBar);
             }
-        }.runTaskLater(getPlugin(), 200);
+        }.runTaskLater(getPlugin(), 175);
     }
 
     @EventHandler

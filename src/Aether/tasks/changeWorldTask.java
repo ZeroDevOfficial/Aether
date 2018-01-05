@@ -15,7 +15,7 @@ public class changeWorldTask extends NukkitRunnable {
     private Main plugin;
     private String world;
 
-    public changeWorldTask(Main main, Player player, String world) {
+    changeWorldTask(Main main, Player player, String world) {
         setPlugin(main);
         this.player = player;
         this.world = world;

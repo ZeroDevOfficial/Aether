@@ -14,10 +14,14 @@ public class bossBarTask extends Task {
     private int length;
 
     private int msg = 0;
+    private String currentMessage;
 
     public bossBarTask(Main main) {
         setPlugin(main);
         length = defaultLength;
+
+        //default message || without this, when the bar spawns, players would see null
+        this.currentMessage = TextFormat.DARK_GRAY + " [ " + TextFormat.YELLOW + "Your Playing on " + TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network" + TextFormat.RESET + TextFormat.DARK_GRAY + " ]";
     }
 
     public Aether.Main getPlugin() {
@@ -31,40 +35,45 @@ public class bossBarTask extends Task {
     @Override
     public void onRun(int arg0) {
         for (Player player : getPlugin().getServer().getOnlinePlayers().values()) {
-            if (player != null) {
-                if (player.getLevel() == getPlugin().getDefaultLevel()) {
-                    if (((AetherPlayer) player).currentBossBar != null) {
-                        DummyBossBar bossBar = ((AetherPlayer) player).currentBossBar;
-                        String bossBarText = getPlugin().getUtils().getBossBars().get("hub");
-                        bossBar.setText(bossBarText.replace("{MSG}", getBossBarMessages() + TextFormat.RESET));
-                        length += defaultLength;
-                        if (length == 100) {
-                            length = defaultLength;
-                        }
-                        bossBar.reshow();
-                        bossBar.setLength(length);
+            tickBossBarMessages();
+            if (player.getLevel() == getPlugin().getDefaultLevel()) {
+                if (((AetherPlayer) player).currentBossBar != null) {
+                    DummyBossBar bossBar = ((AetherPlayer) player).currentBossBar;
+                    String bossBarText = getPlugin().getUtils().getBossBars().get("hub");
+                    bossBar.setText(bossBarText.replace("{MSG}", this.currentMessage + TextFormat.RESET));
+                    length += defaultLength;
+                    if (length == 100) {
+                        length = defaultLength;
                     }
+                    bossBar.reshow();
+                    bossBar.setLength(length);
                 }
             }
         }
     }
 
-    private String getBossBarMessages() {
-        String currentMessage = TextFormat.BOLD + " Beta MiniGames Server" + TextFormat.RESET + TextFormat.DARK_GRAY + " | " + TextFormat.YELLOW + "Online: " + TextFormat.AQUA + "0";
+    private void tickBossBarMessages() {
         switch (this.msg) {
             case 0:
-                currentMessage = TextFormat.BOLD + " Beta MiniGames Server" + TextFormat.RESET + TextFormat.DARK_GRAY + " | " + TextFormat.YELLOW + "Online: " + TextFormat.AQUA + getPlugin().getServer().getOnlinePlayers().size();
-                this.msg++;
+                this.currentMessage = TextFormat.YELLOW + "Your Playing on " + TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network";
                 break;
-            case 1:
-                currentMessage = " Follow us on Twitter" + TextFormat.RESET + TextFormat.AQUA + " @aether_network";
-                this.msg++;
+            case 5:
+                this.currentMessage = TextFormat.BOLD.toString() + TextFormat.YELLOW + "Beta MiniGames Server";
                 break;
-            case 2:
-                currentMessage = " Follow us on Twitter" + TextFormat.RESET + TextFormat.AQUA + " @aether_network";
-                this.msg = 0;
+            case 10:
+                this.currentMessage = TextFormat.YELLOW + "Players Online: " + TextFormat.AQUA + getPlugin().getServer().getOnlinePlayers().size();
+                break;
+            case 15:
+                this.currentMessage = TextFormat.BOLD.toString() + TextFormat.YELLOW + "Follow us on Twitter" + TextFormat.RESET + TextFormat.AQUA + " @aether_network";
+                break;
+            case 20:
+                this.currentMessage = TextFormat.BOLD.toString() + TextFormat.YELLOW + "Beta " + TextFormat.AQUA + "v" + getPlugin().getDescription().getVersion();
                 break;
         }
-        return currentMessage;
+        if (this.msg > 20) {
+            this.msg = 0;
+        } else {
+            this.msg++;
+        }
     }
 }

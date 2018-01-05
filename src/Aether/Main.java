@@ -1,5 +1,6 @@
 package Aether;
 
+import Aether.entity.FloatingText;
 import Aether.entity.Npc;
 import cn.nukkit.level.Level;
 import cn.nukkit.plugin.PluginBase;
@@ -14,6 +15,7 @@ public class Main extends PluginBase {
     private final String prefix = TextFormat.DARK_GRAY + "[" + TextFormat.AQUA + "Aether Network" + TextFormat.DARK_GRAY + "]" + TextFormat.WHITE;
 
     public Map<String, Npc> npc = new HashMap<>();
+    public Map<String, FloatingText> texts = new HashMap<>();
 
     public static Main getInstance() {
         return instance;

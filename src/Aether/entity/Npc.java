@@ -7,9 +7,11 @@ import cn.nukkit.entity.data.Skin;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Location;
 import cn.nukkit.network.protocol.AddPlayerPacket;
-import cn.nukkit.network.protocol.PlayerSkinPacket;
+import cn.nukkit.network.protocol.PlayerListPacket;
 import cn.nukkit.network.protocol.RemoveEntityPacket;
+import cn.nukkit.utils.TextFormat;
 
+import java.io.File;
 import java.util.UUID;
 
 public class Npc {
@@ -17,16 +19,14 @@ public class Npc {
     private Main plugin;
     private Location pos;
     private String name;
-    private Skin skin;
 
     private long eid;
     private UUID uuid;
 
-    public Npc(Main main, Location pos, String name, Skin skin) {
+    public Npc(Main main, Location pos, String name) {
         setPlugin(main);
         this.setPos(pos);
         this.setName(name);
-        this.setSkin(skin);
         this.eid = Entity.entityCount++;
         this.uuid = UUID.randomUUID();
     }
@@ -39,11 +39,11 @@ public class Npc {
         this.plugin = plugin;
     }
 
-    public Location getPos() {
+    private Location getPos() {
         return this.pos;
     }
 
-    public void setPos(Location pos) {
+    private void setPos(Location pos) {
         if (pos != null) {
             this.pos = pos;
         }
@@ -53,16 +53,12 @@ public class Npc {
         return this.name;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
-    public Skin getSkin() {
-        return this.skin;
-    }
-
-    public void setSkin(Skin skin) {
-        this.skin = skin;
+    private Skin getSkin() {
+        return new Skin(new File(getPlugin().getDataFolder() + "/skins/Coming Soon.png"));
     }
 
     public int getId() {
@@ -73,7 +69,7 @@ public class Npc {
         if (player.getLevel() == getPos().getLevel()) {
             AddPlayerPacket pk = new AddPlayerPacket();
             pk.uuid = this.uuid;
-            pk.username = getName();
+            pk.username = TextFormat.BOLD + "" + TextFormat.YELLOW + getName();
             pk.entityRuntimeId = getId();
             pk.entityUniqueId = getId();
             pk.x = (float) getPos().x + 0.50F;
@@ -84,24 +80,25 @@ public class Npc {
             pk.item = Item.get(0);
             player.dataPacket(pk);
 
-            updateSkin(player);
+            PlayerListPacket pk2 = new PlayerListPacket();
+            pk2.type = PlayerListPacket.TYPE_ADD;
+            pk2.entries = new PlayerListPacket.Entry[]{
+                    new PlayerListPacket.Entry(this.uuid, getId(), "Npc: " + getName(), getSkin())
+            };
+            player.dataPacket(pk2);
         }
-    }
-
-    public void updateSkin(Player player) {
-        PlayerSkinPacket skin = new PlayerSkinPacket();
-        skin.uuid = this.uuid;
-        skin.skin = getSkin();
-        skin.skinName = "skin";
-        skin.serializeName = "";
-        skin.geometryModel = "Steve";
-        skin.geometryData = "";
-        player.dataPacket(skin);
     }
 
     public void despawnFrom(Player player) {
         RemoveEntityPacket pk = new RemoveEntityPacket();
         pk.eid = this.eid;
         player.dataPacket(pk);
+
+        PlayerListPacket pk2 = new PlayerListPacket();
+        pk2.type = PlayerListPacket.TYPE_REMOVE;
+        pk2.entries = new PlayerListPacket.Entry[]{
+                new PlayerListPacket.Entry(this.uuid)
+        };
+        player.dataPacket(pk2);
     }
 }

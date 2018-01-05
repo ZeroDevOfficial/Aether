@@ -19,7 +19,6 @@ import java.util.Map;
 
 public class Utils {
 
-    public int skin = 1;
     private Aether.Main plugin;
 
     public Utils(Aether.Main main) {
@@ -36,7 +35,7 @@ public class Utils {
 
     public Map<String, String> getBossBars() {
         Map<String, String> bossBars = new HashMap<>();
-        bossBars.put("hub", TextFormat.DARK_GRAY + " [ " + TextFormat.YELLOW + "Your Playing on " + TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network" + TextFormat.RESET + TextFormat.DARK_GRAY + " ]\n\n" + TextFormat.YELLOW + "{MSG}" + TextFormat.RESET);
+        bossBars.put("hub", "{MSG}" + TextFormat.RESET);
         return bossBars;
     }
 
@@ -80,34 +79,46 @@ public class Utils {
             }
             map.sendImage(player);
 
-            Item gadgets = Item.get(Item.REDSTONE_DUST);
-            player.getInventory().setItem(5, gadgets.setCustomName(TextFormat.YELLOW + "Gadgets").setLore(TextFormat.RED + "Coming Soon!").setCustomBlockData(new CompoundTag().putString("HubItem", "gadgets")));
+            Item gadgets = Item.get(Item.COMPASS);
+            player.getInventory().setItem(5, gadgets.setCustomName(TextFormat.YELLOW + "Lobby Selector").setLore(TextFormat.RED + "Switch Between multiple lobbies.").setCustomBlockData(new CompoundTag().putString("HubItem", "lobbies")));
 
             Item leaper = Item.get(Item.FEATHER);
             player.getInventory().setItem(8, leaper.setCustomName(TextFormat.YELLOW + "Leaper").setLore(TextFormat.AQUA + "Lets you jump around the map.").setCustomBlockData(new CompoundTag().putString("HubItem", "leaper")));
         }
     }
 
+    public Map<String, Location> getTexts() {
+        Map<String, Location> texts = new HashMap<>();
+        texts.put("Text1", new Location(56, 111, 38, getPlugin().getDefaultLevel()));
+        texts.put("Text2", new Location(56, 111, 42, getPlugin().getDefaultLevel()));
+        texts.put("Text4", new Location(56, 111, 46, getPlugin().getDefaultLevel()));
+        texts.put("Text3", new Location(56, 111, 50, getPlugin().getDefaultLevel()));
+
+        texts.put("MiniGames", new Location(51, 109, 44, getPlugin().getDefaultLevel()));
+        texts.put("Welcome", new Location(37, 109, 42, getPlugin().getDefaultLevel()));
+        return texts;
+    }
+
     public Map<String, Location> getNpcs() {
         Map<String, Location> npcs = new HashMap<>();
-        npcs.put("Test", new Location(54, 109, 38, 90, 0, getPlugin().getDefaultLevel()));
-        npcs.put("Test2", new Location(54, 109, 42, 90, 0, getPlugin().getDefaultLevel()));
-        npcs.put("Test3", new Location(54, 109, 46, 90, 0, getPlugin().getDefaultLevel()));
-        npcs.put("Test4", new Location(54, 109, 50, 90, 0, getPlugin().getDefaultLevel()));
+        npcs.put("Test1", new Location(56, 111, 38, 90, 15, getPlugin().getDefaultLevel()));
+        npcs.put("Test2", new Location(56, 111, 42, 90, 15, getPlugin().getDefaultLevel()));
+        npcs.put("Test3", new Location(56, 111, 46, 90, 15, getPlugin().getDefaultLevel()));
+        npcs.put("Test4", new Location(56, 111, 50, 90, 15, getPlugin().getDefaultLevel()));
         return npcs;
     }
 
     public void killEntiies(String lvl) {
-        Level level = getPlugin().getServer().getLevelByName(lvl);
-        if (level instanceof Level) {
-            Entity[] entity = level.getEntities();
-            getPlugin().info("Deleting " + entity.length + " Entities!");
-            for (Entity e : entity) {
+        if (getPlugin().getServer().isLevelLoaded(lvl)) {
+            Level level = getPlugin().getServer().getLevelByName(lvl);
+            Entity[] entities = level.getEntities();
+            getPlugin().info("Deleting " + entities.length + " Entities!");
+            for (Entity e : entities) {
                 if (!(e instanceof Player)) {
                     e.kill();
                 }
             }
-            getPlugin().info("There are now " + entity.length + " Entities!");
+            getPlugin().info("There are now " + entities.length + " Entities!");
         }
     }
 }

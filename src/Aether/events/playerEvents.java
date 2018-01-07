@@ -58,7 +58,7 @@ public class playerEvents implements Listener {
         new NukkitRunnable() {
             @Override
             public void run() {
-                ((AetherPlayer) player).currentBossBar = new DummyBossBar.Builder(player).text(getPlugin().getUtils().getBossBars().get("hub").replace("{PLAYERS}", "Online 0")).length(100).build();
+                ((AetherPlayer) player).currentBossBar = new DummyBossBar.Builder(player).text("").length(100).build();
                 player.createBossBar(((AetherPlayer) player).currentBossBar);
             }
         }.runTaskLater(getPlugin(), 175);

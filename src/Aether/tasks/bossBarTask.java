@@ -39,8 +39,7 @@ public class bossBarTask extends Task {
             if (player.getLevel() == getPlugin().getDefaultLevel()) {
                 if (((AetherPlayer) player).currentBossBar != null) {
                     DummyBossBar bossBar = ((AetherPlayer) player).currentBossBar;
-                    String bossBarText = getPlugin().getUtils().getBossBars().get("hub");
-                    bossBar.setText(bossBarText.replace("{MSG}", this.currentMessage + TextFormat.RESET));
+                    bossBar.setText(this.currentMessage + TextFormat.RESET);
                     length += defaultLength;
                     if (length == 100) {
                         length = defaultLength;

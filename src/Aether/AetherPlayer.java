@@ -52,7 +52,6 @@ public class AetherPlayer extends Player {
                         getPlugin().getUtils().getHubItems(getPlayer());
 
                         for (Npc npc : getPlugin().npc.values()) {
-                            //npc.despawnFrom(getPlayer());
                             npc.spawnTo(getPlayer());
                         }
 

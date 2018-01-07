@@ -3,11 +3,13 @@ package Aether;
 import Aether.entity.FloatingText;
 import Aether.entity.Npc;
 import cn.nukkit.command.defaults.VanillaCommand;
+import cn.nukkit.entity.data.Skin;
 import cn.nukkit.event.Listener;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
 import cn.nukkit.utils.TextFormat;
 
+import java.io.File;
 import java.util.Map;
 
 public class Startup {
@@ -65,7 +67,7 @@ public class Startup {
     public void registerNpcs() {
         Map<String, Location> npcs = getPlugin().getUtils().getNpcs();
         for (Map.Entry<String, Location> npc : npcs.entrySet()) {
-            getPlugin().npc.put(npc.getKey(), new Npc(getPlugin(), npc.getValue(), npc.getKey()));
+            getPlugin().npc.put(npc.getKey(), new Npc(getPlugin(), npc.getValue(), npc.getKey(), new Skin(new File(getPlugin().getDataFolder() + "/skins/" + npc.getKey() + ".png"))));
         }
     }
 

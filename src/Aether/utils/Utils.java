@@ -33,12 +33,6 @@ public class Utils {
         this.plugin = plugin;
     }
 
-    public Map<String, String> getBossBars() {
-        Map<String, String> bossBars = new HashMap<>();
-        bossBars.put("hub", "{MSG}" + TextFormat.RESET);
-        return bossBars;
-    }
-
     public VanillaCommand[] getCommands() {
         VanillaCommand cmds[] = new VanillaCommand[3];
         cmds[0] = new Aether.commands.clearinv(getPlugin(), "clearinv");

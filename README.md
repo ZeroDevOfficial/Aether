@@ -1,7 +1,6 @@
 # Aether Core
-<img src="https://github.com/ZeroDevOfficial/Aether/blob/0.1.4/icons/icon2.jpg" width="150" height="150" />
 
-> Java-Core: v0.1.4
+> Java-Core: v1.0.0
 
 > Nukkit: api-1.0.0
 

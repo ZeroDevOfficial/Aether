@@ -11,7 +11,6 @@ import cn.nukkit.network.protocol.PlayerListPacket;
 import cn.nukkit.network.protocol.RemoveEntityPacket;
 import cn.nukkit.utils.TextFormat;
 
-import java.io.File;
 import java.util.UUID;
 
 public class Npc {
@@ -19,14 +18,17 @@ public class Npc {
     private Main plugin;
     private Location pos;
     private String name;
+    private Skin skin;
 
     private long eid;
     private UUID uuid;
 
-    public Npc(Main main, Location pos, String name) {
+    public Npc(Main main, Location pos, String name, Skin skin) {
         setPlugin(main);
         this.setPos(pos);
         this.setName(name);
+        this.setSkin(skin);
+
         this.eid = Entity.entityCount++;
         this.uuid = UUID.randomUUID();
     }
@@ -58,10 +60,16 @@ public class Npc {
     }
 
     private Skin getSkin() {
-        return new Skin(new File(getPlugin().getDataFolder() + "/skins/Coming Soon.png"));
+        return this.skin;
     }
 
-    public long getId() { return this.eid; }
+    private void setSkin(Skin skin) {
+        this.skin = skin;
+    }
+
+    public long getId() {
+        return this.eid;
+    }
 
     public void spawnTo(Player player) {
         if (player.getLevel() == getPos().getLevel()) {

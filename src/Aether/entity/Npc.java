@@ -61,9 +61,7 @@ public class Npc {
         return new Skin(new File(getPlugin().getDataFolder() + "/skins/Coming Soon.png"));
     }
 
-    public int getId() {
-        return (int) this.eid;
-    }
+    public long getId() { return this.eid; }
 
     public void spawnTo(Player player) {
         if (player.getLevel() == getPos().getLevel()) {
@@ -83,7 +81,7 @@ public class Npc {
             PlayerListPacket pk2 = new PlayerListPacket();
             pk2.type = PlayerListPacket.TYPE_ADD;
             pk2.entries = new PlayerListPacket.Entry[]{
-                    new PlayerListPacket.Entry(this.uuid, getId(), "Npc: " + getName(), getSkin())
+                    new PlayerListPacket.Entry(this.uuid, this.getId(), "Npc: " + getName(), getSkin())
             };
             player.dataPacket(pk2);
         }

@@ -86,7 +86,7 @@ public class FloatingText {
                     .putLong(Entity.DATA_FLAGS, flags)
                     .putString(Entity.DATA_NAMETAG, TextFormat.BOLD + "" + TextFormat.AQUA + getText())
                     .putLong(Entity.DATA_LEAD_HOLDER_EID, -1)
-                    .putFloat(Entity.DATA_SCALE, 0.01f); //zero causes problems on debug builds?
+                    .putFloat(Entity.DATA_SCALE, 0.00f); //zero causes problems on debug builds?
             pk.item = Item.get(0);
             player.dataPacket(pk);
         }

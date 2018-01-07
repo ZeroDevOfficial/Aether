@@ -61,15 +61,21 @@ public class AetherPlayer extends Player {
                         }
 
                         getPlayer().setImmobile(false);
-                        getPlayer().getAdventureSettings().set(AdventureSettings.Type.ALLOW_FLIGHT, true);
-                        getPlayer().getAdventureSettings().update();
-
+                        setDefaultAdventureSettings();
                         playSound(55);
 
                     }
                 }.runTaskLater(getPlugin(), 10);
             }
         }.runTaskLater(getPlugin(), 30);
+    }
+
+    public void setDefaultAdventureSettings() {//will add the commented ones later.
+        this.getAdventureSettings().set(AdventureSettings.Type.ALLOW_FLIGHT, true);
+        //this.getAdventureSettings().set(AdventureSettings.Type.WORLD_BUILDER, false);
+        //this.getAdventureSettings().set(AdventureSettings.Type.BUILD_AND_MINE, false);
+        //this.getAdventureSettings().set(AdventureSettings.Type.DOORS_AND_SWITCHED, false);
+        this.getAdventureSettings().update();
     }
 
     public void playSound(int sound) {

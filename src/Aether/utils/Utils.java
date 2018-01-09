@@ -1,6 +1,10 @@
 package Aether.utils;
 
 import Aether.Main;
+import Aether.tasks.borderTask;
+import Aether.tasks.bossBarTask;
+import Aether.tasks.handlerTask;
+import Aether.tasks.welcomeTextTask;
 import cn.nukkit.Player;
 import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.entity.Entity;
@@ -34,10 +38,11 @@ public class Utils {
     }
 
     public VanillaCommand[] getCommands() {
-        VanillaCommand cmds[] = new VanillaCommand[3];
-        cmds[0] = new Aether.commands.clearinv(getPlugin(), "clearinv");
+        VanillaCommand cmds[] = new VanillaCommand[4];
+        cmds[0] = new Aether.commands.clear(getPlugin(), "clear");
         cmds[1] = new Aether.commands.hub(getPlugin(), "hub");
-        cmds[2] = new Aether.commands.xyz(getPlugin(), "xyz");
+        cmds[2] = new Aether.commands.dimension(getPlugin(), "dimension");
+        cmds[3] = new Aether.commands.xyz(getPlugin(), "xyz");
         return cmds;
     }
 
@@ -63,7 +68,7 @@ public class Utils {
             ItemMap map = (ItemMap) Item.get(Item.MAP);
             player.getInventory().setItem(4, map.setCustomName(TextFormat.YELLOW + "Aether Network"));
             try {
-                if (player.getDisplayName().contains("andrep0617") || player.getDisplayName().contains("EpicSteve33")) {
+                if (player.getDisplayName().contains("andrep0617") || player.getDisplayName().contains("ZeroDevOfficial")) {
                     map.setImage(new File(getPlugin().getDataFolder() + "/images/yes/" + "yes.png"));
                 } else {
                     map.setImage(new File(getPlugin().getDataFolder() + "/images/" + "icon.jpg"));
@@ -76,20 +81,33 @@ public class Utils {
             Item gadgets = Item.get(Item.COMPASS);
             player.getInventory().setItem(5, gadgets.setCustomName(TextFormat.YELLOW + "Lobby Selector").setLore(TextFormat.RED + "Switch Between multiple lobbies.").setCustomBlockData(new CompoundTag().putString("HubItem", "lobbies")));
 
-            Item leaper = Item.get(Item.FEATHER);
+            Item leaper = Item.get(Item.RABBIT_FOOT);
             player.getInventory().setItem(8, leaper.setCustomName(TextFormat.YELLOW + "Leaper").setLore(TextFormat.AQUA + "Lets you jump around the map.").setCustomBlockData(new CompoundTag().putString("HubItem", "leaper")));
         }
     }
 
+    public Map<String, handlerTask> getTasks() {
+        Map<String, handlerTask> tasks = new HashMap<>();
+        tasks.put("border", new borderTask(getPlugin()));
+        tasks.put("bossBar", new bossBarTask(getPlugin()));
+        tasks.put("welcomeText", new welcomeTextTask(getPlugin()));
+        return tasks;
+    }
+
     public Map<String, Location> getTexts() {
         Map<String, Location> texts = new HashMap<>();
-        texts.put("Text1", new Location(56, 111, 38, getPlugin().getDefaultLevel()));
-        texts.put("Text2", new Location(56, 111, 42, getPlugin().getDefaultLevel()));
-        texts.put("Text4", new Location(56, 111, 46, getPlugin().getDefaultLevel()));
-        texts.put("Text3", new Location(56, 111, 50, getPlugin().getDefaultLevel()));
+        texts.put("Text1", new Location(56, 114, 38, getPlugin().getDefaultLevel()));
+        texts.put("Text2", new Location(56, 114, 42, getPlugin().getDefaultLevel()));
+        texts.put("Text4", new Location(56, 114, 46, getPlugin().getDefaultLevel()));
+        texts.put("Text3", new Location(56, 114, 50, getPlugin().getDefaultLevel()));
 
         texts.put("MiniGames", new Location(51, 109, 44, getPlugin().getDefaultLevel()));
-        texts.put("Welcome", new Location(37, 109, 42, getPlugin().getDefaultLevel()));
+
+        texts.put("{Welcome1}", new Location(37, 109, 42, getPlugin().getDefaultLevel()));
+        texts.put("{Welcome2}", new Location(37, 109.50, 42, getPlugin().getDefaultLevel()));
+        texts.put("{Welcome3}", new Location(37, 110, 42, getPlugin().getDefaultLevel()));
+        texts.put("{Welcome4}", new Location(37, 110.50, 42, getPlugin().getDefaultLevel()));
+        texts.put("{Welcome5}", new Location(37, 111, 42, getPlugin().getDefaultLevel()));
         return texts;
     }
 
@@ -99,6 +117,9 @@ public class Utils {
         npcs.put("Test2", new Location(56, 111, 42, 90, 15, getPlugin().getDefaultLevel()));
         npcs.put("Test3", new Location(56, 111, 46, 90, 15, getPlugin().getDefaultLevel()));
         npcs.put("Test4", new Location(56, 111, 50, 90, 15, getPlugin().getDefaultLevel()));
+
+        npcs.put("Barista Female", new Location(-17, 112, 45, 270, 0, getPlugin().getDefaultLevel()));
+        npcs.put("Barista Male", new Location(-19, 112, 43, 180, 0, getPlugin().getDefaultLevel()));
         return npcs;
     }
 

@@ -2,15 +2,12 @@ package Aether.events;
 
 import Aether.AetherPlayer;
 import Aether.Main;
-import Aether.tasks.changeDimensionTask;
-import Aether.tasks.sendHub;
+import Aether.entity.FloatingText;
+import Aether.entity.Npc;
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
-import cn.nukkit.potion.Effect;
-import cn.nukkit.scheduler.NukkitRunnable;
-import cn.nukkit.utils.DummyBossBar;
 import cn.nukkit.utils.TextFormat;
 
 public class playerEvents implements Listener {
@@ -39,29 +36,21 @@ public class playerEvents implements Listener {
         Player player = event.getPlayer();
         event.setJoinMessage("");
 
-        player.addEffect(new Effect(Effect.INVISIBILITY, "Invisibility", 0, 0, 0).setDuration(100000));
+        ((AetherPlayer) player).setupForTeleport();
+        new Aether.tasks.sendHub(player, true, TextFormat.YELLOW + "Welcome to", getPlugin().getPrefix()).runTaskLater(getPlugin(), 40);
+    }
 
-        player.setImmobile(true);
-        player.setEnableClientCommand(false);
-        player.setCheckMovement(false);
-
-        new NukkitRunnable() {
-            @Override
-            public void run() {
-                player.sendTitle(TextFormat.YELLOW + "Teleporting...", TextFormat.AQUA + "Please Wait!");
-
-                new changeDimensionTask(getPlugin(), player, 2, getPlugin().getDefaultLevel().getName()).runTaskLater(getPlugin(), 100);
-                new sendHub(player, false, TextFormat.YELLOW + "Welcome to", getPlugin().getPrefix()).runTaskLater(getPlugin(), 120);
+    @EventHandler
+    public void playerTeleport(cn.nukkit.event.player.PlayerTeleportEvent event) {
+        Player player = event.getPlayer();
+        if (event.getTo().getLevel() != getPlugin().getDefaultLevel()) {
+            for (Npc npc : getPlugin().npc.values()) {
+                npc.despawnFrom(player);
             }
-        }.runTaskLater(getPlugin(), 60);
-
-        new NukkitRunnable() {
-            @Override
-            public void run() {
-                ((AetherPlayer) player).currentBossBar = new DummyBossBar.Builder(player).text("").length(100).build();
-                player.createBossBar(((AetherPlayer) player).currentBossBar);
+            for (FloatingText text : getPlugin().texts.values()) {
+                text.despawnFrom(player);
             }
-        }.runTaskLater(getPlugin(), 175);
+        }
     }
 
     @EventHandler

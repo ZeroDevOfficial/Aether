@@ -2,6 +2,7 @@ package Aether;
 
 import Aether.entity.FloatingText;
 import Aether.entity.Npc;
+import Aether.tasks.handlerTask;
 import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.entity.data.Skin;
 import cn.nukkit.event.Listener;
@@ -30,7 +31,7 @@ public class Startup {
 
     public void load() {
         getPlugin().getServer().loadLevel("hub");
-        getPlugin().getServer().loadLevel("Oldhub");
+        getPlugin().getServer().loadLevel("dragonRun");
 
         Level level = getPlugin().getDefaultLevel();
         level.setRaining(false);
@@ -39,10 +40,10 @@ public class Startup {
         registerCommands();
         registerEvents();
         registerNpcs();
+        registerTasks();
         registerTexts();
 
-        getPlugin().getServer().getScheduler().scheduleRepeatingTask(new Aether.tasks.bossBarTask(getPlugin()), 20);
-        getPlugin().getServer().getScheduler().scheduleRepeatingTask(new Aether.tasks.borderTask(getPlugin()), 10);
+        getPlugin().getServer().getScheduler().scheduleRepeatingTask(new Aether.tasks.handlerTask(getPlugin()), 20);
 
         getPlugin().getServer().getNetwork().setName(TextFormat.BOLD + getPlugin().getPrefix() + TextFormat.DARK_GRAY);
 
@@ -67,7 +68,20 @@ public class Startup {
     public void registerNpcs() {
         Map<String, Location> npcs = getPlugin().getUtils().getNpcs();
         for (Map.Entry<String, Location> npc : npcs.entrySet()) {
-            getPlugin().npc.put(npc.getKey(), new Npc(getPlugin(), npc.getValue(), npc.getKey(), new Skin(new File(getPlugin().getDataFolder() + "/skins/" + npc.getKey() + ".png"))));
+            String type;
+            if(npc.getKey().contains("???")){//for leaderboards
+                type = "leaderboard";
+            } else {
+                type = "statue";
+            }
+            getPlugin().npc.put(npc.getKey(), new Npc(getPlugin(), npc.getValue(), npc.getKey(), type, new Skin(new File(getPlugin().getDataFolder() + "/skins/" + npc.getKey() + ".png"))));
+        }
+    }
+
+    public void registerTasks() {
+        Map<String, handlerTask> tasks = getPlugin().getUtils().getTasks();
+        for (Map.Entry<String, handlerTask> task : tasks.entrySet()) {
+            getPlugin().tasks.put(task.getKey(), task.getValue());
         }
     }
 

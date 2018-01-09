@@ -2,17 +2,18 @@ package Aether.events;
 
 import Aether.AetherPlayer;
 import Aether.Main;
+import Aether.form.form;
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
-import cn.nukkit.form.element.ElementButton;
-import cn.nukkit.form.element.ElementButtonImageData;
 import cn.nukkit.form.response.FormResponseSimple;
 import cn.nukkit.form.window.FormWindow;
+import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.item.Item;
-import cn.nukkit.potion.Effect;
 import cn.nukkit.utils.TextFormat;
+
+import java.net.InetSocketAddress;
 
 public class gadgetEvents implements Listener {
 
@@ -39,36 +40,23 @@ public class gadgetEvents implements Listener {
                 String customBlockData = item.getCustomBlockData().getString("HubItem");
                 switch (customBlockData) {
                     case "profile":
-                        FormWindowSimple window = new FormWindowSimple("Your Profile",
-                                TextFormat.GRAY + "---------------------------------\n" +
-                                        TextFormat.YELLOW + "Display Name: " + TextFormat.AQUA + player.getDisplayName() + "\n" +
-                                        TextFormat.GRAY + "\n" +
-                                        TextFormat.YELLOW + "Kills: " + TextFormat.AQUA + ((AetherPlayer) player).kills + "\n" +
-                                        TextFormat.YELLOW + "Deaths: " + TextFormat.AQUA + ((AetherPlayer) player).deaths + "\n" +
-                                        TextFormat.GRAY + "\n" +
-                                        TextFormat.YELLOW + "Last Login: " + TextFormat.AQUA + ((AetherPlayer) player).lastLogin + "\n" +
-                                        TextFormat.GRAY + "---------------------------------\n"
-                        );
-                        window.addButton(new ElementButton("Close."));
-                        player.showFormWindow(window);
+                        player.showFormWindow(new form().profileWindow(player));
                         break;
                     case "games":
-                        FormWindowSimple games = new FormWindowSimple("Games", "Click a MiniGame");
-                        games.addButton(new ElementButton("Cancel", new ElementButtonImageData("url", "https://i.imgur.com/PcJEnVy.png")));
-                        games.addButton(new ElementButton(TextFormat.GRAY + "Skywars | Not Available Yet!"));
-                        player.showFormWindow(games);
+                        player.showFormWindow(new form().gamesWindow());
                         break;
                     case "lobbies":
-                        FormWindowSimple lobbies = new FormWindowSimple("Lobby Selector", "Select a lobby");
-                        lobbies.addButton(new ElementButton("Cancel", new ElementButtonImageData("url", "https://i.imgur.com/PcJEnVy.png")));
-                        lobbies.addButton(new ElementButton("Lobby 1"));
-                        player.showFormWindow(lobbies);
+                        player.showFormWindow(new form().lobbiesWindow());
                         break;
                     case "leaper":
-                        double x = player.getDirectionVector().x;
-                        double z = player.getDirectionVector().z;
-                        player.knockBack(player, 0, x, z, 0.85);
-                        player.sendPopup(TextFormat.GREEN + "Leaped!");
+                        if (player.y >= 140) {
+                            player.sendPopup(TextFormat.RED + "Leaper height limit reached!");
+                        } else {
+                            double x = player.getDirectionVector().x;
+                            double z = player.getDirectionVector().z;
+                            player.knockBack(player, 0, x, z, 0.85);
+                            player.sendPopup(TextFormat.GREEN + "Leaped!");
+                        }
                         break;
                 }
             }
@@ -89,15 +77,70 @@ public class gadgetEvents implements Listener {
                     case "Lobby Selector"://TODO add more lobbies
                         switch (button) {
                             case "Lobby 1":
-                                player.addEffect(new Effect(Effect.INVISIBILITY, "Invisibility", 0, 0, 0).setDuration(100000));
-
-                                player.setImmobile(true);
-                                player.setEnableClientCommand(true);
-
-                                player.getInventory().clearAll();
-                                player.teleport(getPlugin().getDefaultLevel().getSafeSpawn());
-
-                                new Aether.tasks.sendHub(player, false, TextFormat.YELLOW + "Welcome to Lobby 1", TextFormat.AQUA + player.getName()).runTaskLater(getPlugin(), 20);
+                                //will not work on a local players, but public players should be fine.
+                                if (getPlugin().lobby != 1) {
+                                    player.transfer(new InetSocketAddress("aethernetwork.tk", 19132));
+                                } else {
+                                    player.sendMessage(TextFormat.RED + "Silly your already in this lobby.");
+                                }
+                                break;
+                        }
+                        break;
+                    case "Your Profile":
+                        switch (button) {
+                            case "Settings.":
+                                player.showFormWindow(new form().settingsWindow(player));
+                                break;
+                        }
+                        break;
+                }
+            }
+        }
+        if (!event.wasClosed()) {
+            if (window instanceof FormWindowCustom) {
+                String title = ((FormWindowCustom) event.getWindow()).getTitle();
+                switch (title) {
+                    case "Settings.":
+                        switch ((String) ((FormWindowCustom) event.getWindow()).getResponse().getResponse(0)) {
+                            case "ant mode":
+                                player.setScale(0.05F);
+                                break;
+                            case "0.50":
+                                player.setScale(0.50F);
+                                break;
+                            case "1.00":
+                                player.setScale(1.00F);
+                                break;
+                            case "1.50":
+                                player.setScale(1.50F);
+                                break;
+                            case "giant mode":
+                                player.setScale(5.00F);
+                                break;
+                        }
+                        switch ((String) ((FormWindowCustom) event.getWindow()).getResponse().getResponse(1)) {
+                            case "5 chunks":
+                                player.setViewDistance(5);
+                                break;
+                            case "8 chunks":
+                                player.setViewDistance(8);
+                                break;
+                        }
+                        switch ((String) ((FormWindowCustom) event.getWindow()).getResponse().getResponse(2)) {
+                            case "black":
+                                ((AetherPlayer) player).setCape("black");
+                                break;
+                            case "gray":
+                                ((AetherPlayer) player).setCape("gray");
+                                break;
+                            case "red":
+                                ((AetherPlayer) player).setCape("red");
+                                break;
+                            case "blue":
+                                ((AetherPlayer) player).setCape("blue");
+                                break;
+                            case "purple":
+                                ((AetherPlayer) player).setCape("purple");
                                 break;
                         }
                         break;

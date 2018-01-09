@@ -1,9 +1,9 @@
 package Aether.commands;
 
+import Aether.AetherPlayer;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.defaults.VanillaCommand;
-import cn.nukkit.potion.Effect;
 import cn.nukkit.utils.TextFormat;
 
 public class hub extends VanillaCommand {
@@ -27,15 +27,14 @@ public class hub extends VanillaCommand {
     public boolean execute(CommandSender player, String alias, String[] args) {
         if (player instanceof Player) {
 
-            ((Player) player).addEffect(new Effect(Effect.INVISIBILITY, "Invisibility", 0, 0, 0).setDuration(100000));
-
-            ((Player) player).setImmobile(true);
-            ((Player) player).setEnableClientCommand(true);
-
-            ((Player) player).getInventory().clearAll();
-            ((Player) player).teleport(getPlugin().getDefaultLevel().getSafeSpawn());
-
-            new Aether.tasks.sendHub((Player) player, false, TextFormat.YELLOW + "Welcome to spawn", TextFormat.AQUA + player.getName()).runTaskLater(getPlugin(), 20);
+            ((AetherPlayer) player).setupForTeleport();
+            if (((Player) player).getLevel() != getPlugin().getDefaultLevel()) {
+                ((Player) player).teleport(((Player) player).getLevel().getSafeSpawn());
+                new Aether.tasks.sendHub((Player) player, false, TextFormat.YELLOW + "Welcome to spawn", TextFormat.AQUA + player.getName()).runTaskLater(getPlugin(), 10);
+            } else {
+                ((Player) player).teleport(getPlugin().getDefaultLevel().getSafeSpawn());
+                ((AetherPlayer) player).sendHub(false, TextFormat.YELLOW + "Welcome to spawn", TextFormat.AQUA + player.getName());
+            }
         } else {
             player.sendMessage(TextFormat.RED + "You can only run this command in-game!");
         }

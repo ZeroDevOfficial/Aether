@@ -18,15 +18,17 @@ public class Npc {
     private Main plugin;
     private Location pos;
     private String name;
+    private String type;
     private Skin skin;
 
     private long eid;
     private UUID uuid;
 
-    public Npc(Main main, Location pos, String name, Skin skin) {
+    public Npc(Main main, Location pos, String name, String type, Skin skin) {
         setPlugin(main);
         this.setPos(pos);
         this.setName(name);
+        this.type = type;
         this.setSkin(skin);
 
         this.eid = Entity.entityCount++;
@@ -82,6 +84,7 @@ public class Npc {
             pk.y = (float) getPos().y;
             pk.z = (float) getPos().z + 0.50F;
             pk.yaw = (float) getPos().getYaw();
+            pk.offset = (int) getPos().getYaw();
             pk.pitch = (float) getPos().getPitch();
             pk.item = Item.get(0);
             player.dataPacket(pk);

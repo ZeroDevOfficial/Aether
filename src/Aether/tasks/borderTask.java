@@ -3,14 +3,14 @@ package Aether.tasks;
 import Aether.AetherPlayer;
 import Aether.Main;
 import cn.nukkit.Player;
-import cn.nukkit.scheduler.Task;
 import cn.nukkit.utils.TextFormat;
 
-public class borderTask extends Task {
+public class borderTask extends handlerTask {
 
     private Main plugin;
 
     public borderTask(Main main) {
+        super(main);
         setPlugin(main);
     }
 
@@ -23,15 +23,14 @@ public class borderTask extends Task {
     }
 
     @Override
-    public void onRun(int arg0) {
+    public void tick() {
         for (Player player : getPlugin().getServer().getOnlinePlayers().values()) {
             if (player != null) {
                 if (player.getLevel() == getPlugin().getDefaultLevel()) {
                     if (player.getPosition().distance(getPlugin().getDefaultLevel().getSafeSpawn()) >= 120 || player.y <= 64) {
-                        player.setImmobile(true);
-                        player.getInventory().clearAll();
+                        ((AetherPlayer) player).setupForTeleport();
                         player.teleport(getPlugin().getDefaultLevel().getSafeSpawn());
-                        ((AetherPlayer) player).playSound(70);
+
                         ((AetherPlayer) player).sendHub(false, TextFormat.RED + "Woah", TextFormat.RED + "You can't leave spawn silly :)");
                     }
                 }

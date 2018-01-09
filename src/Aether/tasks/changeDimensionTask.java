@@ -1,5 +1,6 @@
 package Aether.tasks;
 
+import Aether.AetherPlayer;
 import Aether.Main;
 import cn.nukkit.Player;
 import cn.nukkit.network.protocol.ChangeDimensionPacket;
@@ -29,17 +30,19 @@ public class changeDimensionTask extends NukkitRunnable {
 
     @Override
     public void run() {
-        if (!this.player.isOnline()) {
+        if (!player.isOnline()) {
             this.cancel();
         } else {
             ChangeDimensionPacket pk = new ChangeDimensionPacket();
-            pk.dimension = this.dimension;
+            pk.dimension = dimension;
             pk.x = (float) player.x;
             pk.y = (float) player.y;
             pk.z = (float) player.z;
             pk.respawn = false;
-            this.player.dataPacket(pk);
-            new Aether.tasks.changeWorldTask(getPlugin(), this.player, this.world).runTaskLater(getPlugin(), 5);
+            player.dataPacket(pk);
+
+            ((AetherPlayer) player).dimension = dimension;
+            new Aether.tasks.changeWorldTask(getPlugin(), player, world).runTaskLater(getPlugin(), 5);
         }
     }
 }

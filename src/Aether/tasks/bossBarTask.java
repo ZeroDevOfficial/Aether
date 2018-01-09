@@ -3,11 +3,10 @@ package Aether.tasks;
 import Aether.AetherPlayer;
 import Aether.Main;
 import cn.nukkit.Player;
-import cn.nukkit.scheduler.Task;
 import cn.nukkit.utils.DummyBossBar;
 import cn.nukkit.utils.TextFormat;
 
-public class bossBarTask extends Task {
+public class bossBarTask extends handlerTask {
 
     private final int defaultLength = 5;
     private Main plugin;
@@ -17,6 +16,7 @@ public class bossBarTask extends Task {
     private String currentMessage;
 
     public bossBarTask(Main main) {
+        super(main);
         setPlugin(main);
         length = defaultLength;
 
@@ -33,7 +33,7 @@ public class bossBarTask extends Task {
     }
 
     @Override
-    public void onRun(int arg0) {
+    public void tick() {
         for (Player player : getPlugin().getServer().getOnlinePlayers().values()) {
             tickBossBarMessages();
             if (player.getLevel() == getPlugin().getDefaultLevel()) {
@@ -52,24 +52,19 @@ public class bossBarTask extends Task {
     }
 
     private void tickBossBarMessages() {
+        String aether = TextFormat.GRAY + "Your Playing on " + TextFormat.AQUA + "Aether Network";
         switch (this.msg) {
             case 0:
-                this.currentMessage = TextFormat.YELLOW + "Your Playing on " + TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network";
+                this.currentMessage = aether + "\n\n" + TextFormat.GRAY + "      Beta MiniGames Server";
                 break;
             case 5:
-                this.currentMessage = TextFormat.BOLD.toString() + TextFormat.YELLOW + "Beta MiniGames Server";
+                this.currentMessage = aether + "\n\n" + TextFormat.GRAY + "         Players Online: " + TextFormat.AQUA + getPlugin().getServer().getOnlinePlayers().size();
                 break;
             case 10:
-                this.currentMessage = TextFormat.YELLOW + "Players Online: " + TextFormat.AQUA + getPlugin().getServer().getOnlinePlayers().size();
-                break;
-            case 15:
-                this.currentMessage = TextFormat.BOLD.toString() + TextFormat.YELLOW + "Follow us on Twitter" + TextFormat.RESET + TextFormat.AQUA + " @aether_network";
-                break;
-            case 20:
-                this.currentMessage = TextFormat.BOLD.toString() + TextFormat.YELLOW + "Beta " + TextFormat.AQUA + "v" + getPlugin().getDescription().getVersion();
+                this.currentMessage = aether + "\n\n" + TextFormat.GRAY + "   Follow us " + TextFormat.AQUA + "@aether_network";
                 break;
         }
-        if (this.msg > 20) {
+        if (this.msg > 10) {
             this.msg = 0;
         } else {
             this.msg++;

@@ -39,7 +39,7 @@ public class FloatingText {
         this.plugin = plugin;
     }
 
-    private Location getPos() {
+    public Location getPos() {
         return this.pos;
     }
 
@@ -69,7 +69,7 @@ public class FloatingText {
         return (int) this.eid;
     }
 
-    public void spawnTo(Player player) {
+    public void sendText(Player player) {
         if (player.getLevel() == getPos().getLevel()) {
             AddPlayerPacket pk = new AddPlayerPacket();
             pk.uuid = this.uuid;
@@ -86,7 +86,7 @@ public class FloatingText {
                     .putLong(Entity.DATA_FLAGS, flags)
                     .putString(Entity.DATA_NAMETAG, TextFormat.BOLD + "" + TextFormat.AQUA + getText())
                     .putLong(Entity.DATA_LEAD_HOLDER_EID, -1)
-                    .putFloat(Entity.DATA_SCALE, 0.00f); //zero causes problems on debug builds?
+                    .putFloat(Entity.DATA_SCALE, 0.00f); //zero causes problems on debug builds?//idk if that is still true
             pk.item = Item.get(0);
             player.dataPacket(pk);
         }

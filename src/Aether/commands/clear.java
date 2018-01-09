@@ -5,11 +5,11 @@ import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.utils.TextFormat;
 
-public class clearinv extends VanillaCommand {
+public class clear extends VanillaCommand {
 
     private Aether.Main plugin;
 
-    public clearinv(Aether.Main main, String name) {
+    public clear(Aether.Main main, String name) {
         super(name);
         this.setPlugin(main);
     }

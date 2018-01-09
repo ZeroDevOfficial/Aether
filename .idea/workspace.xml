@@ -7,7 +7,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d38d3938-b00a-48bb-8657-b775002b4ff4" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/AetherPlayer$1$1.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/AetherPlayer$1$1.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/AetherPlayer$1.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/AetherPlayer$1.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/AetherPlayer.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/AetherPlayer.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/Main.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/Main.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/Startup.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/Startup.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/commands/clearinv.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/commands/hub.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/commands/hub.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/entity/FloatingText.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/entity/FloatingText.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/entity/Npc.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/entity/Npc.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/events/gadgetEvents.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/events/gadgetEvents.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/events/playerEvents$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/events/playerEvents$2.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/events/playerEvents.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/events/playerEvents.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/tasks/borderTask.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/tasks/borderTask.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/tasks/bossBarTask.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/tasks/bossBarTask.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/tasks/sendHub.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/tasks/sendHub.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aether/Aether/utils/Utils.class" afterPath="$PROJECT_DIR$/out/production/Aether/Aether/utils/Utils.class" />
       <change beforePath="$PROJECT_DIR$/src/Aether/AetherPlayer.java" afterPath="$PROJECT_DIR$/src/Aether/AetherPlayer.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/Main.java" afterPath="$PROJECT_DIR$/src/Aether/Main.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/Startup.java" afterPath="$PROJECT_DIR$/src/Aether/Startup.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/commands/clearinv.java" afterPath="$PROJECT_DIR$/src/Aether/commands/clear.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/commands/hub.java" afterPath="$PROJECT_DIR$/src/Aether/commands/hub.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/entity/FloatingText.java" afterPath="$PROJECT_DIR$/src/Aether/entity/FloatingText.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/entity/Npc.java" afterPath="$PROJECT_DIR$/src/Aether/entity/Npc.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/events/gadgetEvents.java" afterPath="$PROJECT_DIR$/src/Aether/events/gadgetEvents.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/events/playerEvents.java" afterPath="$PROJECT_DIR$/src/Aether/events/playerEvents.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/tasks/borderTask.java" afterPath="$PROJECT_DIR$/src/Aether/tasks/borderTask.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/tasks/bossBarTask.java" afterPath="$PROJECT_DIR$/src/Aether/tasks/bossBarTask.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/tasks/changeDimensionTask.java" afterPath="$PROJECT_DIR$/src/Aether/tasks/changeDimensionTask.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/tasks/sendHub.java" afterPath="$PROJECT_DIR$/src/Aether/tasks/sendHub.java" />
+      <change beforePath="$PROJECT_DIR$/src/Aether/utils/Utils.java" afterPath="$PROJECT_DIR$/src/Aether/utils/Utils.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,21 +50,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AetherPlayer.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Aether/AetherPlayer.java">
+      <file leaf-file-name="FloatingText.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Aether/entity/FloatingText.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="76" column="10" lean-forward="false" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
+            <state relative-caret-position="34">
+              <caret line="68" column="15" lean-forward="false" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Startup.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Aether/Startup.java">
+      <file leaf-file-name="AetherPlayer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Aether/AetherPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+            <state relative-caret-position="-502">
+              <caret line="93" column="42" lean-forward="false" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Aether/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="34" column="66" lean-forward="false" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Aether/utils/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="43" column="63" lean-forward="false" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -53,6 +104,9 @@
       <find>player</find>
       <find>getName</find>
       <find>this.name</find>
+      <find>reaso</find>
+      <find>rea</find>
+      <find>this</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -68,33 +122,41 @@
       <list>
         <option value="$PROJECT_DIR$/src/Aether/mysql/database.java" />
         <option value="$PROJECT_DIR$/src/Aether/commands/xyz.java" />
-        <option value="$PROJECT_DIR$/src/Aether/commands/clearinv.java" />
-        <option value="$PROJECT_DIR$/src/Aether/commands/hub.java" />
-        <option value="$PROJECT_DIR$/src/Aether/tasks/sendHub.java" />
-        <option value="$PROJECT_DIR$/src/Aether/tasks/changeDimensionTask.java" />
         <option value="$PROJECT_DIR$/src/Aether/tasks/particleTask.java" />
         <option value="$USER_HOME$/Downloads/Server/Test/nukkit.yml" />
         <option value="$USER_HOME$/Downloads/Server/AetherNukkit/nukkit.yml" />
         <option value="$PROJECT_DIR$/src/Aether/events/entityEvents.java" />
         <option value="$PROJECT_DIR$/plugin.yml" />
-        <option value="$PROJECT_DIR$/src/Aether/tasks/borderTask.java" />
         <option value="$PROJECT_DIR$/src/Aether/tasks/changeWorldTask.java" />
-        <option value="$PROJECT_DIR$/src/Aether/events/gadgetEvents.java" />
-        <option value="$PROJECT_DIR$/src/Aether/entity/FloatingText.java" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/Aether/entity/Npc.java" />
-        <option value="$PROJECT_DIR$/src/Aether/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/src/Aether/tasks/handlerTask.java" />
+        <option value="$PROJECT_DIR$/src/Aether/commands/clearinv.java" />
+        <option value="$PROJECT_DIR$/src/Aether/tasks/borderTask.java" />
+        <option value="$PROJECT_DIR$/src/Aether/entity/FloatingText.java" />
         <option value="$PROJECT_DIR$/src/Aether/tasks/bossBarTask.java" />
+        <option value="$PROJECT_DIR$/src/Aether/commands/hub.java" />
+        <option value="$PROJECT_DIR$/src/Aether/entity/pet.java" />
+        <option value="$PROJECT_DIR$/src/Aether/entity/Pet.java" />
+        <option value="$USER_HOME$/Downloads/Server/AetherNukkit/plugins/AetherCore/config.yml" />
         <option value="$PROJECT_DIR$/src/Aether/events/playerEvents.java" />
-        <option value="$PROJECT_DIR$/src/Aether/Main.java" />
+        <option value="$PROJECT_DIR$/src/Aether/commands/overworld.java" />
+        <option value="$PROJECT_DIR$/src/Aether/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/src/Aether/commands/dimension.java" />
+        <option value="$PROJECT_DIR$/src/Aether/tasks/changeDimensionTask.java" />
+        <option value="$PROJECT_DIR$/src/Aether/tasks/welcomeTextTask.java" />
+        <option value="$PROJECT_DIR$/src/Aether/tasks/sendHub.java" />
+        <option value="$PROJECT_DIR$/src/Aether/events/gadgetEvents.java" />
+        <option value="$PROJECT_DIR$/src/Aether/form/form.java" />
+        <option value="$PROJECT_DIR$/src/Aether/entity/Npc.java" />
         <option value="$PROJECT_DIR$/src/Aether/Startup.java" />
+        <option value="$PROJECT_DIR$/src/Aether/Main.java" />
         <option value="$PROJECT_DIR$/src/Aether/AetherPlayer.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="50" />
-    <option name="y" value="940" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="49" />
+    <option name="y" value="959" />
     <option name="width" value="1382" />
     <option name="height" value="784" />
   </component>
@@ -135,10 +197,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -176,12 +237,34 @@
               <item name="Aether" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Aether" type="462c0819:PsiDirectoryNode" />
+              <item name="events" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Aether" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Aether" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Aether" type="462c0819:PsiDirectoryNode" />
+              <item name="form" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Aether" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Aether" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Aether" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Aether" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Aether" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Aether" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -302,19 +385,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="940" width="1382" height="784" extended-state="0" />
+    <frame x="50" y="932" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935917" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280507" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -324,8 +407,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -338,77 +421,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Aether/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1683">
-          <caret line="99" column="5" lean-forward="true" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/entity/FloatingText.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="72" column="32" lean-forward="false" selection-start-line="72" selection-start-column="32" selection-end-line="72" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/events/gadgetEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="54" column="106" lean-forward="false" selection-start-line="54" selection-start-column="106" selection-end-line="54" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/Startup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="113" lean-forward="false" selection-start-line="41" selection-start-column="113" selection-end-line="41" selection-end-column="113" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/events/playerEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="94" column="14" lean-forward="false" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/AetherPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="74" lean-forward="false" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Aether/events/playerEvents.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1088">
@@ -429,11 +446,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="27" lean-forward="false" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-          <folding>
-            <element signature="e#877#878#0" expanded="false" />
-            <element signature="e#906#907#0" expanded="false" />
-            <element signature="method#setPos#0;class#Npc#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -465,7 +477,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="42" />
-          <folding />
+          <folding>
+            <element signature="e#1763#3583#0" expanded="false" />
+            <element signature="e#2271#3510#0" expanded="false" />
+            <element signature="e#3509#3510#0" expanded="false" />
+            <element signature="e#3582#3583#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -473,11 +490,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1496">
           <caret line="88" column="31" lean-forward="false" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
-          <folding>
-            <element signature="e#877#878#0" expanded="false" />
-            <element signature="e#906#907#0" expanded="false" />
-            <element signature="method#setPos#0;class#Npc#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -547,43 +559,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Aether/tasks/particle.java" />
     <entry file="file://$PROJECT_DIR$/src/Aether/tasks/particleTask.java" />
-    <entry file="file://$USER_HOME$/Downloads/Server/Test/nukkit.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="108" column="24" lean-forward="false" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/tasks/changeDimensionTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="14" column="67" lean-forward="false" selection-start-line="14" selection-start-column="67" selection-end-line="14" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/tasks/changeWorldTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/tasks/sendHub.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="43" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/tasks/borderTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="33" column="62" lean-forward="true" selection-start-line="33" selection-start-column="62" selection-end-line="33" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Server/Test/nukkit.yml" />
     <entry file="file://$PROJECT_DIR$/src/Aether/events/serverEvents.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -608,43 +584,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/commands/clearinv.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/commands/hub.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="37" selection-end-column="167" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/events/gadgetEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="81" column="48" lean-forward="false" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/entity/FloatingText.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="94" column="44" lean-forward="false" selection-start-line="94" selection-start-column="44" selection-end-line="94" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plugin.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="14" lean-forward="false" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -652,76 +595,199 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="61" lean-forward="false" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/entity/Npc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="e#877#878#0" expanded="false" />
-            <element signature="e#906#907#0" expanded="false" />
-            <element signature="method#setPos#0;class#Npc#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Packages/Microsoft.MinecraftUWP_8wekyb3d8bbwe/LocalState/games/com.mojang/resource_packs/MI.BlueLig/shaders/renderchunk.fragment" />
     <entry file="file://$USER_HOME$/Downloads/Server/AetherNukkit/nukkit.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+        <state relative-caret-position="17">
+          <caret line="1" column="50" lean-forward="false" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/commands/clear.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="7" column="18" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/utils/Utils.java">
+    <entry file="file://$PROJECT_DIR$/src/Aether/tasks/handlerTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-663">
-          <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/events/playerEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="136">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Aether/Startup.java">
+    <entry file="file://$PROJECT_DIR$/src/Aether/tasks/changeWorldTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/tasks/borderTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/commands/hub.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="36" column="130" lean-forward="false" selection-start-line="36" selection-start-column="130" selection-end-line="36" selection-end-column="130" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/Server/AetherNukkit/nukkit.jar!/cn/nukkit/Player.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/entity/Pet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="104" column="33" lean-forward="false" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Server/AetherNukkit/plugins/AetherCore/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Aether/tasks/bossBarTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="408">
+          <caret line="57" column="80" lean-forward="false" selection-start-line="57" selection-start-column="80" selection-end-line="57" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/events/playerEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="56" column="5" lean-forward="false" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/tasks/changeDimensionTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="43" column="58" lean-forward="false" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/tasks/welcomeTextTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="53" column="58" lean-forward="true" selection-start-line="53" selection-start-column="58" selection-end-line="53" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/commands/dimension.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+          <folding>
+            <element signature="e#505#506#0" expanded="false" />
+            <element signature="e#534#535#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/tasks/sendHub.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="671">
+          <caret line="64" column="45" lean-forward="false" selection-start-line="64" selection-start-column="45" selection-end-line="64" selection-end-column="45" />
+          <folding>
+            <element signature="e#1093#2767#0" expanded="false" />
+            <element signature="e#1432#2681#0" expanded="false" />
+            <element signature="e#2011#2559#0" expanded="false" />
+            <element signature="e#2558#2559#0" expanded="false" />
+            <element signature="e#2680#2681#0" expanded="false" />
+            <element signature="e#2766#2767#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/form/form.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="51" column="46" lean-forward="false" selection-start-line="51" selection-start-column="46" selection-end-line="51" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/events/gadgetEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="126" column="38" lean-forward="false" selection-start-line="126" selection-start-column="38" selection-end-line="126" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/entity/Npc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/Startup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="43" column="63" lean-forward="false" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="34" column="66" lean-forward="false" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Aether/entity/FloatingText.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="68" column="15" lean-forward="false" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Aether/AetherPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="76" column="10" lean-forward="false" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
+        <state relative-caret-position="-502">
+          <caret line="93" column="42" lean-forward="false" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
           <folding />
         </state>
       </provider>

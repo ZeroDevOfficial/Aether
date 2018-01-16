@@ -43,6 +43,9 @@ public class Utils {
             new borderTask(),
             new bossBarTask()
     };
+    
+    //Settings
+    public boolean modifyWorld = true;
 
     private Main getPlugin() {
         return Main.getInstance();

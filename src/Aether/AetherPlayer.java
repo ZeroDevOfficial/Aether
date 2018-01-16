@@ -112,12 +112,9 @@ public class AetherPlayer extends Player {
         return config;
     }
 
-    private void setDefaultAdventureSettings(boolean build) {
-        this.getAdventureSettings().set(AdventureSettings.Type.ALLOW_FLIGHT, true);
-        this.getAdventureSettings().set(AdventureSettings.Type.WORLD_BUILDER, build);
-        this.getAdventureSettings().set(AdventureSettings.Type.BUILD_AND_MINE, build);
-        this.getAdventureSettings().set(AdventureSettings.Type.DOORS_AND_SWITCHED, true);
-        this.getAdventureSettings().update();
+    private void setDefaultAdventureSettings(boolean modifyWorld) {
+        this.setAllowModifyWorld(modifyWorld);
+        this.setAllowInteract(true, false);
     }
 
     public void createBossBar(String text) {

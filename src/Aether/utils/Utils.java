@@ -45,7 +45,7 @@ public class Utils {
     };
     
     //Settings
-    public boolean build = true;
+    public boolean modifyWorld = true;
 
     private Main getPlugin() {
         return Main.getInstance();

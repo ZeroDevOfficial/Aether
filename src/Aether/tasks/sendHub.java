@@ -21,7 +21,7 @@ public class sendHub extends NukkitRunnable {
     }
 
     private Main getPlugin() {
-        return Aether.Main.getInstance();
+        return Main.getInstance();
     }
 
     @Override
@@ -33,8 +33,8 @@ public class sendHub extends NukkitRunnable {
                 ((AetherPlayer) player).currentBossBar.destroy();
             }
 
-            if (join == false) {
-                new changeDimensionTask(getPlugin(), player, 0, getPlugin().getServer().getLevelByName("temp").getName()).runTaskLater(getPlugin(), 20);
+            if (!join) {
+                new changeDimensionTask(player, 0, getPlugin().getServer().getLevelByName("temp").getName()).runTaskLater(getPlugin(), 20);
             }
 
             new NukkitRunnable() {
@@ -44,7 +44,6 @@ public class sendHub extends NukkitRunnable {
                         this.cancel();
                     } else {
                         player.setGamemode(2);
-                        ((AetherPlayer) player).setupForTeleport();
 
                         new NukkitRunnable() {
                             @Override
@@ -53,7 +52,7 @@ public class sendHub extends NukkitRunnable {
                                     this.cancel();
                                 } else {
                                     player.sendTitle(TextFormat.YELLOW + "Teleporting...", TextFormat.AQUA + "Please Wait!");
-                                    new changeDimensionTask(getPlugin(), player, 2, getPlugin().getDefaultLevel().getName()).runTaskLater(getPlugin(), 120);
+                                    new changeDimensionTask(player, 2, getPlugin().getDefaultLevel().getName()).runTaskLater(getPlugin(), 120);
 
                                     new NukkitRunnable() {
                                         @Override
@@ -61,7 +60,19 @@ public class sendHub extends NukkitRunnable {
                                             if (!player.isOnline()) {
                                                 this.cancel();
                                             } else {
-                                                ((AetherPlayer) player).sendHub(true, title, subTitle);
+                                                if (join) {
+                                                    ((AetherPlayer) player).saveSkin();
+                                                    player.removeAllEffects();
+                                                    player.sendMessage(TextFormat.DARK_GRAY + "========================\n\n");
+                                                    player.sendMessage(
+                                                            TextFormat.YELLOW + "Welcome to " + TextFormat.AQUA + TextFormat.BOLD + "Aether Network\n\n" +
+                                                                    TextFormat.YELLOW + "You are in " + getPlugin().getLobby() + "\n\n" +
+                                                                    TextFormat.AQUA + "" + getPlugin().getServer().getOnlinePlayers().size() + TextFormat.YELLOW + " Player(s) Online\n\n");
+                                                    player.sendMessage(TextFormat.DARK_GRAY + "========================\n\n");
+                                                    ((AetherPlayer) player).sendHub(true, TextFormat.YELLOW + "Welcome", TextFormat.YELLOW + "Your in " + TextFormat.BOLD + TextFormat.AQUA + getPlugin().getLobby());
+                                                } else {
+                                                    ((AetherPlayer) player).sendHub(true, title, subTitle);
+                                                }
                                             }
                                         }
                                     }.runTaskLater(getPlugin(), 150);

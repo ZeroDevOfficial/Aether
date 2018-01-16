@@ -1,6 +1,5 @@
 package Aether.entity;
 
-import Aether.Main;
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.data.EntityMetadata;
@@ -14,7 +13,6 @@ import java.util.UUID;
 
 public class FloatingText {
 
-    private Main plugin;
     private Location pos;
     private String name;
     private String text;
@@ -22,21 +20,12 @@ public class FloatingText {
     private long eid;
     private UUID uuid;
 
-    public FloatingText(Main main, Location pos, String name) {
-        setPlugin(main);
+    public FloatingText(Location pos, String name) {
         this.setPos(pos);
         this.setName(name);
         this.setText(name);
         this.eid = Entity.entityCount++;
         this.uuid = UUID.randomUUID();
-    }
-
-    private Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    private void setPlugin(Main plugin) {
-        this.plugin = plugin;
     }
 
     public Location getPos() {
@@ -73,7 +62,7 @@ public class FloatingText {
         if (player.getLevel() == getPos().getLevel()) {
             AddPlayerPacket pk = new AddPlayerPacket();
             pk.uuid = this.uuid;
-            pk.username = TextFormat.BOLD + "" + TextFormat.AQUA + getText();
+            pk.username = getText();
             pk.entityRuntimeId = getId();
             pk.entityUniqueId = getId();
             pk.x = (float) getPos().x + 0.50F;

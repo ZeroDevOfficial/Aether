@@ -9,7 +9,9 @@ import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
 import cn.nukkit.utils.TextFormat;
 
+import java.io.File;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Main extends PluginBase {
@@ -17,7 +19,7 @@ public class Main extends PluginBase {
     private static Main instance;
     private final String prefix = TextFormat.DARK_GRAY + "[" + TextFormat.AQUA + "Aether Network" + TextFormat.DARK_GRAY + "]" + TextFormat.WHITE;
 
-    public int lobby = 0;
+    public Config config;
     public Map<String, Npc> npc = new HashMap<>();
     public Map<String, FloatingText> texts = new HashMap<>();
     public Map<String, handlerTask> tasks = new HashMap<>();
@@ -29,20 +31,25 @@ public class Main extends PluginBase {
     @Override
     public void onEnable() {
         instance = this;
-        Aether.Startup startup = new Aether.Startup(this);
-        startup.load();
 
-        Config config = new Config(getDataFolder() + "/config.json", Config.JSON, new ConfigSection("lobby", 0));
+        LinkedHashMap<String, Object> map = new LinkedHashMap<>();
+        map.put("lobby", "Lobby 0");
+        map.put("players", "60");//TODO add update player count
+        this.config = new Config(getDataFolder() + "/config.json", Config.JSON, new ConfigSection(map));
 
-        /** *
-         * This is so I can drop the core into a server and it will become
-         * Its own lobby || pretty dumb but I need a way to do multi lobby rn.
-         */
-        this.lobby = config.getInt("lobby");
+        new Aether.Startup().load();
+    }
+
+    public String getLobby() {
+        return this.config.getString("lobby");
+    }
+
+    public String getServerFolder() {
+        return new File(getServer().getDataPath()).getParent() + "/ServerData";
     }
 
     public Aether.utils.Utils getUtils() {
-        return new Aether.utils.Utils(this);
+        return new Aether.utils.Utils();
     }
 
     public String getPrefix() {

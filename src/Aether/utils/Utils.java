@@ -1,10 +1,9 @@
 package Aether.utils;
 
 import Aether.Main;
-import Aether.tasks.borderTask;
-import Aether.tasks.bossBarTask;
-import Aether.tasks.handlerTask;
-import Aether.tasks.welcomeTextTask;
+import Aether.commands.*;
+import Aether.events.*;
+import Aether.tasks.*;
 import cn.nukkit.Player;
 import cn.nukkit.command.defaults.VanillaCommand;
 import cn.nukkit.entity.Entity;
@@ -23,36 +22,30 @@ import java.util.Map;
 
 public class Utils {
 
-    private Aether.Main plugin;
+    public String[] maps = new String[]{
+            "hub",
+            "dragonRun"
+    };
+    public VanillaCommand[] commands = new VanillaCommand[]{
+            new clear("clear"),
+            new dimension("dimension"),
+            new hub("hub"),
+            new xyz("xyz")
+    };
+    public Listener[] listeners = new Listener[]{
+            new entityEvents(),
+            new gadgetEvents(),
+            new lobbyEvents(),
+            new playerEvents(),
+            new serverEvents()
+    };
+    public handlerTask[] tasks = new handlerTask[]{
+            new borderTask(),
+            new bossBarTask()
+    };
 
-    public Utils(Aether.Main main) {
-        this.setPlugin(main);
-    }
-
-    private Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    private void setPlugin(Main plugin) {
-        this.plugin = plugin;
-    }
-
-    public VanillaCommand[] getCommands() {
-        VanillaCommand cmds[] = new VanillaCommand[4];
-        cmds[0] = new Aether.commands.clear(getPlugin(), "clear");
-        cmds[1] = new Aether.commands.hub(getPlugin(), "hub");
-        cmds[2] = new Aether.commands.dimension(getPlugin(), "dimension");
-        cmds[3] = new Aether.commands.xyz(getPlugin(), "xyz");
-        return cmds;
-    }
-
-    public Listener[] getEvents() {
-        Listener events[] = new Listener[4];
-        events[0] = new Aether.events.entityEvents(getPlugin());
-        events[1] = new Aether.events.gadgetEvents(getPlugin());
-        events[2] = new Aether.events.playerEvents(getPlugin());
-        events[3] = new Aether.events.serverEvents(getPlugin());
-        return events;
+    private Main getPlugin() {
+        return Main.getInstance();
     }
 
     public void getHubItems(Player player) {
@@ -69,9 +62,9 @@ public class Utils {
             player.getInventory().setItem(4, map.setCustomName(TextFormat.YELLOW + "Aether Network"));
             try {
                 if (player.getDisplayName().contains("andrep0617") || player.getDisplayName().contains("ZeroDevOfficial")) {
-                    map.setImage(new File(getPlugin().getDataFolder() + "/images/yes/" + "yes.png"));
+                    map.setImage(new File(getPlugin().getServerFolder() + "/images/yes/" + "yes.png"));
                 } else {
-                    map.setImage(new File(getPlugin().getDataFolder() + "/images/" + "icon.jpg"));
+                    map.setImage(new File(getPlugin().getServerFolder() + "/images/" + "icon.jpg"));
                 }
             } catch (final IOException e) {
                 getPlugin().info("Could not load map config: read file failed");
@@ -86,28 +79,15 @@ public class Utils {
         }
     }
 
-    public Map<String, handlerTask> getTasks() {
-        Map<String, handlerTask> tasks = new HashMap<>();
-        tasks.put("border", new borderTask(getPlugin()));
-        tasks.put("bossBar", new bossBarTask(getPlugin()));
-        tasks.put("welcomeText", new welcomeTextTask(getPlugin()));
-        return tasks;
-    }
-
     public Map<String, Location> getTexts() {
         Map<String, Location> texts = new HashMap<>();
-        texts.put("Text1", new Location(56, 114, 38, getPlugin().getDefaultLevel()));
-        texts.put("Text2", new Location(56, 114, 42, getPlugin().getDefaultLevel()));
-        texts.put("Text4", new Location(56, 114, 46, getPlugin().getDefaultLevel()));
-        texts.put("Text3", new Location(56, 114, 50, getPlugin().getDefaultLevel()));
+        texts.put("Text1 {Coming Soon}", new Location(56, 113.90, 38, getPlugin().getDefaultLevel()));
+        texts.put("Text2 {Coming Soon}", new Location(56, 113.90, 42, getPlugin().getDefaultLevel()));
+        texts.put("Text3 {Coming Soon}", new Location(56, 113.90, 46, getPlugin().getDefaultLevel()));
+        texts.put("Text4 {Coming Soon}", new Location(56, 113.90, 50, getPlugin().getDefaultLevel()));
 
         texts.put("MiniGames", new Location(51, 109, 44, getPlugin().getDefaultLevel()));
-
-        texts.put("{Welcome1}", new Location(37, 109, 42, getPlugin().getDefaultLevel()));
-        texts.put("{Welcome2}", new Location(37, 109.50, 42, getPlugin().getDefaultLevel()));
-        texts.put("{Welcome3}", new Location(37, 110, 42, getPlugin().getDefaultLevel()));
-        texts.put("{Welcome4}", new Location(37, 110.50, 42, getPlugin().getDefaultLevel()));
-        texts.put("{Welcome5}", new Location(37, 111, 42, getPlugin().getDefaultLevel()));
+        texts.put(TextFormat.YELLOW + "Tap an Npc to join a game.", new Location(51, 109.50, 44, getPlugin().getDefaultLevel()));
         return texts;
     }
 
@@ -118,8 +98,8 @@ public class Utils {
         npcs.put("Test3", new Location(56, 111, 46, 90, 15, getPlugin().getDefaultLevel()));
         npcs.put("Test4", new Location(56, 111, 50, 90, 15, getPlugin().getDefaultLevel()));
 
-        npcs.put("Barista Female", new Location(-17, 112, 45, 270, 0, getPlugin().getDefaultLevel()));
-        npcs.put("Barista Male", new Location(-19, 112, 43, 180, 0, getPlugin().getDefaultLevel()));
+        npcs.put("Lola", new Location(-17, 112, 44, 270, 0, getPlugin().getDefaultLevel()));
+        npcs.put("Zak", new Location(-18, 112, 43, 180, 0, getPlugin().getDefaultLevel()));
         return npcs;
     }
 

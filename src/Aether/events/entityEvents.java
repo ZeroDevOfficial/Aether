@@ -14,18 +14,8 @@ import java.util.Map;
 
 public class entityEvents implements Listener {
 
-    private Main plugin;
-
-    public entityEvents(Main main) {
-        this.setPlugin(main);
-    }
-
-    private Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    private void setPlugin(Main plugin) {
-        this.plugin = plugin;
+    private Main getPlugin() {
+        return Main.getInstance();
     }
 
     @EventHandler

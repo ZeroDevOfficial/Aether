@@ -9,27 +9,20 @@ import cn.nukkit.utils.TextFormat;
 public class bossBarTask extends handlerTask {
 
     private final int defaultLength = 5;
-    private Main plugin;
     private int length;
 
     private int msg = 0;
     private String currentMessage;
 
-    public bossBarTask(Main main) {
-        super(main);
-        setPlugin(main);
+    public bossBarTask() {
         length = defaultLength;
 
         //default message || without this, when the bar spawns, players would see null
         this.currentMessage = TextFormat.DARK_GRAY + " [ " + TextFormat.YELLOW + "Your Playing on " + TextFormat.BOLD.toString() + TextFormat.AQUA + "Aether Network" + TextFormat.RESET + TextFormat.DARK_GRAY + " ]";
     }
 
-    public Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    public void setPlugin(Aether.Main plugin) {
-        this.plugin = plugin;
+    private Main getPlugin() {
+        return Main.getInstance();
     }
 
     @Override

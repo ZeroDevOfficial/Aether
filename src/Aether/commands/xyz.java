@@ -11,19 +11,8 @@ import java.text.DecimalFormat;
 
 public class xyz extends VanillaCommand {
 
-    private Aether.Main plugin;
-
-    public xyz(Aether.Main main, String name) {
+    public xyz(String name) {
         super(name);
-        this.setPlugin(main);
-    }
-
-    public Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    public void setPlugin(Aether.Main plugin) {
-        this.plugin = plugin;
     }
 
     @Override

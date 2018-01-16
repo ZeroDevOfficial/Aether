@@ -17,18 +17,8 @@ import java.net.InetSocketAddress;
 
 public class gadgetEvents implements Listener {
 
-    private Main plugin;
-
-    public gadgetEvents(Main main) {
-        setPlugin(main);
-    }
-
-    private Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    private void setPlugin(Main plugin) {
-        this.plugin = plugin;
+    private Main getPlugin() {
+        return Main.getInstance();
     }
 
     @EventHandler
@@ -46,7 +36,7 @@ public class gadgetEvents implements Listener {
                         player.showFormWindow(new form().gamesWindow());
                         break;
                     case "lobbies":
-                        player.showFormWindow(new form().lobbiesWindow());
+                        player.showFormWindow(new form().lobbiesWindow(player));
                         break;
                     case "leaper":
                         if (player.y >= 140) {
@@ -75,15 +65,17 @@ public class gadgetEvents implements Listener {
             if (!event.wasClosed()) {
                 switch (title) {
                     case "Lobby Selector"://TODO add more lobbies
-                        switch (button) {
-                            case "Lobby 1":
-                                //will not work on a local players, but public players should be fine.
-                                if (getPlugin().lobby != 1) {
+                        if (!getPlugin().getLobby().equals(button)) {
+                            switch (button) {//doesnt work atm
+                                case "Dev Lobby":
                                     player.transfer(new InetSocketAddress("aethernetwork.tk", 19132));
-                                } else {
-                                    player.sendMessage(TextFormat.RED + "Silly your already in this lobby.");
-                                }
-                                break;
+                                    break;
+                                case "Lobby 1":
+                                    player.transfer(new InetSocketAddress("aethernetwork.tk", 19132));
+                                    break;
+                            }
+                        } else {
+                            player.sendMessage(TextFormat.RED + "Silly your already in this lobby.");
                         }
                         break;
                     case "Your Profile":

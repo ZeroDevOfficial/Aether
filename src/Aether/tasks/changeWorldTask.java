@@ -12,21 +12,15 @@ import cn.nukkit.scheduler.NukkitRunnable;
 public class changeWorldTask extends NukkitRunnable {
 
     private Player player;
-    private Main plugin;
     private String world;
 
-    changeWorldTask(Main main, Player player, String world) {
-        setPlugin(main);
+    changeWorldTask(Player player, String world) {
         this.player = player;
         this.world = world;
     }
 
-    private Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    private void setPlugin(Main plugin) {
-        this.plugin = plugin;
+    private Main getPlugin() {
+        return Main.getInstance();
     }
 
     @Override

@@ -10,6 +10,8 @@ import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.utils.TextFormat;
 
+import java.util.Arrays;
+
 public class form {
 
     public FormWindowSimple profileWindow(Player player) {
@@ -30,38 +32,18 @@ public class form {
 
     public FormWindowCustom settingsWindow(Player player) {
         FormWindowCustom window = new FormWindowCustom("Settings.");
-        ElementStepSlider scaleSteps = new ElementStepSlider("\nNote: changing scale is experiment.\nScale");
         if (player.isOp()) {
-            scaleSteps.addStep("ant mode");
-            scaleSteps.addStep("0.50");
-            scaleSteps.addStep("1.00");
-            scaleSteps.addStep("1.50");
-            scaleSteps.addStep("giant mode");
-            scaleSteps.setDefaultOptionIndex(2);
+            window.addElement(new ElementStepSlider("\nNote: changing scale is experiment.\nScale", Arrays.asList("ant mode", "0.50", "1.00", "1.50", "giant mode"), 2));
         } else {
-            scaleSteps.addStep("0.50");
-            scaleSteps.addStep("1.00");
-            scaleSteps.addStep("1.50");
-            scaleSteps.setDefaultOptionIndex(1);
+            window.addElement(new ElementStepSlider("\nNote: changing scale is experiment.\nScale", Arrays.asList("0.50", "1.00", "1.50"), 1));
         }
-
-        window.addElement(scaleSteps);
-
-        ElementStepSlider viewDistanceSteps = new ElementStepSlider("\nServer View Distance");
-        viewDistanceSteps.addStep("5 chunks");
-        viewDistanceSteps.addStep("8 chunks");
-        viewDistanceSteps.setDefaultOptionIndex(1);
-        window.addElement(viewDistanceSteps);
-
-        ElementDropdown capeColor = new ElementDropdown("\nCape Color:");
-        capeColor.addOption("black");
-        capeColor.addOption("gray");
-        capeColor.addOption("red");
-        capeColor.addOption("blue");
-        capeColor.addOption("purple");
-        capeColor.setDefaultOptionIndex(0);
-        window.addElement(capeColor);
+        window.addElement(new ElementStepSlider("\nServer View Distance", Arrays.asList("5 chunks", "8 chunks"), 1));
+        window.addElement(new ElementDropdown("\nCape Color:", Arrays.asList("black", "gray", "red", "blue", "purple"), 0));
         return window;
+    }
+
+    public FormWindowCustom serverSettingsWindow(Player player) {
+        return null;
     }
 
     public FormWindowSimple gamesWindow() {
@@ -71,10 +53,14 @@ public class form {
         return window;
     }
 
-    public FormWindowSimple lobbiesWindow() {
+    public FormWindowSimple lobbiesWindow(Player player) {
         FormWindowSimple window = new FormWindowSimple("Lobby Selector", "Select a lobby");
         window.addButton(new ElementButton("Cancel", new ElementButtonImageData("url", "https://i.imgur.com/PcJEnVy.png")));
-        window.addButton(new ElementButton("Lobby 1"));
+        if (player.isOp()) {//TODO
+            window.addButton(new ElementButton("Dev Lobby"));
+        } else {
+            window.addButton(new ElementButton("Lobby 1"));
+        }
         return window;
     }
 }

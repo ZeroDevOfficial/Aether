@@ -15,9 +15,11 @@ import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
 import cn.nukkit.utils.DummyBossBar;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.IOException;
 
 public class AetherPlayer extends Player {
 
@@ -29,13 +31,10 @@ public class AetherPlayer extends Player {
 
     public AetherPlayer(SourceInterface interfaz, Long clientID, String ip, int port) {
         super(interfaz, clientID, ip, port);
-        Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat("MM/dd/yyyy hh:mm a zzz");
-        lastLogin = ft.format(date);
     }
 
     private Main getPlugin() {
-        return Aether.Main.getInstance();
+        return Main.getInstance();
     }
 
     public void setupForTeleport() {
@@ -85,11 +84,14 @@ public class AetherPlayer extends Player {
                                     text.sendText(getPlayer());
                                 }
 
-                                getConfig();
+                                kills = getConfig().getInt("kills");
+                                deaths = getConfig().getInt("deaths");
+                                lastLogin = getConfig().getString("last_login");
+
                                 createBossBar("");
 
                                 getPlayer().setImmobile(false);
-                                setDefaultAdventureSettings();
+                                setDefaultAdventureSettings(true);
 
                                 playSound(55);
                             }
@@ -100,17 +102,21 @@ public class AetherPlayer extends Player {
         }.runTaskLater(getPlugin(), 30);
     }
 
-    public Config getConfig(){
-        String folder = new File(getPlugin().getServer().getDataPath()).getParent();
-        Config config = new Config(folder + "/PlayerData/" + getPlayer().getName().toLowerCase() + ".json", Config.JSON);
+    public Config getConfig() {
+        ConfigSection cs = new ConfigSection();
+        cs.set("display_name", this.getName());
+        cs.set("kills", this.kills);
+        cs.set("deaths", this.deaths);
+        cs.set("last_login", this.lastLogin);
+        Config config = new Config(getPlugin().getServerFolder() + "/PlayerData/" + getPlayer().getName().toLowerCase() + ".json", Config.JSON, cs);
         return config;
     }
 
-    public void setDefaultAdventureSettings() {//will add the commented ones later.
+    private void setDefaultAdventureSettings(boolean build) {
         this.getAdventureSettings().set(AdventureSettings.Type.ALLOW_FLIGHT, true);
-        //this.getAdventureSettings().set(AdventureSettings.Type.WORLD_BUILDER, false);
-        //this.getAdventureSettings().set(AdventureSettings.Type.BUILD_AND_MINE, false);
-        //this.getAdventureSettings().set(AdventureSettings.Type.DOORS_AND_SWITCHED, false);
+        this.getAdventureSettings().set(AdventureSettings.Type.WORLD_BUILDER, build);
+        this.getAdventureSettings().set(AdventureSettings.Type.BUILD_AND_MINE, build);
+        this.getAdventureSettings().set(AdventureSettings.Type.DOORS_AND_SWITCHED, true);
         this.getAdventureSettings().update();
     }
 
@@ -124,7 +130,7 @@ public class AetherPlayer extends Player {
 
     public void setCape(String name) {
         Skin skin = new Skin(this.getSkin().getData());
-        skin.setCape(skin.new Cape(new File(getPlugin().getDataFolder() + "/images/" + name + "_cape.png"), skin.getModel()));
+        skin.setCape(skin.new Cape(new File(getPlugin().getServerFolder() + "/images/" + name + "_cape.png"), skin.getModel()));
 
         PlayerListPacket pk = new PlayerListPacket();
         pk.type = PlayerListPacket.TYPE_ADD;
@@ -146,6 +152,37 @@ public class AetherPlayer extends Player {
         pk.pitch = 1;
 
         this.dataPacket(pk);
+    }
+
+
+    public void saveSkin() {
+        final byte[] byteArray = this.getSkin().getData();
+        final BufferedImage finalSkin = new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB);
+        final int entireByteArray = byteArray.length;
+        int start = 0;
+        int x = 0;
+        int y = 0;
+        while (entireByteArray > start) {
+            if (x == 64) {
+                x = 0;
+                y++;
+            }
+            final int r = byteArray[start] & 0xFF;
+            final int g = byteArray[start + 1] & 0xFF;
+            final int b = byteArray[start + 2] & 0xFF;
+            final int a = byteArray[start + 3] & 0xFF;
+
+            finalSkin.setRGB(x, y, new Color(r, g, b, a).getRGB());
+            start = start + 4;
+            x++;
+
+        }
+        try {
+            ImageIO.write(finalSkin, "png",
+                    new File(getPlugin().getServerFolder() + "/images/Skins/player/", this.getName() + ".png"));
+        } catch (final IOException e1) {
+            e1.printStackTrace();
+        }
     }
 
     //public boolean saveData() { return true; }//TODO

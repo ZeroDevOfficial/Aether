@@ -1,6 +1,5 @@
 package Aether.entity;
 
-import Aether.Main;
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.data.Skin;
@@ -15,32 +14,20 @@ import java.util.UUID;
 
 public class Npc {
 
-    private Main plugin;
     private Location pos;
     private String name;
-    private String type;
     private Skin skin;
 
     private long eid;
     private UUID uuid;
 
-    public Npc(Main main, Location pos, String name, String type, Skin skin) {
-        setPlugin(main);
+    public Npc(Location pos, String name, Skin skin) {
         this.setPos(pos);
         this.setName(name);
-        this.type = type;
         this.setSkin(skin);
 
         this.eid = Entity.entityCount++;
         this.uuid = UUID.randomUUID();
-    }
-
-    private Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    private void setPlugin(Main plugin) {
-        this.plugin = plugin;
     }
 
     private Location getPos() {

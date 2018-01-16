@@ -8,24 +8,18 @@ import cn.nukkit.scheduler.NukkitRunnable;
 
 public class changeDimensionTask extends NukkitRunnable {
 
-    private Main plugin;
     private Player player;
     private int dimension;
     private String world;
 
-    public changeDimensionTask(Main main, Player player, int dimension, String world) {
-        setPlugin(main);
+    public changeDimensionTask(Player player, int dimension, String world) {
         this.player = player;
         this.dimension = dimension;
         this.world = world;
     }
 
-    private Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    private void setPlugin(Main plugin) {
-        this.plugin = plugin;
+    private Main getPlugin() {
+        return Main.getInstance();
     }
 
     @Override
@@ -42,7 +36,7 @@ public class changeDimensionTask extends NukkitRunnable {
             player.dataPacket(pk);
 
             ((AetherPlayer) player).dimension = dimension;
-            new Aether.tasks.changeWorldTask(getPlugin(), player, world).runTaskLater(getPlugin(), 5);
+            new Aether.tasks.changeWorldTask(player, world).runTaskLater(getPlugin(), 5);
         }
     }
 }

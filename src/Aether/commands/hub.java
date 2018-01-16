@@ -1,6 +1,7 @@
 package Aether.commands;
 
 import Aether.AetherPlayer;
+import Aether.Main;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.defaults.VanillaCommand;
@@ -8,19 +9,12 @@ import cn.nukkit.utils.TextFormat;
 
 public class hub extends VanillaCommand {
 
-    private Aether.Main plugin;
-
-    public hub(Aether.Main main, String name) {
+    public hub(String name) {
         super(name);
-        this.setPlugin(main);
     }
 
-    public Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    public void setPlugin(Aether.Main plugin) {
-        this.plugin = plugin;
+    private Main getPlugin() {
+        return Main.getInstance();
     }
 
     @Override

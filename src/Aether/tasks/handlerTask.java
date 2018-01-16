@@ -4,18 +4,9 @@ import Aether.Main;
 import cn.nukkit.scheduler.Task;
 
 public class handlerTask extends Task {
-    private Main plugin;
 
-    public handlerTask(Main main) {
-        setPlugin(main);
-    }
-
-    public Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    public void setPlugin(Aether.Main plugin) {
-        this.plugin = plugin;
+    private Main getPlugin() {
+        return Main.getInstance();
     }
 
     @Override
@@ -29,5 +20,6 @@ public class handlerTask extends Task {
 
     //this is so I can extend this and @Override it, and run it
     public void tick() {
+        return;
     }
 }

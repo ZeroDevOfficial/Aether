@@ -7,19 +7,8 @@ import cn.nukkit.utils.TextFormat;
 
 public class borderTask extends handlerTask {
 
-    private Main plugin;
-
-    public borderTask(Main main) {
-        super(main);
-        setPlugin(main);
-    }
-
-    public Aether.Main getPlugin() {
-        return plugin;
-    }
-
-    public void setPlugin(Aether.Main plugin) {
-        this.plugin = plugin;
+    private Main getPlugin() {
+        return Main.getInstance();
     }
 
     @Override

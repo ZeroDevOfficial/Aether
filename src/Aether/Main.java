@@ -60,7 +60,7 @@ public class Main extends PluginBase {
         return getServer().getLevelByName("hub");
     }
 
-    public void info(String msg) {//TODO Remove, and create a logger class.
+    public void info(String msg) {
         getServer().getLogger().info(getPrefix() + " " + msg);
     }
 }

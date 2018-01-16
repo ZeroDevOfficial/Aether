@@ -91,7 +91,7 @@ public class AetherPlayer extends Player {
                                 createBossBar("");
 
                                 getPlayer().setImmobile(false);
-                                setDefaultAdventureSettings(getPlugin().getUtils().modifyWorld);
+                                setDefaultAdventureSettings(true);
 
                                 playSound(55);
                             }
